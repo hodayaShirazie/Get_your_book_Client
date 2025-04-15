@@ -1,5 +1,5 @@
 # Get-your-book
 
-cd vite-project
-  npm install
-  npm run dev
+-cd vite-project
+-npm install
+-npm run dev
