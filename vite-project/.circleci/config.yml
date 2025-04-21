@@ -21,7 +21,7 @@ jobs:
           command: npm run build
       - run:
           name: Install dependencies
-          command: npm install
+          command: npm install 
 
 workflows:
   vite-client-pipeline:
