@@ -38,7 +38,7 @@ version: 2.1
 orbs:
   node: circleci/node@5
 
-jobs:
+jobs:   
   build_and_test_vite:
     executor: node/default
     working_directory: ~/project/vite-project  # vite-project directory
