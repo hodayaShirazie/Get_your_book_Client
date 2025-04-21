@@ -8,3 +8,9 @@ jobs:
       - checkout
       - run: npm ci
       - run: npm test
+      - run: npm run build
+
+workflows:
+  build-and-test:
+    jobs:
+      - build
