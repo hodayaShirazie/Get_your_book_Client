@@ -38,14 +38,15 @@ version: 2.1
 orbs:
   node: circleci/node@5
 
-jobs:   
+jobs:
   build_and_test_vite:
     executor: node/default
-    working_directory: ~/project/vite-project  # vite-project directory
+    working_directory: ~/project/vite-project  # This should set the correct working directory
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
+          app-dir: vite-project  # Added app-dir to point to the vite-project directory
       - run:
           name: Install dependencies
           command: npm install
