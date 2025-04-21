@@ -1,0 +1,29 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5
+
+jobs:
+  build-and-test-vite:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run linter
+          command: npm run lint  
+      - run:
+          name: Run tests
+          command: npm test  
+      - run:
+          name: Build the Vite app
+          command: npm run build
+      - run:
+          name: Install dependencies
+          command: npm install
+
+workflows:
+  vite-client-pipeline:
+    jobs:
+      - build-and-test-vite
