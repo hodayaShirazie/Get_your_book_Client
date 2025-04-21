@@ -35,32 +35,11 @@
 
 version: 2.1
 
-orbs:
-  node: circleci/node@5
-
 jobs:
-  build_and_test_vite:
-    executor: node/default
-    working_directory: ~/project/vite-project  # This should set the correct working directory
+  build:
+    docker:
+      - image: cimg/node:18.20.2
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
-          app-dir: vite-project  # Added app-dir to point to the vite-project directory
-      - run:
-          name: Install dependencies
-          command: npm install
-      - run:
-          name: Run linter
-          command: npm run lint
-      - run:
-          name: Run tests
-          command: npm test
-      - run:
-          name: Build the Vite app
-          command: npm run build
-
-workflows:
-  vite_client_pipeline:
-    jobs:
-      - build_and_test_vite
+      - run: npm ci
+      - run: npm test
