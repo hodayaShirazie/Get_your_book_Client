@@ -18,6 +18,6 @@ describe('App component', () => {
     // Use userEvent to simulate a click
     await userEvent.click(button);
     // After one click, it should read "count is 1"
-    expect(screen.getByText(/count = 1/i)).toBeInTheDocument();
+    expect(screen.getByText(/count is 1/i)).toBeInTheDocument();
   });
 });
