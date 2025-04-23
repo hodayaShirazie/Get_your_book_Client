@@ -115,6 +115,9 @@ export default function Login() {
         username,
         password
       });
+      // לקרוא את כל המשתמשים ולבדוק
+      const usersRes = await axios.get(`${SERVER_URL}/users`);
+      console.log('users in site', usersRes.data);
       alert('✅ משתמש נוצר בהצלחה!');
     } catch (err) {
       console.error('❌ שגיאה ביצירת המשתמש:', err);
