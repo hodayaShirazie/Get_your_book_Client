@@ -96,8 +96,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SERVER_URL = process.env.VITE_SERVER_URL;
-
+const SERVER_URL = 'https://get-your-book-server.onrender.com';
 console.log('SERVER_URL:', SERVER_URL);
 
 
