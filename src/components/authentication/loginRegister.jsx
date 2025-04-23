@@ -96,7 +96,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+const SERVER_URL = process.env.VITE_SERVER_URL;
 
 // const SERVER_URL = import.meta.env.MODE === 'development'
 //   ? import.meta.env.VITE_SERVER_URL
@@ -111,7 +111,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:3000/users`, {
+      const res = await axios.post(`${SERVER_URL}`, {
         username,
         password
       });
