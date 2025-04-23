@@ -96,9 +96,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SERVER_URL = import.meta.env.MODE === 'development'
-  ? import.meta.env.VITE_SERVER_URL
-  : import.meta.env.VITE_SERVER_URL_PROD;
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
+// const SERVER_URL = import.meta.env.MODE === 'development'
+//   ? import.meta.env.VITE_SERVER_URL
+//   : import.meta.env.VITE_SERVER_URL_PROD;
 
   console.log('Server URL:', SERVER_URL);
 
