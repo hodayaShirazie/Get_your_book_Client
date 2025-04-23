@@ -98,6 +98,9 @@ import axios from 'axios';
 
 const SERVER_URL = process.env.VITE_SERVER_URL;
 
+console.log('SERVER_URL:', SERVER_URL);
+
+
 // const SERVER_URL = import.meta.env.MODE === 'development'
 //   ? import.meta.env.VITE_SERVER_URL
   // : import.meta.env.VITE_SERVER_URL_PROD;
