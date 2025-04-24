@@ -48,7 +48,7 @@ jobs:
     steps:
       - run: 
           name: Deploy app to server
-          command: curl "https://get-your-book-server.onrender.com"
+          command: curl 'https://get-your-book-server.onrender.com'
 
 workflows:
   version: 2
