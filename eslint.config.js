@@ -56,17 +56,23 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+      "no-console": "warn",
+      "prefer-const": "error",
+      "no-unused-vars": "warn",
+      "eqeqeq": ["error", "always"]
+
+
       // "no-unused-vars": ["warn"],
-      "linebreak-style": ["warn", "unix"],
-      "semi": ["error", "always"],
-      "quotes": ["error", "single", { "avoidEscape": true }],
-      "eqeqeq": ["warn", "always"],
-      "no-console": ["warn"],
-      "prefer-const": ["warn"],
-      "no-var": ["error"],
-      "arrow-body-style": ["warn", "as-needed"],
-      "prefer-template": ["warn"],
-      "strict": ["error", "never"]
+      // "linebreak-style": ["warn", "unix"],
+      // "semi": ["error", "always"],
+      // "quotes": ["error", "single", { "avoidEscape": true }],
+      // "eqeqeq": ["warn", "always"],
+      // "no-console": ["warn"],
+      // "prefer-const": ["warn"],
+      // "no-var": ["error"],
+      // "arrow-body-style": ["warn", "as-needed"],
+      // "prefer-template": ["warn"],
+      // "strict": ["error", "never"]
     },
   },
 ];
