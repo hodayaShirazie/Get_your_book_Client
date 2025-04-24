@@ -1,5 +1,13 @@
 // App.test.jsx
-global.fetch = require('node-fetch');
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({
+      about_project: 'Mocked project description',
+      about_team: 'Mocked team description',
+    }),
+  })
+);
 
 
 import { render } from '@testing-library/react';
