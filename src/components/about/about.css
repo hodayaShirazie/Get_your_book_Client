@@ -1,72 +1,74 @@
 .about-page {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom right, rgba(246, 245, 239, 0.9), rgba(223, 230, 220, 0.9)),
-                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .about-sections {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    padding: 40px 0;
-  }
-  
-  .about-box {
-    background: #f5f8f4;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
-  }
-  
-  .about-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    color: #225536;
-    margin-bottom: 24px;
-  }
-  
-  .about-title.small {
-    font-size: 28px;
-  }
-  
-  .about-text {
-    font-size: 16px;
-    color: #2f2f2f;
-    line-height: 1.6;
-  }
-  
-  .about-footer {
-    text-align: center;
-    font-size: 14px;
-    color: #666;
-    padding: 30px 20px;
-    margin-top: auto;
-  }
-  
-  .about-divider {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin-bottom: 16px;
-    width: 80%;
-  }
-  
-  .footer-quote {
-    margin-top: 8px;
-    font-style: italic;
-  }
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fefefe;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.about-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+  padding: 60px 30px;
+  background: none;
+}
+
+.about-text {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.about-box {
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.about-box.project {
+  background-color: #d0e9db;
+}
+
+.about-box.team {
+  background-color: #e2f3eb;
+}
+
+.about-box h1, .about-box h2 {
+  font-size: 28px;
+  color: #225536;
+  margin-bottom: 12px;
+}
+
+.about-box p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.about-image {
+  max-width: 400px;
+  border-radius: 20px;
+}
+
+.about-footer {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  padding: 30px 20px;
+  margin-top: auto;
+}
+
+.about-footer hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin-bottom: 16px;
+  width: 80%;
+}
+
+.about-footer .quote {
+  margin-top: 8px;
+  font-style: italic;
+}

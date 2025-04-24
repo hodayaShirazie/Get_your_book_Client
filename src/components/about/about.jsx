@@ -4,24 +4,38 @@ import './about.css';
 const AboutPage = () => {
   return (
     <div className="about-page">
-      <div className="about-sections">
-        <div className="about-box">
-          <h2 className="about-title">About Get Your Book</h2>
-          <p className="about-text">
-            Get Your Book is an innovative platform designed to make book purchasing and rental seamless and enjoyable. Whether you're a passionate reader or a casual browser, the system allows users to explore a diverse catalog, manage personal preferences, and stay updated with new releases – all in an accessible and user-friendly interface.
-          </p>
+      <section className="about-section">
+        <div className="about-text">
+          <div className="about-box project">
+            <h1>ABOUT OUR PROJECT</h1>
+            <p>
+              Get Your Book is an innovative platform designed to make book purchasing and rental seamless and enjoyable.
+              The project is focused on improving accessibility and efficiency in how people interact with books.
+            </p>
+          </div>
+          <div className="about-box team">
+            <h2>ABOUT OUR TEAM</h2>
+            <p>
+              We are Team 9 – a group of enthusiastic students committed to clean UI/UX, efficient backend logic, and full-stack functionality.
+              Each of us contributes a unique strength to this meaningful educational project.
+            </p>
+          </div>
         </div>
-        <div className="about-box">
-          <h2 className="about-title small">About Our Team</h2>
-          <p className="about-text">
-            We are Team 9 – a group of committed students with a shared passion for clean design and modern web development. Each team member brings their own strengths in UI/UX, backend development, and testing, ensuring our project is built with care and creativity. We believe in learning through building.
-          </p>
+        <div>
+          <img
+            src="https://img.freepik.com/free-vector/business-team-putting-together-jigsaw-puzzle-isolated-flat-vector-illustration-cartoon-partners-working-connection-teamwork-partnership-cooperation-concept_74855-9814.jpg"
+            alt="Team Illustration"
+            className="about-image"
+          />
         </div>
-      </div>
+      </section>
+
       <footer className="about-footer">
-        <hr className="about-divider" />
+        <hr />
         <p>📚 Get Your Book | Built with 💚 by Team 9 | © 2025</p>
-        <p className="footer-quote">"A room without books is like a body without a soul." – Cicero</p>
+        <p className="quote">
+          "A room without books is like a body without a soul." – Cicero
+        </p>
       </footer>
     </div>
   );
