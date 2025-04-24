@@ -5,12 +5,6 @@ const SERVER_URL = 'https://get-your-book-server.onrender.com';
 console.log('SERVER_URL:', SERVER_URL);
 
 
-// const SERVER_URL = import.meta.env.MODE === 'development'
-//   ? import.meta.env.VITE_SERVER_URL
-  // : import.meta.env.VITE_SERVER_URL_PROD;
-// 
-  // console.log('Server URL:', SERVER_URL);
-
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
