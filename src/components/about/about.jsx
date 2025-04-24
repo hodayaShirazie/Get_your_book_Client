@@ -70,13 +70,23 @@ const AboutPage = () => {
       });
   }, []);
 
+
+  const formatText = (text) => {
+    return text.split('\n').map((item, index) => (
+      <span key={index}>
+        {item}
+        <br />
+      </span>
+    ));
+  };
+
   return (
     <div className="about-page">
       <section className="about-section">
         <div className="about-text">
           <div className="about-box project">
             <h1>What is Get Your Book?</h1>
-            <p>{projectText || 'Loading project description...'}</p>
+            <p>{projectText ? formatText(projectText) : 'Loading project description...'}</p>
           </div>
           <div className="about-box team">
             <h2>Who Are We?</h2>
