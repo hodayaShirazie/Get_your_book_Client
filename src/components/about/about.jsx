@@ -59,11 +59,9 @@ const AboutPage = () => {
   const [teamText, setTeamText] = useState('');
 
   useEffect(() => {
-    // מבצע קריאה לשרת
     fetch(`${SERVER_URL}/about`)
       .then((response) => response.json())
       .then((data) => {
-        // מניח שהנתונים מגיעים כ-JSON
         setProjectText(data.about_project);
         setTeamText(data.about_team);
       })
@@ -77,11 +75,11 @@ const AboutPage = () => {
       <section className="about-section">
         <div className="about-text">
           <div className="about-box project">
-            <h1>ABOUT OUR PROJECT</h1>
+            <h1>What is Get Your Book?</h1>
             <p>{projectText || 'Loading project description...'}</p>
           </div>
           <div className="about-box team">
-            <h2>ABOUT OUR TEAM</h2>
+            <h2>Who Are We?</h2>
             <p>{teamText || 'Loading team description...'}</p>
           </div>
         </div>
