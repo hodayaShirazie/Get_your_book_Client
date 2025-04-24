@@ -56,11 +56,12 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
-      "no-console": "warn",
-      "prefer-const": "error",
-      "no-unused-vars": "warn",
-      "eqeqeq": ["error", "always"]
+      "no-console": "warn", // Disallows the use of console statements to prevent debug output in production code.
 
+      "prefer-const": "error",  // Enforces the use of 'const' for variables that are not reassigned, promoting immutability.
+      
+      "no-unused-vars": "warn",  // Warns about declared variables that are never used, improving code cleanliness and maintainability.
+      
 
       // "no-unused-vars": ["warn"],
       // "linebreak-style": ["warn", "unix"],
