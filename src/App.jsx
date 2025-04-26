@@ -6,10 +6,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from "./components/Login/Login.jsx"
 import PasswordRecovery from "./components/Login/PasswordRecovery.jsx"
 import About from "./components/about/about.jsx"
+import Register from "./components/Register/Register.jsx";
+
 function App() {
   return (
     <Fragment>
-      <Router>
+      <Register />
+      {/* <Router>
         <Routes>
           <Route path="/" element={<LoginRegister />} />
           <Route path="/home" element={<Homepage />} />
@@ -17,7 +20,7 @@ function App() {
           <Route path="/passwordrecovery" element={<PasswordRecovery/>}/>
           <Route path='/about' element={<About/>}/>
         </Routes>
-      </Router>
+      </Router> */}
     </Fragment>
   );
 }
