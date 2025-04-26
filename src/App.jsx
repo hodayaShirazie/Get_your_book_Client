@@ -1,19 +1,24 @@
-import React,{Fragment} from 'react';
-import './App.css';
-import Homepage from './components/homepage/homepage.jsx';
-import LoginRegister from './components/authentication/loginRegister.jsx';
-import About from './components/about/about.jsx';
-
+import React, { Fragment } from "react";
+import "./App.css";
+import Homepage from "./components/homepage/homepage.jsx";
+import LoginRegister from "./components/authentication/loginRegister.jsx";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginForm from "./components/Login/Login.jsx"
+import PasswordRecovery from "./components/Login/PasswordRecovery.jsx"
+import About from "./components/about/about.jsx"
 function App() {
-  return (  
+  return (
     <Fragment>
-
-      {/* <Homepage/> */}
-      {/* <LoginRegister/> */}
-      <About/>
-      
-
-    </Fragment>   
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginRegister />} />
+          <Route path="/home" element={<Homepage />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/passwordrecovery" element={<PasswordRecovery/>}/>
+          <Route path='/about' element={<About/>}/>
+        </Routes>
+      </Router>
+    </Fragment>
   );
 }
 
