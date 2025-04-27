@@ -17,7 +17,7 @@ function App() {
       {/* <LoginRegister/> */}
       <Home />
       
-      <Register />
+      {/*<Register /> */}
       {/* <Router>
         <Routes>
           <Route path="/" element={<LoginRegister />} />
