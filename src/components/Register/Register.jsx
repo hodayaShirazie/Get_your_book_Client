@@ -13,8 +13,8 @@ function Register() {
   const [securityQuestions, setSecurityQuestions] = useState([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
-  const SERVER_URL = 'http://localhost:3000';
+  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+//   const SERVER_URL = 'http://localhost:3000';
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/security-questions`)

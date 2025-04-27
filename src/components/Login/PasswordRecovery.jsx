@@ -9,8 +9,8 @@ function PasswordRecovery() {
   const [message, setMessage] = useState('');
   const [step, setStep] = useState(1); 
 
-  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
-  const SERVER_URL = 'http://localhost:3000'; 
+  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+//   const SERVER_URL = 'http://localhost:3000'; 
 
   const handleUsernameSubmit = async (e) => {
     e.preventDefault();
