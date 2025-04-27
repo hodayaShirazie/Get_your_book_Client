@@ -1,69 +1,84 @@
-import React, { useState } from "react";
-import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import './PasswordRecovery.css';
+import axios from 'axios';
 
-const PasswordRecovery = () => {
-    const [username, setUsername] = useState("");
-    const [answer, setAnswer] = useState("");
-    const [error, setError] = useState("");
-    const [securityQuestion, setSecurityQuestion] = useState("");
+function PasswordRecovery() {
+  const [username, setUsername] = useState('');
+  const [securityQuestion, setSecurityQuestion] = useState('');
+  const [securityAnswer, setSecurityAnswer] = useState('');
+  const [message, setMessage] = useState('');
+  const [step, setStep] = useState(1); 
 
-    const navigate = useNavigate();
-    const handleSubmit = () => {
-        navigate("/home");
-    };
-    return (
-        <div className="background-overlay">
-            <div className="login-container">
-                <h2>Password Recovery</h2>
-                {error && <p className="error-message">{error}</p>}
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        handleSubmit();
-                    }}
-                >
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Enter your username"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Security Question</label>
-                        <select
-                            value={securityQuestion}
-                            onChange={(e) => setSecurityQuestion(e.target.value)}
-                        >
-                            <option value="">Select a question</option>
-                            <option value="phone">What is your phone number?</option>
-                            <option value="email">What is your email address?</option>
-                            <option value="food">What is your favorite food?</option>
-                            <option value="id">What is your ID number?</option>
-                            <option value="name">What is your favorite name?</option>
-                        </select>
-                    </div>
+  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  const SERVER_URL = 'http://localhost:3000'; 
 
-                    <div className="form-group">
-                        <label>Your Answer</label>
-                        <input
-                            type="text"
-                            value={answer}
-                            onChange={(e) => setAnswer(e.target.value)}
-                            placeholder="Enter your answer"
-                        />
-                    </div>
+  const handleUsernameSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(`${SERVER_URL}/security-question/${username}`);
+      setSecurityQuestion(response.data.question);
+      setStep(2);
+    } catch (err) {
+      setMessage('Username not found');
+    }
+  };
 
-                    <button className="login-button" type="submit">
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
-};
+  const handleAnswerSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${SERVER_URL}/recover-password`, { username, securityAnswer });
+      if (response.data.success) {
+        setMessage('Your password is: ' + response.data.password);
+      } else {
+        setMessage('Incorrect answer. Please try again.');
+      }
+    } catch (err) {
+      setMessage('Error recovering password.');
+    }
+  };
+
+  return (
+    <div className="recovery-container">
+      <form className="recovery-form" onSubmit={step === 1 ? handleUsernameSubmit : handleAnswerSubmit}>
+        <h2>Password Recovery</h2>
+        {step === 1 ? (
+          <>
+            <label>Username</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your username"
+              required
+            />
+            <button type="submit" className="submit-button">Submit</button>
+          </>
+        ) : (
+          <>
+            <p>Please enter your username and answer the security question you selected during registration.</p>
+            <label>Security Question</label>
+            <input
+              type="text"
+              value={securityQuestion}
+              disabled
+            />
+
+            <label>Your Answer</label>
+            <input
+              type="text"
+              value={securityAnswer}
+              onChange={(e) => setSecurityAnswer(e.target.value)}
+              placeholder="Enter your answer"
+              required
+            />
+
+            <button type="submit" className="submit-button">Submit</button>
+          </>
+        )}
+        {message && <p className="message">{message}</p>}
+      </form>
+    </div>
+  );
+}
 
 export default PasswordRecovery;

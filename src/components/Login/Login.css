@@ -1,105 +1,66 @@
 .login-container {
-    min-width: 400px;
-    max-width: 400px;
-    margin: 45px auto;
-    padding: 30px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: center;
-    font-family: Arial, sans-serif;
-    z-index: 1;
-  }
+  background: url('/background-books.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .login-container h2 {
-    color: #025737;
-    font-family: 'Georgia', serif;
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-size: 36px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
+.login-form {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 350px;
+  text-align: center;
+}
 
-  .form-group input,
-.form-group select {
+.login-form h2 {
+  color: #2d4739;
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #2d4739;
+}
+
+.login-form input {
   width: 100%;
   padding: 10px;
-  font-size: 14px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box; 
+  border-radius: 8px;
 }
 
-  .login-button {
-    padding: 10px 20px;
-    background-color: #025737;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .login-button:hover {
-    background-color: #024229;
-  }
-  
-  .forgot-link {
-    display: block;
-    margin-top: 15px;
-    color: #3d36c2;
-    text-decoration: underline;
-    text-align: left;
-  }
-  
-  .forgot-link:hover {
-    text-decoration: underline;
-  }
-
-  .error-message {
-    color: red;
-  }
-
-.background-overlay {
-  position: fixed;
-  inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1350&q=80');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
+.login-button {
+  background-color: #2d4739;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.background-overlay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(255, 255, 255, 0.7); 
+.login-button:hover {
+  background-color: #416353;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
 
-.login-container {
-  position: relative;
-  z-index: 1;
-  background-color: rgba(255, 255, 255, 0.95);
-  min-width: 400px;
-  margin: 45px auto;
-  padding: 30px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: center;
-  font-family: Arial, sans-serif;
+.forgot-link {
+  margin-top: 10px;
+  color: #2d4739;
+  text-decoration: underline;
+  cursor: pointer;
 }

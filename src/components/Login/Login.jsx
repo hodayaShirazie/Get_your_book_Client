@@ -1,75 +1,75 @@
+import { useState } from 'react';
+import './Login.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-import React, { useState } from "react";
-import "./Login.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+function Login() {
+  const [form, setForm] = useState({ username: '', password: '' });
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-  const handleLogin = async (e) => {
+
+  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  const SERVER_URL = 'http://localhost:3000'; 
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setError('');
+  };
+
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
-
-    if (!username || !password) {
-      setError("Both fields are required!");
-      return;
-    }
-
+    
     try {
-      const response = await axios.post(
-        "https://get-your-book-server.onrender.com/user/login", {
-        username,
-        password,
-      });
-
-      if (response.status === 200) {
-        navigate("/home");
+      const response = await axios.post(`${SERVER_URL}/login`, form);
+      if (response.data.success) {
+        setForm({ username: '', password: '' });
+        // navigate('/home'); 
+      } else {
+        setError('Invalid username or password. Please try again.');
       }
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.error) {
-        setError(err.response.data.error);
-      } else {
-        setError("An unexpected error occurred. Please try again.");
-      }
+      setError('Invalid username or password. Please try again.');
     }
   };
 
+  const handleForgotPassword = () => {
+    navigate('/recover-password');
+  };
+
   return (
-    <div className="background-overlay">
-      <div className="login-container">
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
+
         {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
-          </div>
-          <button className="login-button" type="submit">
-            Login
-          </button>
-        </form>
-        <a href="/passwordrecovery" className="forgot-link">
-          Forgot Password?
-        </a>
-      </div>
+
+        <label>Username</label>
+        <input
+          type="text"
+          name="username"
+          value={form.username}
+          onChange={handleChange}
+          placeholder="Enter your username"
+          required
+        />
+
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          placeholder="Enter your password"
+          required
+        />
+
+        <button type="submit" className="login-button">Login</button>
+
+        <p className="forgot-link" onClick={handleForgotPassword}>Forgot Password?</p>
+      </form>
     </div>
   );
-};
+}
 
 export default Login;

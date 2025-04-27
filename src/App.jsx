@@ -1,17 +1,39 @@
 import React, { Fragment } from "react";
 import "./App.css";
 import Homepage from "./components/homepage/homepage.jsx";
-import LoginRegister from "./components/authentication/loginRegister.jsx";
+// import LoginRegister from "./components/authentication/loginRegister.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from "./components/Login/Login.jsx"
+import Login from "./components/Login/Login.jsx"
 import PasswordRecovery from "./components/Login/PasswordRecovery.jsx"
 import About from "./components/about/about.jsx"
 import Register from "./components/Register/Register.jsx";
 
+
 function App() {
   return (
     <Fragment>
-      <Register />
+      {/* <Register /> */}
+
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/recover-password" element={<PasswordRecovery />} />
+        </Routes>
+
+    </Router>
+
+
+
+
+
+
+
+
+
+
+
+      {/* <Login /> */}
       {/* <Router>
         <Routes>
           <Route path="/" element={<LoginRegister />} />
