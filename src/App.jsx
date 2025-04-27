@@ -13,8 +13,6 @@ import ManagerHomePage from "./components/HomepageManager/ManagerHomePage.jsx";
 function App() {
   return (
     <Fragment>
-
-
       <Router>
         <Routes>
 

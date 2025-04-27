@@ -39,14 +39,12 @@ const CustomerHomepage = () => {
           </div>
         </div>
 
-        {/* כאן מתחיל העדכון */}
         <div className="customer-search-bar">
           <div className="search-container">
             <input type="text" placeholder="Search" />
             <span className="search-icon">🔍</span>
           </div>
         </div>
-        {/* כאן נגמר העדכון */}
 
         <div className="customer-nav-bar">
           <button>Shopping Cart</button>

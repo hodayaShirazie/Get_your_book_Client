@@ -10,10 +10,7 @@ body, html, #root {
   height: 100vh;
   width: 100vw;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url('public/background-book.jpg');
-  /* background:
-    linear-gradient(to bottom right, rgba(246, 245, 239, 0.9), rgba(223, 230, 220, 0.9)),
-    url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1350&q=80'); */
+  background-image: url('/background-book.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -30,7 +27,7 @@ body, html, #root {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.6); /* עמעום לבן עדין */
+  background-color: rgba(255, 255, 255, 0.6); 
   z-index: 1;
 }
 
@@ -42,7 +39,7 @@ body, html, #root {
   width: 100%;
   max-width: 600px;
   z-index: 1;
-  position: relative; /* מאפשר absolute לילד */
+  position: relative;
 }
 
 .notification-inside {
@@ -113,7 +110,7 @@ h2 {
 
 .top-right-buttons {
   position: absolute;
-  top: 8px;   /* כאן שיניתי לגובה גבוה יותר */
+  top: 8px;  
   right: 20px;
   display: flex;
   align-items: center;
@@ -121,7 +118,6 @@ h2 {
   z-index: 2;
 }
 
-/* כפתור About */
 .about-button {
   padding: 6px 12px;
   font-size: 14px;

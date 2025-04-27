@@ -1,5 +1,5 @@
 .background-container {
-    background-image: url('public/background-book.jpg');
+    background-image: url('/background-book.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

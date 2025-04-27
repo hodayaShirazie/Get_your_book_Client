@@ -5,10 +5,7 @@ body {
 
 .customer-bg {
   position: relative;
-  /* background:
-    linear-gradient(to bottom right, rgba(246, 245, 239, 0.9), rgba(223, 230, 220, 0.9)),
-    url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1350&q=80'); */
-  background-image: url('public/background-book.jpg');
+  background-image: url('/background-book.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,7 +24,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.6); /* עמעום לבן עדין */
+  background-color: rgba(255, 255, 255, 0.6); 
   z-index: 1;
 }
 
@@ -86,7 +83,6 @@ body {
   width: 100%;
 }
 
-/* --- עדכון חדש לשדה חיפוש --- */
 .search-container {
   position: relative;
   width: 62%;
@@ -95,7 +91,7 @@ body {
 
 .search-container input[type="text"] {
   width: 100%;
-  padding: 6px 28px 6px 8px; /* רווח מימין לאייקון */
+  padding: 6px 28px 6px 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 13px;
@@ -109,9 +105,8 @@ body {
   transform: translateY(-50%);
   font-size: 14px;
   color: #337d56;
-  pointer-events: none; /* כדי שלא ילחצו עליו בטעות */
+  pointer-events: none; 
 }
-/* --- סוף העדכון לשדה חיפוש --- */
 
 .customer-nav-bar {
   display: flex;
@@ -214,7 +209,6 @@ body {
   color: #1b422b;
 }
 
-/* Style for About Button */
 .about-button {
   position: absolute;
   top: 20px;
