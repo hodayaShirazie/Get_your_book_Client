@@ -10,14 +10,16 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex: 1;
   padding: 60px 30px;
   background: none;
+  gap: 180px;
 }
 
 .about-text {
   max-width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -50,6 +52,8 @@
 
 .about-image {
   max-width: 400px;
+  width: 100%;
+  height: auto;
   border-radius: 20px;
 }
 
@@ -71,5 +75,27 @@
 .about-footer .quote {
   margin-top: 8px;
   font-style: italic;
+}
+.home-button-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000; /* כדי להיות מעל שאר האלמנטים */
+}
+
+.home-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #225536;
+  background-color: transparent;
+  border: 2px solid #225536;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #225536;
+  color: white;
 }
 

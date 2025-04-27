@@ -71,7 +71,7 @@
 
 
 
-   html, body {
+   html, body, #root {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -79,11 +79,12 @@
   }
 
 
-   .register-container {
-    background-image: url('public/backgroundImg.jpg');
-   
-        position: relative;
+   .register-container {   
+        background-image: url('public/background-book.jpg');
+        background-position: center;
         background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
         min-height: 100vh;
         display: flex;
         justify-content: center;

@@ -221,7 +221,7 @@ function Register() {
       <form className="register-form" onSubmit={handleSubmit}>
         <h2>Register</h2>
 
-        <label>Username <span className="required">*</span></label>
+        <label>Username <span className="required"></span></label>
         <input
           type="text"
           name="username"
@@ -232,7 +232,7 @@ function Register() {
         />
         {error.includes('username') && <p className="error-message">{error}</p>}
 
-        <label>Password <span className="required">*</span></label>
+        <label>Password <span className="required"></span></label>
         <input
           type="password"
           name="password"
@@ -242,7 +242,7 @@ function Register() {
           required
         />
 
-        <label>Confirm Password <span className="required">*</span></label>
+        <label>Confirm Password <span className="required"></span></label>
         <input
           type="password"
           name="confirmPassword"
@@ -253,7 +253,7 @@ function Register() {
         />
         {error === 'Passwords do not match' && <p className="error-message">{error}</p>}
 
-        <label>Security Question <span className="required">*</span></label>
+        <label>Security Question <span className="required"></span></label>
         <select
           name="securityQuestionId"
           value={form.securityQuestionId}
@@ -266,7 +266,7 @@ function Register() {
           ))}
         </select>
 
-        <label>Security Answer <span className="required">*</span></label>
+        <label>Security Answer <span className="required"></span></label>
         <input
           type="text"
           name="securityAnswer"

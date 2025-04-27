@@ -25,6 +25,8 @@ function Login() {
 
       if (response.data.success) {
         setForm({ username: '', password: '' });
+        localStorage.setItem('role', response.data.role); //  הוספתי שורה ששומרת את ה-role!
+
 
         if (response.data.role === 'admin') {
         navigate('/admin-home');

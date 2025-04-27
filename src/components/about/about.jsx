@@ -47,6 +47,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './about.css';
+import { useNavigate } from 'react-router-dom';
 
 
 // const SERVER_URL = 'https://get-your-book-server.onrender.com';
@@ -57,6 +58,19 @@ console.log('SERVER_URL:', SERVER_URL);
 const AboutPage = () => {
   const [projectText, setProjectText] = useState('');
   const [teamText, setTeamText] = useState('');
+  const navigate = useNavigate();
+
+  const handleReturnHome = () => {
+    const role = localStorage.getItem('role');
+    if (role && role.toLowerCase() === 'admin') {
+      navigate('/admin-home');
+    } else {
+      navigate('/customer-home');
+    }
+  };
+  
+  
+  
 
   useEffect(() => {
     fetch(`${SERVER_URL}/about`)
@@ -82,6 +96,11 @@ const AboutPage = () => {
 
   return (
     <div className="about-page">
+      <div className="home-button-container">
+      <button className="home-button" onClick={handleReturnHome}>
+      Return to Home
+    </button>
+    </div>
       <section className="about-section">
         <div className="about-text">
           <div className="about-box project">
