@@ -22,9 +22,15 @@ function Login() {
     
     try {
       const response = await axios.post(`${SERVER_URL}/login`, form);
+
       if (response.data.success) {
         setForm({ username: '', password: '' });
-        // navigate('/home'); 
+
+        if (response.data.role === 'admin') {
+        navigate('/admin-home');
+      } else {
+        navigate('/customer-home');
+        }
       } else {
         setError('Invalid username or password. Please try again.');
       }

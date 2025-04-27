@@ -1,48 +1,33 @@
 import React, { Fragment } from "react";
 import "./App.css";
-import Homepage from "./components/homepage/homepage.jsx";
-// import LoginRegister from "./components/authentication/loginRegister.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from "./components/Login/Login.jsx"
 import PasswordRecovery from "./components/Login/PasswordRecovery.jsx"
 import About from "./components/about/about.jsx"
 import Register from "./components/Register/Register.jsx";
+import Home from "./components/home/home.jsx";
+import CustomerHomepage from "./components/HomepageCustomer/CustomerHomepage.jsx";  
+import ManagerHomePage from "./components/HomepageManager/ManagerHomePage.jsx";
 
 
 function App() {
   return (
     <Fragment>
-      {/* <Register /> */}
 
 
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/recover-password" element={<PasswordRecovery />} />
+          <Route path='/about' element={<About/>}/>
+          <Route path="/customer-home" element={<CustomerHomepage />} />
+          <Route path="/admin-home" element={<ManagerHomePage />} />
         </Routes>
 
     </Router>
-
-
-
-
-
-
-
-
-
-
-
-      {/* <Login /> */}
-      {/* <Router>
-        <Routes>
-          <Route path="/" element={<LoginRegister />} />
-          <Route path="/home" element={<Homepage />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/passwordrecovery" element={<PasswordRecovery/>}/>
-          <Route path='/about' element={<About/>}/>
-        </Routes>
-      </Router> */}
     </Fragment>
   );
 }

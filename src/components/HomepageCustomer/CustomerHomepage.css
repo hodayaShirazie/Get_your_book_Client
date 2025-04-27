@@ -1,0 +1,220 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.customer-bg {
+  background:
+    linear-gradient(to bottom right, rgba(246, 245, 239, 0.9), rgba(223, 230, 220, 0.9)),
+    url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.customer-main-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 22px 16px 22px 16px;
+  max-width: 780px;
+  width: 96%;
+  min-height: 70vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.customer-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #225536;
+  margin-bottom: 18px;
+  margin-top: 0;
+}
+
+.customer-top-books {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin: 10px 0 12px 0;
+  width: 100%;
+}
+
+.customer-top-books div {
+  text-align: center;
+}
+
+.customer-top-books img {
+  width: 70px;
+  height: 92px;
+  object-fit: cover;
+  border-radius: 9px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.customer-search-bar {
+  text-align: center;
+  margin: 0 0 12px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* --- עדכון חדש לשדה חיפוש --- */
+.search-container {
+  position: relative;
+  width: 62%;
+  max-width: 340px;
+}
+
+.search-container input[type="text"] {
+  width: 100%;
+  padding: 6px 28px 6px 8px; /* רווח מימין לאייקון */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #337d56;
+  pointer-events: none; /* כדי שלא ילחצו עליו בטעות */
+}
+/* --- סוף העדכון לשדה חיפוש --- */
+
+.customer-nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.customer-nav-bar button,
+.customer-nav-bar select {
+  padding: 7px 13px;
+  font-size: 13px;
+  background-color: #ffffff;
+  border: 2px solid #225536;
+  color: #225536;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  margin-bottom: 4px;
+}
+
+.customer-nav-bar button:hover,
+.customer-nav-bar select:hover {
+  background-color: #225536;
+  color: white;
+}
+
+.customer-books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 100%;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  justify-items: center;
+}
+
+.customer-book-card {
+  background: white;
+  padding: 8px 7px;
+  border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.07);
+  width: 115px;
+  min-height: 110px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.customer-book-card img {
+  width: 100%;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #eee;
+}
+
+.customer-book-title {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 5px 0 3px 0;
+}
+
+.customer-book-price {
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.customer-book-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.customer-book-stars {
+  font-size: 11px;
+  color: #999;
+}
+
+.customer-book-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+.customer-book-icons button {
+  background: none;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: #225536;
+}
+
+.customer-book-icons button:hover {
+  color: #1b422b;
+}
+
+/* Style for About Button */
+.about-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 2px solid #225536;
+  color: #225536;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.about-button:hover {
+  background-color: #225536;
+  color: white;
+}

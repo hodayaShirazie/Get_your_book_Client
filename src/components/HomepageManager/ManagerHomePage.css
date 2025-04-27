@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.manager-homepage {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    linear-gradient(to bottom right, rgba(246, 245, 239, 0.9), rgba(223, 230, 220, 0.9)),
+    url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+  z-index: 1;
+  position: relative; /* מאפשר absolute לילד */
+}
+
+.notification-inside {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s;
+  z-index: 3;
+}
+
+.notification-inside:hover,
+.notification-inside:focus {
+  background: rgba(34, 85, 54, 0.09);
+}
+
+.bell-svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #225536;
+  margin-bottom: 24px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.menu button {
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: #ffffff;
+  border: 2px solid #225536;
+  color: #225536;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.menu button:hover {
+  background-color: #225536;
+  color: white;
+}
+
+.top-right-buttons {
+  position: absolute;
+  top: 8px;   /* כאן שיניתי לגובה גבוה יותר */
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 2;
+}
+
+/* כפתור About */
+.about-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 2px solid #225536;
+  color: #225536;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.about-button:hover {
+  background-color: #225536;
+  color: white;
+}
