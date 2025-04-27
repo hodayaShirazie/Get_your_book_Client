@@ -3,7 +3,7 @@ import './App.css';
 import Homepage from './components/homepage/homepage.jsx';
 import LoginRegister from './components/authentication/loginRegister.jsx';
 import About from './components/about/about.jsx';
-import Home from './components/home/home.jsx';
+import Home from './components/home/Home.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from "./components/Login/Login.jsx"
 import PasswordRecovery from "./components/Login/PasswordRecovery.jsx"
@@ -18,6 +18,7 @@ function App() {
       <Home />
       
       {/*<Register /> */}
+
       {/* <Router>
         <Routes>
           <Route path="/" element={<LoginRegister />} />
