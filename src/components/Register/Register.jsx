@@ -151,6 +151,8 @@
 import { useState, useEffect } from 'react';
 import './Register.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function Register() {
   const [form, setForm] = useState({
@@ -163,6 +165,10 @@ function Register() {
   const [securityQuestions, setSecurityQuestions] = useState([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
+
+
+
 //   const SERVER_URL = 'https://get-your-book-server.onrender.com';
   const SERVER_URL = 'http://localhost:3000';
 
@@ -204,6 +210,7 @@ function Register() {
           securityQuestionId: '',
           securityAnswer: '',
         });
+        navigate('/customer-home');  
       } else {
         setError(response.data.message || 'Registration failed');
       }
