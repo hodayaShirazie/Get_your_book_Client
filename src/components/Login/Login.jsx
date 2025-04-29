@@ -7,6 +7,8 @@ function Login() {
   const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const SERVER_URL = 'https://get-your-book-server.onrender.com';
   // const SERVER_URL = 'http://localhost:3000'; 
@@ -48,9 +50,9 @@ function Login() {
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
-
+  
         {error && <p className="error-message">{error}</p>}
-
+  
         <label>Username</label>
         <input
           type="text"
@@ -60,23 +62,33 @@ function Login() {
           placeholder="Enter your username"
           required
         />
-
+  
         <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          placeholder="Enter your password"
-          required
-        />
-
+        <div className="password-input-container">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Enter your password"
+            required
+          />
+          <button
+            type="button"
+            className="toggle-password"
+            onClick={() => setShowPassword(prev => !prev)}
+          >
+            {showPassword ? 'Hide' : 'Show'}
+          </button>
+        </div>
+  
         <button type="submit" className="login-button">Login</button>
-
+  
         <p className="forgot-link" onClick={handleForgotPassword}>Forgot Password?</p>
       </form>
     </div>
   );
+  
 }
 
 export default Login;
