@@ -48,7 +48,7 @@
 
 
 import React, { useState } from 'react';
-import './addProduct.css';
+import './AddProduct.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
