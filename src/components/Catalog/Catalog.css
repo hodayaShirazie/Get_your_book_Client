@@ -1,0 +1,94 @@
+/* body {
+    margin: 0;
+    padding: 0;
+  } */
+  
+  .catalog-container {
+    position: relative;
+    background-image: url('/background-book.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+  }
+  
+
+  .catalog-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6); 
+    z-index: 1;
+  }
+  
+
+  .catalog-box {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 2;
+  }
+  
+  .catalog-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1d4d2f;
+    margin-bottom: 30px;
+  }
+  
+  .catalog-button {
+    display: block;
+    width: 300px;
+    margin: 10px auto;
+    padding: 12px 0;
+    border: 2px solid #1d4d2f;
+    border-radius: 10px;
+    background-color: white;
+    color: #1d4d2f;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .catalog-button:hover {
+    background-color: #1d4d2f;
+    color: white;
+    border-color: #1d4d2f;
+    outline: none;
+  }
+  
+  /* כפתור חזרה */
+  .home-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #1d4d2f;
+    border-radius: 10px;
+    background-color: white;
+    color: #1d4d2f;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 2;
+  }
+  
+  .home-button:hover {
+    background-color: #1d4d2f;
+    color: white;
+    border-color: #1d4d2f;
+    outline: none;
+  }
+  

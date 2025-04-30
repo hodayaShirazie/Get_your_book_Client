@@ -8,6 +8,9 @@ import Register from "./components/Register/Register.jsx"
 import Home from "./components/home/home.jsx";
 import CustomerHomepage from "./components/HomepageCustomer/CustomerHomepage.jsx";  
 import ManagerHomePage from "./components/HomepageManager/ManagerHomePage.jsx";
+import UpdateProfile from "./components/updateProfile/updateProfile.jsx";
+import Catalog from "./components/Catalog/Catalog.jsx";
+import AddProduct from "./components/AddProduct/AddProduct.jsx";
 
 
 function App() {
@@ -15,14 +18,17 @@ function App() {
     <Fragment>
       <Router>
         <Routes>
-
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/recover-password" element={<PasswordRecovery />} />
           <Route path='/about' element={<About/>}/>
           <Route path="/customer-home" element={<CustomerHomepage />} />
           <Route path="/admin-home" element={<ManagerHomePage />} />
+          <Route path="/update-profile" element={<UpdateProfile />} />
+          {/* <Route path="/admin-catalog" element={<Catalog />} />
+          <Route path="/add-product" element={<AddProduct />} /> */}
+
         </Routes>
 
     </Router>

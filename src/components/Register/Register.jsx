@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './Register.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 
 function Register() {
@@ -16,6 +18,9 @@ function Register() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
 
 
@@ -77,7 +82,7 @@ function Register() {
     <div className="register-container">
       <form className="register-form" onSubmit={handleSubmit}>
         <h2>Register</h2>
-
+  
         <label>Username <span className="required"></span></label>
         <input
           type="text"
@@ -88,28 +93,38 @@ function Register() {
           required
         />
         {error.includes('username') && <p className="error-message">{error}</p>}
-
+  
         <label>Password <span className="required"></span></label>
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          placeholder="Create a password"
-          required
-        />
-
+        <div className="password-input-container">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Create a password"
+            required
+          />
+          <span className="eye-icon" onClick={() => setShowPassword(prev => !prev)}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+  
         <label>Confirm Password <span className="required"></span></label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={form.confirmPassword}
-          onChange={handleChange}
-          placeholder="Confirm your password"
-          required
-        />
+        <div className="password-input-container">
+          <input
+            type={showConfirmPassword ? 'text' : 'password'}
+            name="confirmPassword"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            placeholder="Confirm your password"
+            required
+          />
+          <span className="eye-icon" onClick={() => setShowConfirmPassword(prev => !prev)}>
+            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
         {error === 'Passwords do not match' && <p className="error-message">{error}</p>}
-
+  
         <label>Security Question <span className="required"></span></label>
         <select
           name="securityQuestionId"
@@ -122,7 +137,7 @@ function Register() {
             <option key={q.id} value={q.id}>{q.question}</option>
           ))}
         </select>
-
+  
         <label>Security Answer <span className="required"></span></label>
         <input
           type="text"
@@ -132,16 +147,17 @@ function Register() {
           placeholder="Enter your answer"
           required
         />
-
+  
         <div className="form-errors">
           {error && !error.includes('username') && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
         </div>
-
+  
         <button type="submit" className="register-button">Register</button>
       </form>
     </div>
   );
+  
 }
 
 export default Register;

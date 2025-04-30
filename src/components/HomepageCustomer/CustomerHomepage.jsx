@@ -14,11 +14,16 @@ const books = [
 
 const CustomerHomepage = () => {
 
-  const navigate = useNavigate();  // Create navigate function
+  const navigate = useNavigate();  
 
   const navigateToAbout = () => {
-    navigate('/about');  // Navigate to the About page
+    navigate('/about');  
   };
+
+  const navigateToUpdateProfile = () => {
+    navigate('/update-profile');  
+  };
+
 
   return (
     <div className="customer-bg">
@@ -55,7 +60,7 @@ const CustomerHomepage = () => {
             <option value="low-high">Low to High</option>
             <option value="high-low">High to Low</option>
           </select>
-          <button>Edit Personal Information</button>
+          <button onClick={navigateToUpdateProfile}>Edit Personal Information</button>
           <select defaultValue="">
             <option disabled value="">Category</option>
             <option value="fiction">Fiction</option>
@@ -84,6 +89,7 @@ const CustomerHomepage = () => {
 
       {/* About Button */}
       <button className="about-button" onClick={navigateToAbout}>About</button>
+
     </div>
   );
 };

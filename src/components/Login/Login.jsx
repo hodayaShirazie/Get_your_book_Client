@@ -2,13 +2,15 @@ import { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 function Login() {
   const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
+  
 
   const SERVER_URL = 'https://get-your-book-server.onrender.com';
   // const SERVER_URL = 'http://localhost:3000'; 
@@ -28,6 +30,7 @@ function Login() {
       if (response.data.success) {
         setForm({ username: '', password: '' });
         localStorage.setItem('role', response.data.role); 
+        localStorage.setItem('username', response.data.username)
 
         if (response.data.role === 'admin') {
         navigate('/admin-home');
@@ -73,13 +76,9 @@ function Login() {
             placeholder="Enter your password"
             required
           />
-          <button
-            type="button"
-            className="toggle-password"
-            onClick={() => setShowPassword(prev => !prev)}
-          >
-            {showPassword ? 'Hide' : 'Show'}
-          </button>
+          <span className="eye-icon" onClick={() => setShowPassword(prev => !prev)}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
   
         <button type="submit" className="login-button">Login</button>

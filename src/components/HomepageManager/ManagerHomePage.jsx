@@ -9,6 +9,14 @@ const ManagerHomePage = () => {
     navigate('/about');  // Navigate to the About page
   };
 
+  const navigateToCatalog = () => {
+    navigate('/admin-catalog');  // Navigate to the About page
+  };
+
+  const navigateToUpdateProfile = () => {
+    navigate('/update-profile');  
+  };
+
   return (
     <div className="manager-homepage">
       <div className="top-right-buttons">
@@ -45,8 +53,9 @@ const ManagerHomePage = () => {
 
         <h2>Manager Homepage</h2>
         <div className="menu">
-          <button>Edit Personal Information</button>
-          <button>Catalog</button>
+          <button onClick={navigateToUpdateProfile}>Edit Personal Information</button>
+          <button onClick={navigateToCatalog}>Catalog</button>
+
           <button>Edit Price</button>
           <button>View Orders</button>
           <button>Update Product Quantity</button>
