@@ -26,8 +26,8 @@ function App() {
           <Route path="/customer-home" element={<CustomerHomepage />} />
           <Route path="/admin-home" element={<ManagerHomePage />} />
           <Route path="/update-profile" element={<UpdateProfile />} />
-          {/* <Route path="/admin-catalog" element={<Catalog />} />
-          <Route path="/add-product" element={<AddProduct />} /> */}
+          <Route path="/admin-catalog" element={<Catalog />} />
+          <Route path="/add-product" element={<AddProduct />} />
 
         </Routes>
 

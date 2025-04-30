@@ -1,4 +1,4 @@
-
+/* 
 body {
   margin: 0;
   padding: 0;
@@ -67,4 +67,130 @@ select {
 
 .cancel {
   background-color: #ccc;
+} */
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0;
+  overflow: auto;
 }
+
+.add-product-container {
+  background-image: url('/background-book.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40px 0;
+}
+
+.add-product-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}
+
+.add-product-form {
+  position: relative;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  z-index: 2;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-product-form h2 {
+  font-family: 'Playfair Display', serif;
+  color: #2d4739;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-product-form label {
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #2d4739;
+  margin-top: 10px;
+}
+
+.add-product-form input,
+.add-product-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.add-product-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.add-product-button {
+  flex: 1;
+  background-color: #2d4739;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-product-button:hover {
+  background-color: #416353;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #2d4739;
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
+}
+
+.home-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 18px;
+    font-size: 14px;
+    border: 2px solid #225536;
+    border-radius: 10px;
+    background-color: white;
+    color: #225536;
+    cursor: pointer;
+    z-index: 2; 
+  }
+  
+  .home-button:hover {
+    background-color: #416353;
+  }
