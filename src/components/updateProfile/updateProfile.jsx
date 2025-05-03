@@ -70,8 +70,12 @@ function UpdateProfile() {
         setErrorMsg(response.data.message || 'Failed to update details.');
       }
     } catch (err) {
-      setErrorMsg('Server error or invalid input.');
-    }
+        if (err.response && err.response.data && err.response.data.message) {
+          setErrorMsg(err.response.data.message);
+        } else {
+          setErrorMsg('Server error or invalid input.');
+        }
+      }
   };
 
   return (

@@ -12,10 +12,10 @@ function CatalogPage() {
       <div className="catalog-box">
         <h1 className="catalog-title">Catalog</h1>
         <button className="catalog-button" onClick={() => navigate('/add-product')}>Add Product</button>
-        <button className="catalog-button">Update Product</button>
-        <button className="catalog-button">Delete Product</button>
+        <button className="catalog-button" onClick={() => navigate('/update-product')}>Update Product</button>
+        <button className="catalog-button" onClick={() => navigate('/delete-product')}>Delete Product</button>
       </div>
-      <button className="home-button">Return to Home</button>
+      <button className="home-button" onClick={() => navigate('/admin-home')}>Return to Home</button>
     </div>
   );
 }

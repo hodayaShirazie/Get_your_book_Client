@@ -1,52 +1,4 @@
 
-// import React from 'react';
-// import './AddProduct.css';
-
-
-// export default function AddProduct() {
-//   return (
-//     <div className="form-container">
-//       <h2>Add Product</h2>
-//       <form>
-//         <label htmlFor="productName">Product Name</label>
-//         <input type="text" id="productName" pattern="[A-Za-z0-9 ]+" required />
-
-//         <label htmlFor="description">Description (optional)</label>
-//         <input type="text" id="description" />
-
-//         <label htmlFor="category">Category</label>
-//         <select id="category" required>
-//           <option value="">Select a Category</option>
-//           <option value="quick">Quick Reads</option>
-//           <option value="epic">Epic Journeys</option>
-//           <option value="top">Top Picks</option>
-//           <option value="shared">Shared Stories</option>
-//         </select>
-
-//         <label htmlFor="price">Price</label>
-//         <input type="number" id="price" min="0" required />
-
-//         <label htmlFor="image">Image URL</label>
-//         <input type="text" id="image" />
-
-//         <label htmlFor="stock">Initial Stock Quantity</label>
-//         <input type="number" id="stock" min="0" required />
-
-//         <label htmlFor="threshold">Minimum Stock Threshold</label>
-//         <input type="number" id="threshold" min="1" max="99999" defaultValue="10" required />
-
-//         <div className="buttons">
-//           <button type="submit" className="confirm">Confirm</button>
-//           <button type="reset" className="cancel">Cancel</button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
-
-
-
-
 import React, { useState } from 'react';
 import './AddProduct.css';
 import { useNavigate } from 'react-router-dom';
@@ -54,20 +6,18 @@ import axios from 'axios';
 
 export default function AddProduct() {
   const navigate = useNavigate();
-
-  
 // const SERVER_URL = 'https://get-your-book-server.onrender.com';
 const SERVER_URL = 'http://localhost:3000'; // Local development URL
-
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     category: '',
     price: '',
-    image: '',
     stock_quantity: '',
     min_stock_threshold: ''
   });
+
+  const [imageFile, setImageFile] = useState(null);
 
   const handleReturnHome = () => {
     navigate('/admin-home');
@@ -78,11 +28,23 @@ const SERVER_URL = 'http://localhost:3000'; // Local development URL
     setFormData({ ...formData, [id]: value });
   };
 
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const data = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      data.append(key, value);
+    });
+    data.append('image', imageFile);
+
     try {
-      const res = await axios.post(`${SERVER_URL}/add-product`, formData);
+      await axios.post(`${SERVER_URL}/add-product`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
       alert('Product added successfully!');
       navigate('/admin-home');
     } catch (error) {
@@ -117,8 +79,8 @@ const SERVER_URL = 'http://localhost:3000'; // Local development URL
         <label htmlFor="price">Price</label>
         <input type="number" id="price" min="0" value={formData.price} onChange={handleChange} required />
 
-        <label htmlFor="image">Image URL</label>
-        <input type="text" id="image" value={formData.image} onChange={handleChange} />
+        <label htmlFor="image">Product Image</label>
+        <input type="file" id="image" accept="image/*" onChange={handleImageChange} required />
 
         <label htmlFor="stock_quantity">Initial Stock Quantity</label>
         <input type="number" id="stock_quantity" min="0" value={formData.stock_quantity} onChange={handleChange} required />

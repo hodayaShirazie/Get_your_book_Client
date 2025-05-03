@@ -1,29 +1,34 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import './CustomerHomepage.css';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
-
-
-const books = [
-  { title: 'Book D', price: '$9.99', stars: '★★★★☆', img: 'https://covers.openlibrary.org/b/id/11268347-L.jpg' },
-  { title: 'Book E', price: '$11.99', stars: '★★★★★', img: 'https://covers.openlibrary.org/b/id/11268242-L.jpg' },
-  { title: 'Book F', price: '$13.50', stars: '★★★☆☆', img: 'https://covers.openlibrary.org/b/id/11269123-L.jpg' },
-  { title: 'Book G', price: '$10.90', stars: '★★★★☆', img: 'https://covers.openlibrary.org/b/id/8234971-L.jpg' },
-  { title: 'Book H', price: '$12.00', stars: '★★★★★', img: 'https://covers.openlibrary.org/b/id/11269177-L.jpg' },
-  { title: 'Book I', price: '$8.75', stars: '★★★☆☆', img: 'https://covers.openlibrary.org/b/id/8235475-L.jpg' }
-];
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const CustomerHomepage = () => {
+  const navigate = useNavigate();
+  const [books, setBooks] = useState([]);
 
-  const navigate = useNavigate();  
+  useEffect(() => {
+    axios.get('http://localhost:3000/products') // שנה לכתובת שלך אם צריך
+      .then(response => {
+        const data = response.data;
+        const booksArray = Array.isArray(data) ? data : [data];
+        setBooks(booksArray);
+        console.log('books:', booksArray);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
 
   const navigateToAbout = () => {
-    navigate('/about');  
+    navigate('/about');
   };
 
   const navigateToUpdateProfile = () => {
-    navigate('/update-profile');  
+    navigate('/update-profile');
   };
-
+  
 
   return (
     <div className="customer-bg">
@@ -72,11 +77,15 @@ const CustomerHomepage = () => {
         <div className="customer-books-grid">
           {books.map((book, index) => (
             <div className="customer-book-card" key={index}>
-              <img src={book.img} alt={book.title} />
-              <div className="customer-book-title">{book.title}</div>
-              <div className="customer-book-price">{book.price}</div>
+              <img
+                src={`data:image/jpeg;base64,${book.imageBase64}`}
+                alt={book.name}
+                className="book-image"
+              />
+              <div className="customer-book-title">{book.name}</div>
+              <div className="customer-book-price">${book.price}</div>
               <div className="customer-book-info">
-                <div className="customer-book-stars">{book.stars}</div>
+                <div className="customer-book-stars">★★★★☆</div>
                 <div className="customer-book-icons">
                   <button title="Add to Cart">➕</button>
                   <button title="Add to Wishlist">♡</button>
@@ -86,12 +95,128 @@ const CustomerHomepage = () => {
           ))}
         </div>
       </div>
-
-      {/* About Button */}
       <button className="about-button" onClick={navigateToAbout}>About</button>
-
     </div>
   );
 };
 
 export default CustomerHomepage;
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import './CustomerHomepage.css';
+// import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
+
+// const CustomerHomepage = () => {
+//   const navigate = useNavigate();
+//   const [books, setBooks] = useState([]);
+//   const [selectedCategory, setSelectedCategory] = useState('');
+
+//   // const SERVER_URL = 'https://get-your-book-server.onrender.com';
+//   const SERVER_URL = 'http://localhost:3000'; // Local development URL
+
+//   const handleCategoryChange = (e) => {
+//     const value = e.target.value;
+//     console.log('Selected category:', value);  
+
+    
+//     setSelectedCategory(value === 'category' ? '' : value);
+//   };
+
+//   useEffect(() => {
+//     const url = `${SERVER_URL}/products` + (selectedCategory ? `?category=${selectedCategory}` : '');
+
+//     axios.get(url)
+//       .then(response => {
+//         const data = response.data;
+//         const booksArray = Array.isArray(data) ? data : [data];
+//         setBooks(booksArray);
+//       })
+//       .catch(error => {
+//         console.error('Error fetching products:', error);
+//       });
+//   }, [selectedCategory]);
+
+//   const navigateToAbout = () => {
+//     navigate('/about');
+//   };
+
+//   const navigateToUpdateProfile = () => {
+//     navigate('/update-profile');
+//   };
+
+//   return (
+//     <div className="customer-bg">
+//       <div className="customer-main-card">
+//         <h2 className="customer-title">Best-Selling Books</h2>
+//         <div className="customer-top-books">
+//           <div>
+//             <img src="https://covers.openlibrary.org/b/id/11268242-L.jpg" alt="Book A" />
+//             <br />Book A
+//           </div>
+//           <div>
+//             <img src="https://covers.openlibrary.org/b/id/8234971-L.jpg" alt="Book B" />
+//             <br />Book B
+//           </div>
+//           <div>
+//             <img src="https://covers.openlibrary.org/b/id/8235475-L.jpg" alt="Book C" />
+//             <br />Book C
+//           </div>
+//         </div>
+
+//         <div className="customer-search-bar">
+//           <div className="search-container">
+//             <input type="text" placeholder="Search" />
+//             <span className="search-icon">🔍</span>
+//           </div>
+//         </div>
+
+//         <div className="customer-nav-bar">
+//           <button>Shopping Cart</button>
+//           <button>My Orders</button>
+//           <button>My Wishlist</button>
+//           <select defaultValue="">
+//             <option disabled value="">Sort by Price</option>
+//             <option value="low-high">Low to High</option>
+//             <option value="high-low">High to Low</option>
+//           </select>
+//           <button onClick={navigateToUpdateProfile}>Edit Personal Information</button>
+//           <select value={selectedCategory} onChange={handleCategoryChange}>
+//             <option value="category">Category</option>
+//             <option value="fiction">Fiction</option>
+//             <option value="non-fiction">Non-Fiction</option>
+//             <option value="children">Children</option>
+//           </select>
+//         </div>
+
+//         <div className="customer-books-grid">
+//           {books.map((book, index) => (
+//             <div className="customer-book-card" key={index}>
+//               <img
+//                 src={`data:image/jpeg;base64,${book.imageBase64}`}
+//                 alt={book.name}
+//                 className="book-image"
+//               />
+//               <div className="customer-book-title">{book.name}</div>
+//               <div className="customer-book-price">${book.price}</div>
+//               <div className="customer-book-info">
+//                 <div className="customer-book-stars">★★★★☆</div>
+//                 <div className="customer-book-icons">
+//                   <button title="Add to Cart">➕</button>
+//                   <button title="Add to Wishlist">♡</button>
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//       <button className="about-button" onClick={navigateToAbout}>About</button>
+//     </div>
+//   );
+// };
+
+// export default CustomerHomepage;
