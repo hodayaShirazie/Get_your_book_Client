@@ -8,8 +8,11 @@ const CustomerHomepage = () => {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
 
+  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  // const SERVER_URL = 'http://localhost:3000'; 
+
   useEffect(() => {
-    axios.get('http://localhost:3000/products') // שנה לכתובת שלך אם צריך
+    axios.get(`${SERVER_URL}/products`) 
       .then(response => {
         const data = response.data;
         const booksArray = Array.isArray(data) ? data : [data];

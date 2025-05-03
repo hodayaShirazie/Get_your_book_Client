@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function DeleteProduct() {
-  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
-  const SERVER_URL = 'http://localhost:3000'; // Local development URL
+  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  // const SERVER_URL = 'http://localhost:3000'; // Local development URL
   
   const navigate = useNavigate();
 

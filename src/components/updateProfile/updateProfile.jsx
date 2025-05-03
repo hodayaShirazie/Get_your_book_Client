@@ -10,7 +10,9 @@ function UpdateProfile() {
   const [errorMsg, setErrorMsg] = useState('');
   const [currentUser, setCurrentUser] = useState({ username: '', password: '' });
 
-  const SERVER_URL = 'http://localhost:3000';
+  // const SERVER_URL = 'http://localhost:3000';
+  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+
 
   useEffect(() => {
     const fetchUserData = async () => {
