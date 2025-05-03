@@ -39,16 +39,16 @@ GET_YOUR_BOOK_CLIENT/
 
  
 ## Setup and Usage  
-To run the backend server on your local machine, follow these steps:
+To run the frontend server on your local machine, follow these steps:
 
 1. Clone the repository:  
    `git clone https://github.com/hodayaShirazie/Get_your_book_Client.git`
 
 2. Navigate to the project directory:  
    `cd Get_your_book_Client`
-   
+
 3. Install dependencies:
    `npm install` 
 
-5. Start the server:  
+4. Start the server:  
    `npm start`
