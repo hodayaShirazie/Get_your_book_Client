@@ -76,6 +76,7 @@
   margin-top: 8px;
   font-style: italic;
 }
+
 .home-button-container {
   position: fixed;
   bottom: 20px;
@@ -92,10 +93,12 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap; 
 }
 
 .home-button:hover {
   background-color: #225536;
   color: white;
-}
+} 
+
 
