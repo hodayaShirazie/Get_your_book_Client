@@ -45,11 +45,10 @@ To run the backend server on your local machine, follow these steps:
    `git clone https://github.com/hodayaShirazie/Get_your_book_Client.git`
 
 2. Navigate to the project directory:  
-   `cd Get_your_book_Server`
+   `cd Get_your_book_Client`
+   
 3. Install dependencies:
    `npm install` 
-
-4. Create a `.env` file in the root directory and add your DB external URL connection.
 
 5. Start the server:  
    `npm start`
