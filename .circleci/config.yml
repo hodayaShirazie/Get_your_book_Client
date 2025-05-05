@@ -8,8 +8,6 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
       - run:
           name: Install dependencies
           command: npm install  
