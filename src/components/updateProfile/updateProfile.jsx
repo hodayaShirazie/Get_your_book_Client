@@ -20,7 +20,6 @@ function UpdateProfile() {
         const role = localStorage.getItem('role');
         const username = localStorage.getItem('username');
 
-        console.log(`${SERVER_URL}/get-user-profile/${username}/${role}`);
         const response = await axios.get(`${SERVER_URL}/get-user-profile/${username}/${role}`);
 
         if (response.data.success) {

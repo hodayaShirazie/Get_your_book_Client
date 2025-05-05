@@ -13,6 +13,7 @@ import Catalog from "./components/Catalog/Catalog.jsx";
 import AddProduct from "./components/AddProduct/AddProduct.jsx";
 import UpdateProduct from "./components/UpdateProduct/UpdateProduct.jsx";
 import DeleteProduct from "./components/DeleteProduct/DeleteProduct.jsx";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart.jsx";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/update-product" element={<UpdateProduct />} />
           <Route path="/delete-product" element={<DeleteProduct />} />
+          <Route path="/shopping-cart" element={<ShoppingCart />} />
         </Routes>
 
     </Router>

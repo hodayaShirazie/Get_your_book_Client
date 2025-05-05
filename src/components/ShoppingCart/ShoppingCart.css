@@ -1,0 +1,184 @@
+.shopping-bg {
+    position: relative;
+    background-image: url('/background-book.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px 0;
+    overflow: hidden;
+  }
+  
+  .shopping-bg::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+  }
+  
+  .cart-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 720px;
+    width: 90%;
+    margin: auto;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .cart-container h2 {
+    text-align: center;
+    color: #225536;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table th, table td {
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  table th {
+    background-color: #e9f2eb;
+    color: #1a4d32;
+    font-weight: bold;
+  }
+  
+  .total-price {
+    font-weight: bold;
+    text-align: right;
+    font-size: 16px;
+    color: #1a4d32;
+    margin-top: 10px;
+  }
+  
+  .purchase-button {
+    display: block;
+    margin: 20px auto 10px auto;
+    padding: 10px 24px;
+    background-color: #225536;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .purchase-button:hover {
+    background-color: #1a4d32;
+  }
+  
+  .footer-button {
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  .footer-button button {
+    background-color: white;
+    color: #225536;
+    border: 2px solid #225536;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .footer-button button:hover {
+    background-color: #225536;
+    color: white;
+  }
+
+  .home-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #1d4d2f;
+    border-radius: 10px;
+    background-color: white;
+    color: #1d4d2f;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 2;
+  }
+  
+  .home-button:hover {
+    background-color: #1d4d2f;
+    color: white;
+    border-color: #1d4d2f;
+    outline: none;
+  }
+  
+  
+
+
+   
+
+
+
+
+
+
+   /* Update for quantity display and buttons */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .quantity-btn {
+    padding: 6px 14px;
+    font-size: 18px;
+    background-color: #f4f8f4;
+    color: #225536;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #225536;
+    color: white;
+    border-color: #225536;
+  }
+  
+  .quantity-btn:active {
+    background-color: #1a4d32;
+    color: white;
+  }
+  
+  .quantity-btn:disabled {
+    background-color: #f0f0f0;
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .quantity-btn:focus {
+    outline: none;
+  }
+  
+  .quantity-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a4d32;
+  }
+  
