@@ -1,0 +1,114 @@
+.book-details-page {
+    background-image: url('/background-book.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px 0;
+  }
+  .book-details-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6); 
+    z-index: 1;
+  }
+  
+  .book-details-container {
+    background-color: white;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    z-index: 2; 
+
+  }
+  
+  .book-title {
+    font-size: 24px;
+    color: #225536;
+    margin-bottom: 16px;
+  }
+  
+  .book-image {
+    width: 160px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .book-actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  
+  .book-actions button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #225536;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .book-actions button:hover {
+    color: #133622;
+  }
+  
+  .book-loading {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 120px;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .star-rating {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0;
+    font-size: 24px;
+  }
+  
+  .star {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0 4px;
+  }
+  
+  .star.filled {
+    color: gold;
+  }
+  .book-details-text {
+    text-align: left;
+    padding: 0 20px;
+    margin-top: 16px;
+  }
+  .rating-label {
+    margin-top: 16px;
+  }
+  
+  .star-rating {
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .star-rating .filled {
+    color: #225536;
+  }
+  

@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100vw;
 }
 
 .about-section {
@@ -76,29 +77,5 @@
   margin-top: 8px;
   font-style: italic;
 }
-
-.home-button-container {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 1000; 
-}
-
-.home-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #225536;
-  background-color: transparent;
-  border: 2px solid #225536;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap; 
-}
-
-.home-button:hover {
-  background-color: #225536;
-  color: white;
-} 
 
 

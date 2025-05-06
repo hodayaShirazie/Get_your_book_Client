@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './about.css';
 import { useNavigate } from 'react-router-dom';
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 import { SERVER_URL } from '../../config'; 
 
@@ -14,18 +15,6 @@ const AboutPage = () => {
   const [projectText, setProjectText] = useState('');
   const [teamText, setTeamText] = useState('');
   const navigate = useNavigate();
-
-  const handleReturnHome = () => {
-    const role = localStorage.getItem('role');
-    if (role && role.toLowerCase() === 'admin') {
-      navigate('/admin-home');
-    } else {
-      navigate('/customer-home');
-    }
-  };
-  
-  
-  
 
   useEffect(() => {
     fetch(`${SERVER_URL}/about`)
@@ -51,11 +40,7 @@ const AboutPage = () => {
 
   return (
     <div className="about-page">
-      <div className="home-button-container">
-      <button className="home-button" onClick={handleReturnHome}>
-      Return to Home
-    </button>
-    </div>
+      <BackToHomeButton />
       <section className="about-section">
         <div className="about-text">
           <div className="about-box project">
