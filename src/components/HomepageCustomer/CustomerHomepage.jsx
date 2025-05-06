@@ -97,7 +97,12 @@ const CustomerHomepage = () => {
 
         <div className="customer-books-grid">
           {books.map((book, index) => (
-            <div className="customer-book-card" key={index}>
+              <div
+                className="customer-book-card"
+                key={index}
+                onClick={() => navigate(`/book/${book.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
               <img
                 src={`data:image/jpeg;base64,${book.imageBase64}`}
                 alt={book.name}
@@ -108,7 +113,11 @@ const CustomerHomepage = () => {
               <div className="customer-book-info">
                 <div className="customer-book-stars">★★★★☆</div>
                 <div className="customer-book-icons">
-                  <button title="Add to Cart" onClick={() => handleAddToCart(book)}>➕</button>
+                  <button 
+                    title="Add to Cart" 
+                    onClick={(e) => {
+                      e.stopPropagation(); //// Prevents navigation to the book page
+                      handleAddToCart(book)}}>➕</button>
                   <button title="Add to Wishlist">♡</button>
                 </div>
               </div>

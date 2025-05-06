@@ -16,6 +16,8 @@ import DeleteProduct from "./components/DeleteProduct/DeleteProduct.jsx";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart.jsx";
 import PurchaseSummary from "./components/PurchaseSummary/PurchaseSummary.jsx";
 import OrderConfirm from "./components/PurchaseSummary/OrderConfirm.jsx";
+import BookDetails from "./components/BookDetails/BookDetails.jsx";
+
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
           <Route path="/shopping-cart" element={<ShoppingCart />} />
           <Route path="/purchase-summary" element={<PurchaseSummary />} />
           <Route path="/order-confirm" element={<OrderConfirm />} />
+          <Route path="/book/:id" element={<BookDetails />} />
         </Routes>
 
     </Router>
