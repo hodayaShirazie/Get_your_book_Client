@@ -1,53 +1,34 @@
 import React from 'react';
 import './OrderConfirm.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function MyOrders() {
-  const orders = [
-    {
-      id: '123457',
-      date: '2025-04-22',
-      total: '$74.97',
-      products: ['Book A', 'Book B', 'Book C']
-    },
-    {
-      id: '123456',
-      date: '2025-04-15',
-      total: '$49.98',
-      products: ['Book D', 'Book E']
-    }
-  ];
 
-  const handleCancel = (orderId) => {
-    alert(`Cancel order ${orderId}`);
-  };
 
+export default function OrderConfirmation() {
+    const navigate = useNavigate();
   return (
-    <div className="orders-page">
-      <div className="orders-container">
-        <h1>My Orders</h1>
+    <div className="confirmation-page">
+      <div className="confirmation-container">
+        <h2>Your order has been placed successfully!</h2>
 
-        {orders.map((order) => (
-          <div className="order-box" key={order.id}>
-            <div className="order-details">
-              <p><strong>Order Number:</strong> #{order.id}</p>
-              <p><strong>Date:</strong> {order.date}</p>
-              <p><strong>Total:</strong> {order.total}</p>
-              <p><strong>Products in Order:</strong> {order.products.length}</p>
-              <ul>
-                {order.products.map((product, idx) => (
-                  <li key={idx}>{product}</li>
-                ))}
-              </ul>
-            </div>
-            <button className="cancel-btn" onClick={() => handleCancel(order.id)}>
-              Cancel Order
-            </button>
-            <hr />
-          </div>
-        ))}
+        <div className="order-section">
+          <p><strong>Order Number:</strong> #123456</p>
 
-        <button className="home-btn">Return to Home</button>
+          <p><strong>Items Ordered:</strong></p>
+          <p>Book A - $19.99</p>
+          <p>Book B - $29.99</p>
+
+          <p className="total"><strong>Total:</strong> $49.98</p>
+
+          <p><strong>Delivery Information:</strong></p>
+          <p><strong>Method:</strong> Home Delivery</p>
+          <p><strong>Address:</strong> 123 Green St, Tel Aviv</p>
+          <p><strong>Delivery Date:</strong> 2025-04-30</p>
+          <p><strong>Time Slot:</strong> Afternoon</p>
+        </div>
+
       </div>
+      <button className="home-button" onClick={() => navigate('/customer-home')}>Return to Home</button>
     </div>
   );
 }
