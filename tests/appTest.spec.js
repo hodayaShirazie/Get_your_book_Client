@@ -15,6 +15,8 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import App from '../src/App';
 
+jest.mock('../src/config', () => ({default: { SERVER_URL: 'http://mocked-url.com' }}));
+
 describe('App component', () => {
   test('renders App without crashing', () => {
     render(<App />);

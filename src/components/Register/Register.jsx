@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+import  {SERVER_URL}  from '../../config'; 
+
+
 
 
 function Register() {
@@ -24,7 +27,7 @@ function Register() {
 
 
 
-  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
 //   const SERVER_URL = 'http://localhost:3000';
 
   useEffect(() => {

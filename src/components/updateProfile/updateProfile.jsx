@@ -3,6 +3,9 @@ import './updateProfile.css';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+import { SERVER_URL } from '../../config'; 
+
+
 function UpdateProfile() {
   const [form, setForm] = useState({ username: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -11,7 +14,7 @@ function UpdateProfile() {
   const [currentUser, setCurrentUser] = useState({ username: '', password: '' });
 
   // const SERVER_URL = 'http://localhost:3000';
-  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
 
 
   useEffect(() => {

@@ -4,6 +4,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+import { SERVER_URL } from '../../config'; 
+// export const SERVER_URL = 'https://get-your-book-server.onrender.com';
+
+
 
 function Login() {
   const [form, setForm] = useState({ username: '', password: '' });
@@ -12,8 +16,8 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   
 
-  const SERVER_URL = 'https://get-your-book-server.onrender.com';
-  // const SERVER_URL = 'http://localhost:3000'; 
+  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  // // const SERVER_URL = 'http://localhost:3000'; 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -38,10 +42,10 @@ function Login() {
         navigate('/customer-home');
         }
       } else {
-        setError('Invalid username or password. Please try again.');
+        setError('----Invalid username or password. Please try again.');
       }
     } catch (err) {
-      setError('Invalid username or password. Please try again.');
+      setError('00000Invalid username or password. Please try again.');
     }
   };
 

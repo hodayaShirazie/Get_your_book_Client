@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './ShoppingCart.css';
 import { useNavigate } from 'react-router-dom';
 
+import { SERVER_URL } from '../../config'; 
+
+
 export default function ShoppingCart() {
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const username = localStorage.getItem('username');
     
-      // const SERVER_URL = 'http://localhost:3000';
-    const SERVER_URL = 'https://get-your-book-server.onrender.com';
+    //   const SERVER_URL = 'http://localhost:3000';
+    // const SERVER_URL = 'https://get-your-book-server.onrender.com';
 
     useEffect(() => {
         if (username) {
@@ -183,9 +186,9 @@ export default function ShoppingCart() {
                             ))}
                         </tbody>
                     </table>
-                )}
+                )}           
                 <p className="total-price">Total: ${totalPrice.toFixed(2)}</p>
-                <button className="purchase-button">Continue to Purchase</button>
+                <button className="purchase-button"  onClick={() => navigate('/purchase-summary')}>Continue to Purchase</button>
             </div>
             <button className="home-button" onClick={() => navigate('/customer-home')}>Return to Home</button>
         </div>

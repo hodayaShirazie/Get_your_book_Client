@@ -3,6 +3,9 @@ import './CustomerHomepage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import { SERVER_URL } from '../../config'; 
+
+
 
 
 const CustomerHomepage = () => {
@@ -11,7 +14,7 @@ const CustomerHomepage = () => {
   const [cart, setCart] = useState([]);
 
   // const SERVER_URL = 'https://get-your-book-server.onrender.com';
-  const SERVER_URL = 'http://localhost:3000'; 
+  // const SERVER_URL = 'http://localhost:3000'; 
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/products`) 

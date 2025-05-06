@@ -2,6 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import './ManagerHomePage.css';
 
+import { SERVER_URL } from '../../config'; 
+
+
 const ManagerHomePage = () => {
   const navigate = useNavigate();  // Create navigate function
 

@@ -1,0 +1,175 @@
+.purchase-summary-page {
+    background-image: url('/background-book.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+  }
+  
+  .purchase-summary-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7); 
+    z-index: 0; 
+  }
+  
+  .purchase-summary-page .purchase-summary-container {
+    position: relative; 
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 100%;
+    z-index: 1; 
+  }
+  
+  
+  .purchase-summary-page .main-title {
+    text-align: center;
+    color: #225536;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .purchase-summary-page h1 {
+    text-align: left;
+    color: #225536;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .purchase-summary-page .section h3,
+  .purchase-summary-page .order-details h3 {
+    text-align: left;
+    font-size: 20px;
+    color: #1d4d2f;
+    margin-bottom: 10px;
+  }
+  
+  .purchase-summary-page .order-details ul {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  
+  .purchase-summary-page .total-price {
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .purchase-summary-page .section {
+    margin-top: 30px;
+  }
+  
+  .purchase-summary-page input[type="text"],
+  .purchase-summary-page input[type="date"],
+  .purchase-summary-page select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: none;
+  }
+  
+  .purchase-summary-page label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .purchase-summary-page .confirm-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #225536;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .purchase-summary-page .confirm-btn:hover {
+    background-color: #173c29;
+  }
+  
+  .purchase-summary-page .home-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #1d4d2f;
+    border-radius: 10px;
+    background-color: white;
+    color: #1d4d2f;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 2;
+  }
+  
+  .purchase-summary-page .home-button:hover {
+    background-color: #1d4d2f;
+    color: white;
+    border-color: #1d4d2f;
+    outline: none;
+  }
+  
+  .purchase-summary-page .delivery-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
+  .purchase-summary-page .delivery-options {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+  }
+  
+  .purchase-summary-page .delivery-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .purchase-summary-page .input-field {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: white;
+  }
+  
+  .purchase-summary-page .input-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+  }
+  
+  .purchase-summary-page .required-star {
+    color: red;
+    font-weight: bold;
+  }
+  

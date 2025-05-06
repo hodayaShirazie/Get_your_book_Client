@@ -2,6 +2,9 @@ import { useState } from 'react';
 import './PasswordRecovery.css';
 import axios from 'axios';
 
+import { SERVER_URL } from '../../config'; 
+
+
 function PasswordRecovery() {
   const [username, setUsername] = useState('');
   const [securityQuestion, setSecurityQuestion] = useState('');
@@ -9,7 +12,7 @@ function PasswordRecovery() {
   const [message, setMessage] = useState('');
   const [step, setStep] = useState(1); 
 
-  const SERVER_URL = 'https://get-your-book-server.onrender.com';
+  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
 //   const SERVER_URL = 'http://localhost:3000'; 
 
   const handleUsernameSubmit = async (e) => {

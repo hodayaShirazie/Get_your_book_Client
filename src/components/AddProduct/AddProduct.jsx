@@ -4,9 +4,12 @@ import './AddProduct.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import { SERVER_URL } from '../../config'; 
+
+
 export default function AddProduct() {
   const navigate = useNavigate();
-const SERVER_URL = 'https://get-your-book-server.onrender.com';
+// const SERVER_URL = 'https://get-your-book-server.onrender.com';
 // const SERVER_URL = 'http://localhost:3000'; // Local development URL
   const [formData, setFormData] = useState({
     name: '',
