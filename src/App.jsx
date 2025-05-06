@@ -17,7 +17,7 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart.jsx";
 import PurchaseSummary from "./components/PurchaseSummary/PurchaseSummary.jsx";
 import OrderConfirm from "./components/PurchaseSummary/OrderConfirm.jsx";
 import BookDetails from "./components/BookDetails/BookDetails.jsx";
-
+import SetDeliveryDays from "./components/SetDeliveryDays/SetDeliveryDays.jsx"; 
 
 function App() {
   return (
@@ -40,9 +40,9 @@ function App() {
           <Route path="/purchase-summary" element={<PurchaseSummary />} />
           <Route path="/order-confirm" element={<OrderConfirm />} />
           <Route path="/book/:id" element={<BookDetails />} />
+          <Route path="/set-delivery-days" element={<SetDeliveryDays />} />
         </Routes>
-
-    </Router>
+      </Router>
     </Fragment>
   );
 }
