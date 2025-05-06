@@ -1,4 +1,5 @@
-.purchase-summary-page {
+
+   .purchase-summary-page {
     background-image: url('/background-book.jpg');
     background-size: cover;
     background-position: center;
@@ -31,7 +32,6 @@
     z-index: 1; 
   }
   
-  
   .purchase-summary-page .main-title {
     text-align: center;
     color: #225536;
@@ -54,10 +54,58 @@
     margin-bottom: 10px;
   }
   
-  .purchase-summary-page .order-details ul {
-    margin-top: 10px;
-    margin-bottom: 0;
-    padding-left: 20px;
+  .purchase-summary-page .order-details {
+    padding: 20px;
+  }
+  
+  .purchase-summary-page .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .purchase-summary-page .cart-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.3s ease-in-out;
+    max-width: 100%;
+    min-height: 150px;
+  }
+  
+  .purchase-summary-page .cart-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .purchase-summary-page .cart-item-image {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .purchase-summary-page .cart-item-info {
+    flex-grow: 1;
+  }
+  
+  .purchase-summary-page .cart-item-info h4 {
+    font-size: 16px;
+    margin: 0;
+    color: #225536;
+  }
+  
+  .purchase-summary-page .cart-item-info p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .purchase-summary-page .cart-item-price {
+    font-weight: bold;
+    color: #1d4d2f;
   }
   
   .purchase-summary-page .total-price {

@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './PurchaseSummary.css';
-
-import { SERVER_URL } from '../../config'; 
+import { SERVER_URL } from '../../config';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function PurchaseSummary() {
+  const navigate = useNavigate();
   const [deliveryMethod, setDeliveryMethod] = useState('home');
   const [location, setLocation] = useState('Center');
   const [cartItems, setCartItems] = useState([]);
+  const username = localStorage.getItem('username');
 
   useEffect(() => {
-    fetch('/api/cart') // שימי כאן את המסלול המתאים
+    fetch(`${SERVER_URL}/shopping-cart/${username}`)
       .then(res => res.json())
-      .then(data => setCartItems(data))
+      .then(data => {
+        console.log("Cart data:", data);
+        setCartItems(data);
+      })
       .catch(err => console.error('Failed to fetch cart data:', err));
   }, []);
 
   const calculateTotal = () => {
-    return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+    return cartItems
+      .reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0)
+      .toFixed(2);
   };
 
   return (
@@ -27,13 +34,22 @@ export default function PurchaseSummary() {
 
         <div className="order-details">
           <h3>Order Details</h3>
-          <ul>
+          <div className="cart-items">
             {cartItems.map((item, index) => (
-              <li key={index}>
-                {item.name} - Qty: {item.quantity} - ${item.price.toFixed(2)}
-              </li>
+              <div className="cart-item" key={index}>
+                <img
+                  src={item.image ? `data:image/jpeg;base64,${item.image}` : '/default-image.jpg'}
+                  alt={item.name}
+                  className="cart-item-image"
+                />
+                <div className="cart-item-info">
+                  <h4>{item.name}</h4>
+                  <p>Qty: {item.quantity}</p>
+                  <p className="cart-item-price">${parseFloat(item.price).toFixed(2)}</p>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
           <p className="total-price"><strong>Total: ${calculateTotal()}</strong></p>
         </div>
 
@@ -117,10 +133,12 @@ export default function PurchaseSummary() {
           </select>
         </div>
 
-        <button className="confirm-btn">Confirm Order</button>
+        <button className="confirm-btn" onClick={() => navigate('/order-confirm')}>Confirm Order</button>
       </div>
 
-      <button className="home-button">Return to Home</button>
+      <button className="home-button" onClick={() => navigate('/customer-home')}>Return to Home</button>
     </div>
   );
 }
+
+
