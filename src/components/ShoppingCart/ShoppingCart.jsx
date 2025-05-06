@@ -188,7 +188,19 @@ export default function ShoppingCart() {
                     </table>
                 )}           
                 <p className="total-price">Total: ${totalPrice.toFixed(2)}</p>
-                <button className="purchase-button"  onClick={() => navigate('/purchase-summary')}>Continue to Purchase</button>
+
+                <button
+                    className="purchase-button"
+                    onClick={() => {
+                        if (cartItems.length > 0) {
+                        navigate('/purchase-summary');
+                        } else {
+                        navigate('/customer-home');
+                        }
+                    }}
+                    >Continue to Purchase
+                </button>
+
             </div>
             <button className="home-button" onClick={() => navigate('/customer-home')}>Return to Home</button>
         </div>
