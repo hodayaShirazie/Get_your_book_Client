@@ -33,7 +33,7 @@ body {
   border-radius: 16px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
   padding: 22px 16px 22px 16px;
-  max-width: 780px;
+  max-width: 880px;
   width: 96%;
   min-height: 70vh;
   margin: 0 auto;
@@ -110,7 +110,7 @@ body {
 
 .customer-nav-bar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   justify-content: center;
   gap: 9px;
   margin-bottom: 14px;

@@ -12,6 +12,7 @@ const CustomerHomepage = () => {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
   const [cart, setCart] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   // const SERVER_URL = 'https://get-your-book-server.onrender.com';
   // const SERVER_URL = 'http://localhost:3000'; 
@@ -20,9 +21,12 @@ const CustomerHomepage = () => {
     axios.get(`${SERVER_URL}/products`) 
       .then(response => {
         const data = response.data;
+        // console.log('📚 Products:', data); // <-- שורה חשובה
         const booksArray = Array.isArray(data) ? data : [data];
         setBooks(booksArray);
-        console.log('books:', booksArray);
+        // console.log('books:', booksArray);
+        // console.log('filteredBooks:', filteredBooks);
+
       })
       .catch(error => {
         console.error('Error fetching products:', error);
@@ -49,7 +53,12 @@ const CustomerHomepage = () => {
       console.error('Error adding to cart:', error);
     }
   };
-  
+  const filteredBooks = selectedCategory
+  ? books.filter(book => String(book.category_id) === selectedCategory)
+  : books;
+
+
+
 
   return (
     <div className="customer-bg">
@@ -87,16 +96,16 @@ const CustomerHomepage = () => {
             <option value="high-low">High to Low</option>
           </select>
           <button onClick={() => navigate('/update-profile')} >Edit Personal Information</button>
-          <select defaultValue="">
-            <option disabled value="">Category</option>
-            <option value="fiction">Fiction</option>
-            <option value="non-fiction">Non-Fiction</option>
-            <option value="children">Children</option>
+          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+            <option value="">All Categories</option>
+            <option value="1">Fiction</option>
+            <option value="2">Non-Fiction</option>
+            <option value="3">Children</option>
           </select>
         </div>
 
         <div className="customer-books-grid">
-          {books.map((book, index) => (
+          {filteredBooks.map((book, index) => (
               <div
                 className="customer-book-card"
                 key={index}
