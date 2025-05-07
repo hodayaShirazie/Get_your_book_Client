@@ -7,8 +7,6 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import  {SERVER_URL}  from '../../config'; 
 
 
-
-
 function Register() {
   const [form, setForm] = useState({
     username: '',
@@ -24,11 +22,6 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-
-
-
-  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
-//   const SERVER_URL = 'http://localhost:3000';
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/security-questions`)
@@ -60,6 +53,8 @@ function Register() {
     try {
       const response = await axios.post(`${SERVER_URL}/register`, form);
       if (response.data.success) {
+        localStorage.setItem('username', form.username);
+        localStorage.setItem('role', 'customer');
         setSuccess('Registration successful! You can log in and start shopping.');
         setForm({
           username: '',

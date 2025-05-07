@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './AddProduct.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 import { SERVER_URL } from '../../config'; 
 
@@ -58,9 +59,6 @@ export default function AddProduct() {
 
   return (
     <div className="add-product-container">
-      <button className="home-button" onClick={handleReturnHome}>
-        Return to Home
-      </button>
 
       <form className="add-product-form" onSubmit={handleSubmit}>
         <h2>Add Product</h2>
@@ -96,6 +94,7 @@ export default function AddProduct() {
           <button type="reset" className="add-product-button cancel-button">Cancel</button>
         </div>
       </form>
+      <BackToHomeButton />
     </div>
   );
 }

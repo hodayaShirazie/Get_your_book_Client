@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../AddProduct/AddProduct.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 import { SERVER_URL } from '../../config'; 
 
@@ -62,9 +63,6 @@ export default function DeleteProduct() {
 
   return (
     <div className="add-product-container">
-      <button className="home-button" onClick={handleReturnHome}>
-        Return to Home
-      </button>
 
       <form className="add-product-form" onSubmit={(e) => e.preventDefault()}>
         <h2>Delete Product</h2>
@@ -96,6 +94,7 @@ export default function DeleteProduct() {
           </button>
         </div>
       </form>
+      <BackToHomeButton />
     </div>
   );
 }

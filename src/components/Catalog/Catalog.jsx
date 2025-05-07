@@ -1,6 +1,7 @@
 import React from 'react';
 import './Catalog.css';
 import { useNavigate } from 'react-router-dom'; 
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 function CatalogPage() {
     
@@ -14,7 +15,7 @@ function CatalogPage() {
         <button className="catalog-button" onClick={() => navigate('/update-product')}>Update Product</button>
         <button className="catalog-button" onClick={() => navigate('/delete-product')}>Delete Product</button>
       </div>
-      <button className="home-button" onClick={() => navigate('/admin-home')}>Return to Home</button>
+      <BackToHomeButton />
     </div>
   );
 }

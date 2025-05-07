@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './OrderConfirm.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SERVER_URL } from '../../config';
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 export default function OrderConfirmation({ userId }) {
   const navigate = useNavigate();
@@ -36,20 +37,28 @@ export default function OrderConfirmation({ userId }) {
           <p><strong>Order Number:</strong> #{order.id}</p>
 
           <p><strong>Items Ordered:</strong></p>
-          <div className="products-list">
-  {order.products && order.products.length > 0 ? (
-    order.products.map((product, index) => (
-      <div className="product-row" key={index}>
-        <span className="product-cell name">{product.name}</span>
-        <span className="product-cell price">${product.price}</span>
-        <span className="product-cell category">{product.category}</span>
-      </div>
-    ))
-  ) : (
-    <p>No products found.</p>
-  )}
-</div>
-
+          {order.products && order.products.length > 0 ? (
+            <table className="products-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {order.products.map((product, index) => (
+                <tr key={index}>
+                  <td>{product.name}</td>
+                  <td>${Number(product.price).toFixed(2)}</td>
+                  <td>{product.quantity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>          
+          ) : (
+            <p>No products found.</p>
+          )}
 
           <p className="total"><strong>Total:</strong> ${order.sum_of_purchase}</p>
 
@@ -64,9 +73,8 @@ export default function OrderConfirmation({ userId }) {
         </div>
       </div>
 
-      <button className="home-button" onClick={() => navigate('/customer-home')}>
-        Return to Home
-      </button>
+      <BackToHomeButton />
+
     </div>
   );
 }

@@ -71,7 +71,7 @@ export default function ViewOrders() {
 
       <div className="filter-bar">
         <select>
-          <option>Type</option>
+          <option>Status</option>
         </select>
         <select>
           <option>Price</option>
@@ -97,7 +97,7 @@ export default function ViewOrders() {
 
               <div className="order-actions">
                 <button className="cancel-btn" onClick={() => handleCancel(order.id)}>Cancel</button>
-                <button className="approve-btn"  onClick={() => handleApprove(order.id)}>OK</button>
+                <button className="approve-btn"  onClick={() => handleApprove(order.id)}>Confirm</button>
               </div>
             </div>
           ))
