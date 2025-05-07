@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./SetDeliveryDays.css";
 import { useNavigate } from "react-router-dom";
 import BackToHomeButton from "../BackToHomeButton/BackToHomeButton"; // ← הוספה של הקומפוננטה
+import { SERVER_URL } from '../../config'; 
 
 const daysOfWeek = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -100,7 +101,7 @@ const SetDeliveryDays = () => {
       }));
 
     try {
-      await fetch("http://localhost:3000/api/delivery-days", {
+      await fetch(`${SERVER_URL}/api/delivery-days`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ deliveryDays: dataToSend }),
@@ -115,7 +116,7 @@ const SetDeliveryDays = () => {
 
   return (
     <div className="set-delivery-days-page">
-      <BackToHomeButton /> {/* ← שימוש בקומפוננטה בדיוק כמו בעמוד About */}
+      <BackToHomeButton /> 
       <div className="set-delivery-days-container">
         <h2>Set Delivery Day</h2>
         <p style={{ textAlign: "center", color: "#2e4a32", marginBottom: "20px" }}>
