@@ -2,11 +2,27 @@ import React, { useEffect, useState } from 'react';
 import './CustomerHomepage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 import { SERVER_URL } from '../../config'; 
 
 
+ const handleAddToCart = async (book, setCart) => {
+  const username = localStorage.getItem('username'); 
 
+  try {
+    const response = await axios.post(`${SERVER_URL}/add-to-shopping-cart`, {
+      username: username,       
+      productId: book.id      
+    });
+
+    console.log('Added to cart:', book.name);
+    console.log('Server response:', response.data);
+
+    setCart(prevCart => [...prevCart, book]);
+
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+  }
+};
 
 const CustomerHomepage = () => {
   const navigate = useNavigate();
@@ -35,24 +51,7 @@ const CustomerHomepage = () => {
 
 
 
-  const handleAddToCart = async (book) => {
-    const username = localStorage.getItem('username'); 
   
-    try {
-      const response = await axios.post(`${SERVER_URL}/add-to-shopping-cart`, {
-        username: username,       
-        productId: book.id      
-      });
-  
-      console.log('Added to cart:', book.name);
-      console.log('Server response:', response.data);
-  
-      setCart(prevCart => [...prevCart, book]);
-  
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-    }
-  };
   const filteredBooks = selectedCategory
   ? books.filter(book => String(book.category_id) === selectedCategory)
   : books;
@@ -126,7 +125,7 @@ const CustomerHomepage = () => {
                     title="Add to Cart" 
                     onClick={(e) => {
                       e.stopPropagation(); //// Prevents navigation to the book page
-                      handleAddToCart(book)}}>➕</button>
+                      handleAddToCart(book, setCart)}}>➕</button>
                   <button title="Add to Wishlist">♡</button>
                 </div>
               </div>

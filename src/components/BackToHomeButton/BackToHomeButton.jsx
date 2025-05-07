@@ -13,6 +13,7 @@ export default function BackToHomeButton() {
       navigate('/customer-home');
     }
   };
+  
 
   return (
     <div className="home-button-container">

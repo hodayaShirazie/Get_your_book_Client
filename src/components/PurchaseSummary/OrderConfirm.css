@@ -1,23 +1,38 @@
-.confirmation-page {
-    background-image: url('../assets/library-background.png'); /* ודא שהתמונה נמצאת בתיקייה המתאימה */
+
+   .confirmation-page {
+    background-image: url('/background-book.jpg');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 60px 20px;
     font-family: 'Segoe UI', sans-serif;
+    position: relative;
+  }
+  
+  .confirmation-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 0;
   }
   
   .confirmation-container {
+    position: relative;
     background-color: white;
     padding: 30px 40px;
     border-radius: 16px;
     max-width: 600px;
     width: 100%;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    box-shadow:
+      0 0 50px 30px rgba(255, 255, 255, 0.5),
+      0 8px 16px rgba(0, 0, 0, 0.15);
     text-align: center;
+    z-index: 1;
   }
   
   h1 {
@@ -26,7 +41,7 @@
   }
   
   .order-section {
-    text-align: left;
+    text-align: center;
   }
   
   .order-section p {
@@ -54,12 +69,37 @@
     z-index: 2;
   }
   
-.home-button:hover {
+  .home-button:hover {
     background-color: #1d4d2f;
     color: white;
     border-color: #1d4d2f;
     outline: none;
   }
+  
+  .products-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .product-item {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+  
+  .product-item:first-child {
+    border-top: none;
+  }
+  
+  .product-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #1d4d2f;
+  }
 
-
+  
   
