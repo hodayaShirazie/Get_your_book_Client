@@ -17,6 +17,7 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart.jsx";
 import PurchaseSummary from "./components/PurchaseSummary/PurchaseSummary.jsx";
 import OrderConfirm from "./components/PurchaseSummary/OrderConfirm.jsx";
 import BookDetails from "./components/BookDetails/BookDetails.jsx";
+import ViewOrders from "./components/ViewOrders/ViewOrders.jsx";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/purchase-summary" element={<PurchaseSummary />} />
           <Route path="/order-confirm" element={<OrderConfirm />} />
           <Route path="/book/:id" element={<BookDetails />} />
+          <Route path="/view-orders" element={<ViewOrders />} />
         </Routes>
 
     </Router>
