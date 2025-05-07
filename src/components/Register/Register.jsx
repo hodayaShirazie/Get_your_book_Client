@@ -60,6 +60,8 @@ function Register() {
     try {
       const response = await axios.post(`${SERVER_URL}/register`, form);
       if (response.data.success) {
+        localStorage.setItem('username', form.username);
+        localStorage.setItem('role', 'customer');
         setSuccess('Registration successful! You can log in and start shopping.');
         setForm({
           username: '',

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './PurchaseSummary.css';
 import { SERVER_URL } from '../../config';
 import { useNavigate } from 'react-router-dom';
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 export default function PurchaseSummary() {
   const navigate = useNavigate();
-  const [deliveryMethod, setDeliveryMethod] = useState('home');
+  const [deliveryMethod, setDeliveryMethod] = useState('');
   const [location, setLocation] = useState('Center');
   const [cartItems, setCartItems] = useState([]);
   const [homeDeliveryInfo, setHomeDeliveryInfo] = useState({
@@ -18,7 +19,7 @@ export default function PurchaseSummary() {
   const [date, setDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
   const [error, setError] = useState('');
-  const [isDeliveryBoxOpen, setIsDeliveryBoxOpen] = useState(true); // מצב פתוח/סגור לתיבת המשלוח
+  const [isDeliveryBoxOpen, setIsDeliveryBoxOpen] = useState(false); // מצב פתוח/סגור לתיבת המשלוח
 
   const username = localStorage.getItem('username');
 
@@ -146,12 +147,6 @@ export default function PurchaseSummary() {
   
   
 
-      
-
-
-
-
-
 
 
   return (
@@ -161,14 +156,14 @@ export default function PurchaseSummary() {
 
         <div className="order-details">
           <h3>Order Details</h3>
-          <div className="cart-items">
+           <div className="cart-items">
             {cartItems.map((item, index) => (
               <div className="cart-item" key={index}>
                 <img
-                  src={item.image ? `data:image/jpeg;base64,${item.image}` : '/default-image.jpg'}
-                  alt={item.name}
-                  className="cart-item-image"
-                />
+                    src={item.image ? item.image : '/default-image.jpg'}
+                    alt={item.name}
+                    className="cart-item-image"
+                  />
                 <div className="cart-item-info">
                   <h4>{item.name}</h4>
                   <p>Qty: {item.quantity}</p>
@@ -180,7 +175,7 @@ export default function PurchaseSummary() {
           <p className="total-price"><strong>Total: ${calculateTotal()}</strong></p>
         </div>
 
-        <div className="section delivery-box">
+        {/* <div className="section delivery-box">
           <h3>Delivery Method</h3>
           <div className="delivery-options">
             <label>
@@ -274,7 +269,123 @@ export default function PurchaseSummary() {
               </button>
             </>
           )}
+        </div> */}
+        <div className="section delivery-box">
+          <h3>Delivery Method</h3>
+
+          <div className="delivery-options">
+            <label>
+              <input
+                type="radio"
+                name="delivery"
+                checked={deliveryMethod === 'home'}
+                onChange={() => {
+                  setDeliveryMethod('home');
+                  setDeliveryConfirmed(false);
+                  setIsDeliveryBoxOpen(true);
+                }}
+              />
+              Home Delivery
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="delivery"
+                checked={deliveryMethod === 'pickup'}
+                onChange={() => {
+                  setDeliveryMethod('pickup');
+                  setDeliveryConfirmed(false);
+                  setIsDeliveryBoxOpen(true);
+                }}
+              />
+              Pickup Point
+            </label>
+          </div>
+
+          {/* הצגת השדות רק אם המשתמש בחר סוג משלוח והחלון פתוח */}
+          {deliveryMethod === 'pickup' && isDeliveryBoxOpen && (
+            <>
+              <label className="input-label">Choose Location:</label>
+              <select
+                className="input-field"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              >
+                <option>Center</option>
+                <option>North</option>
+                <option>South</option>
+              </select>
+
+              <button className="confirm-btn" onClick={handleConfirmDelivery}>
+                Confirm Delivery Info
+              </button>
+            </>
+          )}
+
+          {deliveryMethod === 'home' && isDeliveryBoxOpen && (
+            <>
+              <label className="input-label">
+                City<span className="required-star">*</span>
+              </label>
+              <input
+                className="input-field"
+                type="text"
+                value={homeDeliveryInfo.city}
+                onChange={(e) =>
+                  setHomeDeliveryInfo({ ...homeDeliveryInfo, city: e.target.value })
+                }
+              />
+
+              <label className="input-label">
+                Street<span className="required-star">*</span>
+              </label>
+              <input
+                className="input-field"
+                type="text"
+                value={homeDeliveryInfo.street}
+                onChange={(e) =>
+                  setHomeDeliveryInfo({ ...homeDeliveryInfo, street: e.target.value })
+                }
+              />
+
+              <label className="input-label">
+                House Number<span className="required-star">*</span>
+              </label>
+              <input
+                className="input-field"
+                type="text"
+                value={homeDeliveryInfo.houseNumber}
+                onChange={(e) =>
+                  setHomeDeliveryInfo({
+                    ...homeDeliveryInfo,
+                    houseNumber: e.target.value,
+                  })
+                }
+              />
+
+              <label className="input-label">
+                Phone Number<span className="required-star">*</span>
+              </label>
+              <input
+                className="input-field"
+                type="text"
+                value={homeDeliveryInfo.phoneNumber}
+                onChange={(e) =>
+                  setHomeDeliveryInfo({
+                    ...homeDeliveryInfo,
+                    phoneNumber: e.target.value,
+                  })
+                }
+              />
+
+              <button className="confirm-btn" onClick={handleConfirmDelivery}>
+                Confirm Delivery Info
+              </button>
+            </>
+          )}
         </div>
+
+
 
         <div className="section">
           <h3>Delivery Date</h3>
@@ -312,9 +423,7 @@ export default function PurchaseSummary() {
         </button>
       </div>
 
-      <button className="home-button" onClick={() => navigate('/customer-home')}>
-        Return to Home
-      </button>
+      <BackToHomeButton />
     </div>
   );
 }

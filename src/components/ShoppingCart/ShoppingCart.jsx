@@ -3,6 +3,7 @@ import './ShoppingCart.css';
 import { useNavigate } from 'react-router-dom';
 
 import { SERVER_URL } from '../../config'; 
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 
 export default function ShoppingCart() {
@@ -200,9 +201,9 @@ export default function ShoppingCart() {
                     }}
                     >Continue to Purchase
                 </button>
-
+                <BackToHomeButton />
             </div>
-            <button className="home-button" onClick={() => navigate('/customer-home')}>Return to Home</button>
+            
         </div>
     );
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import { SERVER_URL } from '../../config'; 
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 
 function UpdateProfile() {
@@ -117,6 +118,7 @@ function UpdateProfile() {
 
         <button type="submit" className="update-button">Update</button>
       </form>
+      <BackToHomeButton />
     </div>
   );
 }

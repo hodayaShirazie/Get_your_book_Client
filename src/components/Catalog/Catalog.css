@@ -69,25 +69,4 @@
     outline: none;
   }
   
-  .home-button {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    font-size: 14px;
-    border: 2px solid #1d4d2f;
-    border-radius: 10px;
-    background-color: white;
-    color: #1d4d2f;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    z-index: 2;
-  }
-  
-  .home-button:hover {
-    background-color: #1d4d2f;
-    color: white;
-    border-color: #1d4d2f;
-    outline: none;
-  }
   
