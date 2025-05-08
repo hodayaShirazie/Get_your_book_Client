@@ -1,0 +1,115 @@
+/* רקע כללי */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.set-delivery-days-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/background-book.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* שכבת טשטוש (בלי blur, כמו בקטלוג) */
+.set-delivery-days-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6); /* בדיוק כמו בקטלוג */
+  z-index: 1;
+}
+
+.set-delivery-days-container {
+  max-width: 500px;
+  width: 100%;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.set-delivery-days-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #2f4f4f;
+  font-size: 28px;
+}
+
+.day-section {
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  background-color: #f9f9f9;
+}
+
+.day-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #2f4f4f;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.day-header label {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.time-slots {
+  display: flex;
+  gap: 18px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.time-slots label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+/* כפתור שמור */
+.save-button {
+  background-color: #2e4a32;
+  color: white;
+  padding: 10px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #3d5a40;
+}
+
+/* צבע כחול-checkbox מסומן */
+input[type="checkbox"]:checked {
+  accent-color: #007bff; 
+}

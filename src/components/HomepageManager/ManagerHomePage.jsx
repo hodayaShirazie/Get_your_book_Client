@@ -20,6 +20,10 @@ const ManagerHomePage = () => {
     navigate('/update-profile');  
   };
 
+  const navigateToSetDeliveryDays = () => {
+    navigate('/set-delivery-days');
+  };
+
   return (
     <div className="manager-homepage">
       <div className="top-right-buttons">
@@ -64,6 +68,8 @@ const ManagerHomePage = () => {
           <button>Update Product Quantity</button>
           <button>Set Delivery Days</button>
           <button onClick={() => navigate('/store-statistics')}>Store Statistics</button>
+          <button onClick={navigateToSetDeliveryDays}>Set Delivery Days</button>
+          <button>Store Statistics</button>
         </div>
       </div>
     </div>

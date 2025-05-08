@@ -19,6 +19,7 @@ import OrderConfirm from "./components/PurchaseSummary/OrderConfirm.jsx";
 import BookDetails from "./components/BookDetails/BookDetails.jsx";
 import ViewOrders from "./components/ViewOrders/ViewOrders.jsx";
 import StoreStatistics from "./components/StoreStatustics/StoreStatistics.jsx";
+import SetDeliveryDays from "./components/SetDeliveryDays/SetDeliveryDays.jsx";
 
 
 function App() {
@@ -44,9 +45,9 @@ function App() {
           <Route path="/book/:id" element={<BookDetails />} />
           <Route path="/view-orders" element={<ViewOrders />} />
           <Route path="/store-statistics" element={<StoreStatistics />} />
+          <Route path="/set-delivery-days" element={<SetDeliveryDays />} />
         </Routes>
-
-    </Router>
+      </Router>
     </Fragment>
   );
 }
