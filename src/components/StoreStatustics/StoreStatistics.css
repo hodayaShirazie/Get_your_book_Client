@@ -1,0 +1,76 @@
+.statistics-container {
+    background: url('/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .statistics-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .title {
+    font-size: 36px;
+    color: #2f4f4f;
+    margin-bottom: 20px;
+  }
+  
+  .radio-options {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+  
+  .summary-box {
+    background-color: #fff;
+    border: 2px solid #2f4f4f;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+    font-size: 18px;
+  }
+  
+  .summary-box h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #2f4f4f;
+  }
+  
+  .summary-box hr {
+    margin: 10px 0 20px;
+    border: 1px solid #2f4f4f;
+  }
+  
+  .home-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #1d4d2f;
+    border-radius: 10px;
+    background-color: white;
+    color: #1d4d2f;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 2;
+  }
+  
+  .home-button:hover {
+    background-color: #1d4d2f;
+    color: white;
+    border-color: #1d4d2f;
+    outline: none;
+  }
+  

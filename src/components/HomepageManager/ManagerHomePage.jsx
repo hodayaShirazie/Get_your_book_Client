@@ -63,7 +63,7 @@ const ManagerHomePage = () => {
           <button onClick={() => navigate('/view-orders')}>View Orders</button>
           <button>Update Product Quantity</button>
           <button>Set Delivery Days</button>
-          <button>Store Statistics</button>
+          <button onClick={() => navigate('/store-statistics')}>Store Statistics</button>
         </div>
       </div>
     </div>

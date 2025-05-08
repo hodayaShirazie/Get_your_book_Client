@@ -45,7 +45,7 @@ function Login() {
         setError('----Invalid username or password. Please try again.');
       }
     } catch (err) {
-      setError('00000Invalid username or password. Please try again.');
+      setError('Invalid username or password. Please try again.');
     }
   };
 
