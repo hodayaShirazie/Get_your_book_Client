@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
 
-    //open: true,
+    // open: true,
     open: 'https://get-your-book-client.onrender.com/'
     
 

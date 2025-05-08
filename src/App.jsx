@@ -18,6 +18,7 @@ import PurchaseSummary from "./components/PurchaseSummary/PurchaseSummary.jsx";
 import OrderConfirm from "./components/PurchaseSummary/OrderConfirm.jsx";
 import BookDetails from "./components/BookDetails/BookDetails.jsx";
 import SetDeliveryDays from "./components/SetDeliveryDays/SetDeliveryDays.jsx"; 
+import ViewOrders from "./components/ViewOrders/ViewOrders.jsx";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/order-confirm" element={<OrderConfirm />} />
           <Route path="/book/:id" element={<BookDetails />} />
           <Route path="/set-delivery-days" element={<SetDeliveryDays />} />
+          <Route path="/view-orders" element={< ViewOrders/>} />
         </Routes>
       </Router>
     </Fragment>
