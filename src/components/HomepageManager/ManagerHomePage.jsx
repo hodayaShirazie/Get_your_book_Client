@@ -62,14 +62,9 @@ const ManagerHomePage = () => {
         <div className="menu">
           <button onClick={navigateToUpdateProfile}>Edit Personal Information</button>
           <button onClick={navigateToCatalog}>Catalog</button>
-
-          <button>Edit Price</button>
           <button onClick={() => navigate('/view-orders')}>View Orders</button>
-          <button>Update Product Quantity</button>
-          <button>Set Delivery Days</button>
           <button onClick={() => navigate('/store-statistics')}>Store Statistics</button>
           <button onClick={navigateToSetDeliveryDays}>Set Delivery Days</button>
-          <button>Store Statistics</button>
         </div>
       </div>
     </div>
