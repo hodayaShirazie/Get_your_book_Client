@@ -19,6 +19,10 @@ const ManagerHomePage = () => {
   const navigateToUpdateProfile = () => {
     navigate('/update-profile');  
   };
+  const navigateToViewOrders = () => {
+    navigate('/view-orders');  
+  };
+
 
   const navigateToSetDeliveryDays = () => {
     navigate('/set-delivery-days');
@@ -64,6 +68,9 @@ const ManagerHomePage = () => {
           <button onClick={navigateToCatalog}>Catalog</button>
           <button onClick={() => navigate('/view-orders')}>View Orders</button>
           <button onClick={() => navigate('/store-statistics')}>Store Statistics</button>
+          <button>Edit Price</button>
+          <button  onClick={ navigateToViewOrders}> View Orders</button>
+          <button>Update Product Quantity</button>
           <button onClick={navigateToSetDeliveryDays}>Set Delivery Days</button>
         </div>
       </div>

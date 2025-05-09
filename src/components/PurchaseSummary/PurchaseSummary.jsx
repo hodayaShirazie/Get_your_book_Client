@@ -19,9 +19,29 @@ export default function PurchaseSummary() {
   const [date, setDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
   const [error, setError] = useState('');
-  const [isDeliveryBoxOpen, setIsDeliveryBoxOpen] = useState(false); // מצב פתוח/סגור לתיבת המשלוח
-
+  const [isDeliveryBoxOpen, setIsDeliveryBoxOpen] = useState(false); 
   const username = localStorage.getItem('username');
+  const [validWeekdays, setValidWeekdays] = useState([]); 
+
+useEffect(() => {
+  fetch(`${SERVER_URL}/available-delivery-days`)
+    .then(res => res.json())
+    .then(data => setValidWeekdays(data.validDeliveryDays))
+    .catch(console.error);
+}, []);
+
+function handleDateChange(e) {
+  const selectedDate = new Date(e.target.value);
+  const weekdayName = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+
+  if (!validWeekdays.includes(weekdayName)) {
+    alert('Cannot select this date – deliveries unavailable');
+    return;
+  }
+
+  setDate(e.target.value);
+}
+
 
   useEffect(() => {
     fetch(`${SERVER_URL}/shopping-cart/${username}`)
@@ -76,7 +96,6 @@ export default function PurchaseSummary() {
     const numberOfProducts = cartItems.reduce((total, item) => total + item.quantity, 0);
     const status = 'approved'; 
   
-    console.log(`Delivery Method: ${deliveryMethod}, Full Address: ${fullAddress}, Delivery Date: ${date}, Time Slot: ${timeSlot}, Total Price: ${totalPrice}, Cart Items: ${JSON.stringify(cartItems)}`);
   
     try {
       // 1. Add order
@@ -175,101 +194,6 @@ export default function PurchaseSummary() {
           <p className="total-price"><strong>Total: ${calculateTotal()}</strong></p>
         </div>
 
-        {/* <div className="section delivery-box">
-          <h3>Delivery Method</h3>
-          <div className="delivery-options">
-            <label>
-              <input
-                type="radio"
-                name="delivery"
-                checked={deliveryMethod === 'home'}
-                onChange={() => {
-                  setDeliveryMethod('home');
-                  setDeliveryConfirmed(false);
-                  setIsDeliveryBoxOpen(true); 
-                }}
-              />
-              Home Delivery
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="delivery"
-                checked={deliveryMethod === 'pickup'}
-                onChange={() => {
-                  setDeliveryMethod('pickup');
-                  setDeliveryConfirmed(false);
-                  setIsDeliveryBoxOpen(true); 
-                }}
-              />
-              Pickup Point
-            </label>
-          </div>
-
-          {deliveryMethod === 'pickup' && isDeliveryBoxOpen ? (
-            <>
-              <label className="input-label">Choose Location:</label>
-              <select
-                className="input-field"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              >
-                <option>Center</option>
-                <option>North</option>
-                <option>South</option>
-              </select>
-              <button className="confirm-btn" onClick={handleConfirmDelivery}>
-                Confirm Delivery Info
-              </button>
-            </>
-          ) : (
-            <>
-              <label className="input-label">
-                City<span className="required-star">*</span>
-              </label>
-              <input
-                className="input-field"
-                type="text"
-                value={homeDeliveryInfo.city}
-                onChange={(e) => setHomeDeliveryInfo({ ...homeDeliveryInfo, city: e.target.value })}
-              />
-
-              <label className="input-label">
-                Street<span className="required-star">*</span>
-              </label>
-              <input
-                className="input-field"
-                type="text"
-                value={homeDeliveryInfo.street}
-                onChange={(e) => setHomeDeliveryInfo({ ...homeDeliveryInfo, street: e.target.value })}
-              />
-
-              <label className="input-label">
-                House Number<span className="required-star">*</span>
-              </label>
-              <input
-                className="input-field"
-                type="text"
-                value={homeDeliveryInfo.houseNumber}
-                onChange={(e) => setHomeDeliveryInfo({ ...homeDeliveryInfo, houseNumber: e.target.value })}
-              />
-
-              <label className="input-label">
-                Phone Number<span className="required-star">*</span>
-              </label>
-              <input
-                className="input-field"
-                type="text"
-                value={homeDeliveryInfo.phoneNumber}
-                onChange={(e) => setHomeDeliveryInfo({ ...homeDeliveryInfo, phoneNumber: e.target.value })}
-              />
-
-              <button className="confirm-btn" onClick={handleConfirmDelivery}>
-                Confirm Delivery Info
-              </button>
-            </>
-          )}
-        </div> */}
         <div className="section delivery-box">
           <h3>Delivery Method</h3>
 
@@ -302,7 +226,6 @@ export default function PurchaseSummary() {
             </label>
           </div>
 
-          {/* הצגת השדות רק אם המשתמש בחר סוג משלוח והחלון פתוח */}
           {deliveryMethod === 'pickup' && isDeliveryBoxOpen && (
             <>
               <label className="input-label">Choose Location:</label>
@@ -396,9 +319,11 @@ export default function PurchaseSummary() {
             className="input-field"
             type="date"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            min={new Date().toISOString().split("T")[0]}
+            onChange={handleDateChange}
             required
           />
+
 
           <label className="input-label">
             Select Time Slot<span className="required-star">*</span>

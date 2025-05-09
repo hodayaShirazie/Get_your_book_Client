@@ -11,9 +11,6 @@ export default function ShoppingCart() {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const username = localStorage.getItem('username');
-    
-    //   const SERVER_URL = 'http://localhost:3000';
-    // const SERVER_URL = 'https://get-your-book-server.onrender.com';
 
     useEffect(() => {
         if (username) {
@@ -101,7 +98,6 @@ export default function ShoppingCart() {
 
     const handleIncrement = async (itemId, quantity) => {
         const username = localStorage.getItem('username');
-        console.log('Adding to cart:', itemId, 'for user:', username); // Debugging line
     
         try {
             const response = await fetch(`${SERVER_URL}/add-to-shopping-cart`, {
