@@ -3,7 +3,21 @@ import './PurchaseSummary.css';
 import { SERVER_URL } from '../../config';
 import { useNavigate } from 'react-router-dom';
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendarAlt } from 'react-icons/fa';
 
+const CustomDateInput = React.forwardRef(({ value, onClick, placeholder }, ref) => (
+  <div className="custom-date-input" onClick={onClick} ref={ref}>
+    <input
+      type="text"
+      value={value}
+      placeholder={placeholder}
+      readOnly
+    />
+    <FaCalendarAlt className="calendar-icon-clickable" />
+  </div>
+));
 export default function PurchaseSummary() {
   const navigate = useNavigate();
   const [deliveryMethod, setDeliveryMethod] = useState('');
@@ -22,25 +36,42 @@ export default function PurchaseSummary() {
   const [isDeliveryBoxOpen, setIsDeliveryBoxOpen] = useState(false); 
   const username = localStorage.getItem('username');
   const [validWeekdays, setValidWeekdays] = useState([]); 
+  const [unavailableWeekdays, setUnavailableWeekdays] = useState([]);
+  const [availableSlots, setAvailableSlots] = useState([]);
 
-useEffect(() => {
-  fetch(`${SERVER_URL}/available-delivery-days`)
-    .then(res => res.json())
-    .then(data => setValidWeekdays(data.validDeliveryDays))
-    .catch(console.error);
-}, []);
+  useEffect(() => {
+    fetch(`${SERVER_URL}/missing-delivery-days`)
+      .then(res => res.json())
+      .then(data => {
+        setUnavailableWeekdays(data.missingDeliveryDays); // <- תוסיפי useState לזה
+      })
+      .catch(console.error);
+  }, []);
+  
 
-function handleDateChange(e) {
-  const selectedDate = new Date(e.target.value);
-  const weekdayName = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
-
-  if (!validWeekdays.includes(weekdayName)) {
-    alert('Cannot select this date – deliveries unavailable');
-    return;
+  function isDateAvailable(dateObj) {
+    const today = new Date();
+    const minDate = new Date();
+    minDate.setDate(today.getDate() + 2);
+  
+    const weekdayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+  
+    return dateObj >= minDate && !unavailableWeekdays.includes(weekdayName);
   }
+  
+  
 
-  setDate(e.target.value);
-}
+// function handleDateChange(e) {
+//   const selectedDate = new Date(e.target.value);
+//   const weekdayName = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+
+//   if (!validWeekdays.includes(weekdayName)) {
+//     alert('Cannot select this date – deliveries unavailable');
+//     return;
+//   }
+
+//   setDate(e.target.value);
+// }
 
 
   useEffect(() => {
@@ -315,30 +346,59 @@ function handleDateChange(e) {
           <label className="input-label">
             Date<span className="required-star">*</span>
           </label>
-          <input
-            className="input-field"
-            type="date"
-            value={date}
-            min={new Date().toISOString().split("T")[0]}
-            onChange={handleDateChange}
-            required
-          />
+         <div className="date-field-wrapper">
+            <DatePicker
+              selected={date ? new Date(date) : null}
+              onChange={(dateObj) => {
+                const isoDate = dateObj.toISOString().split("T")[0];
+                const weekdayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+              
+                if (!isDateAvailable(dateObj)) {
+                  alert("Date unavailable. Must be at least 2 days from today and on a valid delivery day.");
+                  return;
+                }
+              
+                setDate(isoDate);
+              
+                // slots time from server
+                fetch(`${SERVER_URL}/available-slots/${weekdayName}`)
+                  .then(res => res.json())
+                  .then(data => {
+                    console.log("✅ Received slots:", data.availableSlots);
+                    setAvailableSlots(data.availableSlots);
+                  })
+                  .catch(err => console.error('Error loading slots:', err));
 
-
+              }}
+              minDate={new Date(new Date().setDate(new Date().getDate() + 2))}
+              filterDate={isDateAvailable}
+              highlightDates={[new Date()]}
+              placeholderText="dd/mm/yyyy"
+              dateFormat="dd/MM/yyyy"
+              customInput={<CustomDateInput />}
+            />
+          </div>
           <label className="input-label">
-            Select Time Slot<span className="required-star">*</span>
-          </label>
-          <select
-            className="input-field"
-            value={timeSlot}
-            onChange={(e) => setTimeSlot(e.target.value)}
-            required
-          >
-            <option value="">-- Select --</option>
-            <option value="morning">Morning</option>
-            <option value="afternoon">Afternoon</option>
-            <option value="evening">Evening</option>
-          </select>
+              Select Time Slot<span className="required-star">*</span>
+            </label>
+            <select
+              className="input-field"
+              value={timeSlot}
+              onChange={(e) => setTimeSlot(e.target.value)}
+              required
+            >
+              <option value="">-- Select --</option>
+              {availableSlots.length > 0 ? (
+                availableSlots.map((slot, idx) => (
+                  <option key={idx} value={slot}>
+                    {slot.charAt(0).toUpperCase() + slot.slice(1)}
+                  </option>
+                ))
+              ) : (
+                <option disabled>No slots available</option>
+              )}
+            </select>
+
         </div>
 
         {error && <p className="error-message">{error}</p>}

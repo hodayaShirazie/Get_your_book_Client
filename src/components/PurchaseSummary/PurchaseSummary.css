@@ -200,4 +200,53 @@
     font-weight: bold;
   }
 
+  .datepicker-wrapper {
+    position: relative;
+    width: 90%;
+  }
+  
+  .input-field.with-icon {
+    padding-right: 35px; /* מקום לאייקון בצד ימין */
+  }
+  
+  .calendar-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+    font-size: 16px;
+  }
+  .custom-date-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 0;
+    width: 90%;
+    cursor: pointer;
+  }
+  
+  .custom-date-input input {
+    width: 100%;
+    padding: 10px 35px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+  }
+  
+  .calendar-icon-clickable {
+    position: absolute;
+    right: 10px;
+    color: #555;
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .date-field-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
   
