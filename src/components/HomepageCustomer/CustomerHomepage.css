@@ -106,6 +106,7 @@ body {
   font-size: 14px;
   color: #337d56;
   pointer-events: none; 
+ 
 }
 
 .customer-nav-bar {
@@ -229,5 +230,6 @@ body {
   background-color: #225536;
   color: white;
 }
+
 
 
