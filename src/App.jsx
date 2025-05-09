@@ -18,8 +18,10 @@ import PurchaseSummary from "./components/PurchaseSummary/PurchaseSummary.jsx";
 import OrderConfirm from "./components/PurchaseSummary/OrderConfirm.jsx";
 import BookDetails from "./components/BookDetails/BookDetails.jsx";
 import SetDeliveryDays from "./components/SetDeliveryDays/SetDeliveryDays.jsx"; 
-import ViewOrders from "./components/ViewOrders/ViewOrders.jsx";
+import ViewOrders from "./components/ViewOrdersAdmin/ViewOrders.jsx";
 import StoreStatistics from "./components/StoreStatistics/StoreStatistics.jsx";
+import CustomerOrders from "./components/CustomerOrders/CustomerOrders.jsx";
+
 
 function App() {
   return (
@@ -46,6 +48,7 @@ function App() {
           <Route path="/store-statistics" element={<StoreStatistics />} />
           <Route path="/set-delivery-days" element={<SetDeliveryDays />} />
           <Route path="/view-orders" element={< ViewOrders/>} />
+          <Route path="/customer-orders" element={<CustomerOrders />} />
         </Routes>
       </Router>
     </Fragment>

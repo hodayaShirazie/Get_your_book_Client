@@ -30,19 +30,13 @@ const CustomerHomepage = () => {
   const [cart, setCart] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
-  // const SERVER_URL = 'http://localhost:3000'; 
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/products`) 
       .then(response => {
         const data = response.data;
-        // console.log('📚 Products:', data); // <-- שורה חשובה
         const booksArray = Array.isArray(data) ? data : [data];
         setBooks(booksArray);
-        // console.log('books:', booksArray);
-        // console.log('filteredBooks:', filteredBooks);
-
       })
       .catch(error => {
         console.error('Error fetching products:', error);
@@ -55,8 +49,6 @@ const CustomerHomepage = () => {
   const filteredBooks = selectedCategory
   ? books.filter(book => String(book.category_id) === selectedCategory)
   : books;
-
-
 
 
   return (
@@ -87,7 +79,7 @@ const CustomerHomepage = () => {
 
         <div className="customer-nav-bar">
           <button onClick={() => navigate('/shopping-cart')}>Shopping Cart  </button>
-          <button>My Orders</button>
+          <button onClick={() => navigate('/customer-orders')}>My Orders</button>
           <button>My Wishlist</button>
           <select defaultValue="">
             <option disabled value="">Sort by Price</option>
@@ -124,7 +116,7 @@ const CustomerHomepage = () => {
                   <button 
                     title="Add to Cart" 
                     onClick={(e) => {
-                      e.stopPropagation(); //// Prevents navigation to the book page
+                      e.stopPropagation(); 
                       handleAddToCart(book, setCart)}}>➕</button>
                   <button title="Add to Wishlist">♡</button>
                 </div>

@@ -1,0 +1,134 @@
+.orders-background {
+  background-image: url('background-book.jpg');
+  background-size: contain;
+  background-position: contain;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
+}
+
+.orders-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px 100px 100px 100px;
+  width: 50%;
+  max-width: 800px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.orders-title {
+  text-align: center;
+  font-size: 30px;
+  color: #2f4f4f;
+  font-family: 'Georgia', sans-serif;
+  margin-bottom: 20px;
+}
+
+.order-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+}
+
+.order-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: black;
+  text-align: left;
+}
+
+.order-box ul {
+  margin: 5px 0 0 20px;
+  padding: 0;
+  list-style-type: disc;
+}
+
+.cancel-button {
+  background-color: #d32f2f;
+  color: rgb(246, 246, 246);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 35px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.cancel-button:hover {
+  background-color: #b71c1c;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+.product-list {
+  text-align: left;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-button,
+.cancel-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #d9534f;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #d9534f;
+}
+
+.modal-cancel-button {
+  background-color: #ccc;  
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
