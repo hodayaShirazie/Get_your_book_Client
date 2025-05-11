@@ -6,14 +6,14 @@ import { SERVER_URL } from '../../config';
 
 
 const ManagerHomePage = () => {
-  const navigate = useNavigate();  // Create navigate function
+  const navigate = useNavigate();  
 
   const navigateToAbout = () => {
-    navigate('/about');  // Navigate to the About page
+    navigate('/about');  
   };
 
   const navigateToCatalog = () => {
-    navigate('/admin-catalog');  // Navigate to the About page
+    navigate('/admin-catalog');
   };
 
   const navigateToUpdateProfile = () => {
@@ -33,7 +33,7 @@ const ManagerHomePage = () => {
       <div className="top-right-buttons">
         <button
           className="about-button"
-          onClick={navigateToAbout}  // Use navigateToAbout to go to /about
+          onClick={navigateToAbout}  
         >
           About
         </button>
@@ -68,9 +68,6 @@ const ManagerHomePage = () => {
           <button onClick={navigateToCatalog}>Catalog</button>
           <button onClick={() => navigate('/view-orders')}>View Orders</button>
           <button onClick={() => navigate('/store-statistics')}>Store Statistics</button>
-          <button>Edit Price</button>
-          <button  onClick={ navigateToViewOrders}> View Orders</button>
-          <button>Update Product Quantity</button>
           <button onClick={navigateToSetDeliveryDays}>Set Delivery Days</button>
         </div>
       </div>

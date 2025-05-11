@@ -125,7 +125,7 @@ const CustomerHomepage = () => {
 
         <div className="customer-nav-bar">
           <button onClick={() => navigate('/shopping-cart')}>Shopping Cart  </button>
-          <button>My Orders</button>
+          <button onClick={() => navigate('/customer-orders')}>My Orders</button>
           <button>My Wishlist</button>
           <select defaultValue="">
             <option disabled value="">Sort by Price</option>

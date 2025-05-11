@@ -8,6 +8,7 @@ const MyOrders = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const username = localStorage.getItem('username');
 
   useEffect(() => {
@@ -27,39 +28,75 @@ const MyOrders = () => {
     }
   }, [username]);
 
-  const handleCancel = async (order) => {
+  const checkIfCanCancel = async (order) => {
     if (!order.id) {
-      alert("Order ID is missing.");
+      setShowError(true);
+      return;
+    }
+  
+    try {
+      const canCancelResponse = await fetch(`${SERVER_URL}/can-cancel-order/${order.id}`);
+  
+      const responseText = await canCancelResponse.text(); 
+  
+      if (!canCancelResponse.ok) {
+        if (responseText === "Cannot cancel after one hour.") {
+          console.log("Order cannot be cancelled: Cannot cancel after one hour.");
+          setShowError(true);
+          setErrorMessage("Order cannot be cancelled after one hour");
+        } else {
+          console.log("Bad request:", responseText);
+          setShowError(true);
+          setErrorMessage("There was an issue processing your request.");
+        }
+        return; 
+      }
+  
+      if (responseText === "Order can be cancelled.") {
+        setSelectedOrder(order);
+        setShowModal(true);
+      } else {
+        console.log("Server says cannot cancel:", responseText);
+        setShowError(true);
+        setErrorMessage("This order cannot be cancelled.");
+      }
+    } catch (error) {
+      console.error("Error checking if order can be cancelled:", error);
+      setShowError(true);
+      setErrorMessage("An error occurred while processing your request.");
+    }
+  };
+  
+  
+
+  const handleCancelConfirmed = async () => {
+    if (!selectedOrder?.id) {
+      setErrorMessage("Order ID is missing.");
+      setShowError(true);
+      setShowModal(false);
       return;
     }
 
     try {
-      const canCancelResponse = await fetch(`${SERVER_URL}/can-cancel-order/${order.id}`);
-      const responseText = await canCancelResponse.text();  
-
-      if (!canCancelResponse.ok) {
-        console.error("Failed to check if order can be cancelled:", responseText);
-        alert(responseText || "Failed to check if order can be cancelled.");
-        return;
-      }
-
-      const confirmCancel = window.confirm("Are you sure you want to cancel this order?");
-      if (!confirmCancel) return;
-
-      const response = await fetch(`${SERVER_URL}/cancel-order/${order.id}`, {
+      const response = await fetch(`${SERVER_URL}/cancel-order/${selectedOrder.id}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
-        setOrders(prev => prev.filter(o => o.id !== order.id));
-        setShowSuccess(true); 
+        setOrders(prev => prev.filter(o => o.id !== selectedOrder.id));
+        setShowSuccess(true);
       } else {
         const msg = await response.text();
-        setShowError(true); 
+        setErrorMessage(msg || "Failed to cancel the order.");
+        setShowError(true);
       }
     } catch (error) {
       console.error("Error cancelling order:", error);
+      setErrorMessage("An error occurred while cancelling the order.");
       setShowError(true);
+    } finally {
+      setShowModal(false);
+      setSelectedOrder(null);
     }
   };
 
@@ -89,10 +126,7 @@ const MyOrders = () => {
               </div>
               <button
                 className="cancel-button"
-                onClick={() => {
-                  setSelectedOrder(order);
-                  setShowModal(true);
-                }}
+                onClick={() => checkIfCanCancel(order)}
               >
                 Cancel Order
               </button>
@@ -107,7 +141,7 @@ const MyOrders = () => {
           <div className="modal-box">
             <p>Are you sure you want to cancel order #{selectedOrder.id}?</p>
             <div className="modal-buttons">
-              <button className="confirm-button" onClick={() => handleCancel(selectedOrder)}>Yes</button>
+              <button className="confirm-button" onClick={handleCancelConfirmed}>Yes</button>
               <button className="modal-cancel-button" onClick={() => setShowModal(false)}>No</button>
             </div>
           </div>
@@ -128,7 +162,7 @@ const MyOrders = () => {
       {showError && (
         <div className="modal-overlay">
           <div className="modal-box">
-            <p>Sorry, you cannot cancel this order as more than an hour has passed.</p>
+            <p>{errorMessage}</p>
             <button className="modal-cancel-button" onClick={() => setShowError(false)}>Close</button>
           </div>
         </div>
@@ -136,6 +170,5 @@ const MyOrders = () => {
     </div>
   );
 };
-
 
 export default MyOrders;

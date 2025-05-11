@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./StoreStatistics.css";
 import { SERVER_URL } from '../../config';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 
 
 const StoreStatistics = () => {
   const [stats, setStats] = useState(null);
   const [timeRange, setTimeRange] = useState("lastMonth");
+  const navigate = useNavigate();  
 
   useEffect(() => {
     fetch(`${SERVER_URL}/statistics?range=${timeRange}`)
@@ -57,7 +59,7 @@ const StoreStatistics = () => {
           )}
         </div>
 
-        <button className="home-button">Return to Home</button>
+        <button className="home-button"  onClick={() => navigate('/admin-home')}>Return to Home</button>
       </div>
     </div>
   );
