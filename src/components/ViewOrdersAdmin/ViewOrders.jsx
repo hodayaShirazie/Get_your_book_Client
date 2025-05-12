@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ViewOrders.css';
 import { SERVER_URL } from '../../config';
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 import axios from 'axios';
 
 const handleCancel = async (orderId) => {
@@ -139,6 +140,7 @@ export default function ViewOrders() {
           ))
         )}
       </div>
+      <BackToHomeButton />
     </div>
   );
 }

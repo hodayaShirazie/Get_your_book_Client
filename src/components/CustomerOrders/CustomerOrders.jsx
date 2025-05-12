@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './CustomerOrders.css';
 import { SERVER_URL } from '../../config';
+import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
+
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -167,6 +169,7 @@ const MyOrders = () => {
           </div>
         </div>
       )}
+      <BackToHomeButton />
     </div>
   );
 };

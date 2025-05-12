@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./SetDeliveryDays.css";
 import { useNavigate } from "react-router-dom";
-import BackToHomeButton from "../BackToHomeButton/BackToHomeButton"; // ← הוספה של הקומפוננטה
+import BackToHomeButton from "../BackToHomeButton/BackToHomeButton";
 import { SERVER_URL } from '../../config'; 
+
 
 const daysOfWeek = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -12,7 +13,9 @@ const defaultTimeSlots = ["Morning", "Afternoon", "Evening"];
 
 const SetDeliveryDays = () => {
   const navigate = useNavigate();
-
+  const [modalMessage, setModalMessage] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  
   const [deliveryDays, setDeliveryDays] = useState(
     daysOfWeek.reduce((acc, day) => {
       acc[day] = {
@@ -106,11 +109,12 @@ const SetDeliveryDays = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ deliveryDays: dataToSend }),
       });
-      alert("Delivery days saved successfully!");
-      navigate("/admin-home");
+      setModalMessage("Delivery days saved successfully!");
+      setShowModal(true);
     } catch (err) {
       console.error("Failed to save delivery days", err);
-      alert("Failed to save delivery days.");
+      setModalMessage("Failed to save delivery days.");
+      setShowModal(true);
     }
   };
 
@@ -156,6 +160,22 @@ const SetDeliveryDays = () => {
           </button>
         </div>
       </div>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>{modalMessage}</p>
+            <button className="modal-cancel-button" onClick={() => {
+              setShowModal(false);
+              if (modalMessage.includes("successfully")) {
+                navigate("/admin-home");
+              }
+            }}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

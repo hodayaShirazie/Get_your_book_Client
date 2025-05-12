@@ -25,7 +25,11 @@ export default function UpdateProduct() {
   const [existingImageUrl, setExistingImageUrl] = useState('');
   const [productList, setProductList] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState('');
-
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [noChangeMessage, setNoChangeMessage] = useState(false);
+  
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -98,16 +102,15 @@ export default function UpdateProduct() {
       const serverMessage = response.data.message;
   
       if (serverMessage === 'No changes detected, nothing was updated.') {
-        alert('No changes detected, nothing was updated.');
-      } else {
-        alert('Product updated successfully!');
-      }
+        setNoChangeMessage(true);
+    } else {
+      setShowSuccess(true);
+    }
   
-      navigate('/admin-home');
     } catch (error) {
       console.error('Error updating product:', error);
-      alert('Failed to update product.');
-    }
+      setErrorMessage('Failed to update product.');
+      setShowError(true);    }
   };
   
 
@@ -166,6 +169,42 @@ export default function UpdateProduct() {
           <button type="reset" className="add-product-button cancel-button">Cancel</button>
         </div>
       </form>
+      {showSuccess && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>Product updated successfully!</p>
+            <button
+              className="modal-cancel-button"
+              onClick={() => {
+                setShowSuccess(false);
+                navigate('/admin-home');
+              }}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
+      {noChangeMessage && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>No changes detected. Nothing was updated.</p>
+            <button className="modal-cancel-button" onClick={() => setNoChangeMessage(false)}>OK</button>
+          </div>
+        </div>
+      )}
+
+      {showError && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>{errorMessage}</p>
+            <button className="modal-cancel-button" onClick={() => setShowError(false)}>Close</button>
+          </div>
+        </div>
+      )}
+
+
       <BackToHomeButton />
     </div>
   );

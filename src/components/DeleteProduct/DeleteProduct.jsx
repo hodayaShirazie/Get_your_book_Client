@@ -15,7 +15,11 @@ export default function DeleteProduct() {
 
   const [productList, setProductList] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState('');
-
+  const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -33,33 +37,58 @@ export default function DeleteProduct() {
     navigate('/admin-home');
   };
 
+
   const handleProductChange = (e) => {
     setSelectedProductId(e.target.value);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (!selectedProductId) {
-      alert('Please select a product to delete.');
+      setErrorMessage('Please select a product to delete.');
+      setShowError(true);
       return;
     }
-
-    const confirmed = window.confirm("Are you sure you want to delete this product?");
-    if (!confirmed) return;
-
-    const deleteUrl = `${SERVER_URL}/delete-product/${selectedProductId}`;
-    console.log("Deleting product with URL:", deleteUrl);  // הדפס את ה-URL שמישלח
-
-
+  
+    setShowModal(true); // open confirm modal
+  };
+  const confirmDeletion = async () => {
     try {
       await axios.delete(`${SERVER_URL}/delete-product/${selectedProductId}`);
-
-      alert("Product deleted successfully!");
-      navigate('/admin-home');
+      setShowSuccess(true); // מודאל הצלחה
+      setProductList(prev => prev.filter(p => p.id !== selectedProductId));
     } catch (error) {
       console.error("Error deleting product:", error);
-      alert("Failed to delete product.");
+      setErrorMessage("Failed to delete product.");
+      setShowError(true); // מודאל שגיאה
+    } finally {
+      setShowModal(false);
     }
   };
+  
+
+  // const handleDelete = async () => {
+  //   if (!selectedProductId) {
+  //     alert('Please select a product to delete.');
+  //     return;
+  //   }
+
+  //   const confirmed = window.confirm("Are you sure you want to delete this product?");
+  //   if (!confirmed) return;
+
+  //   const deleteUrl = `${SERVER_URL}/delete-product/${selectedProductId}`;
+  //   console.log("Deleting product with URL:", deleteUrl);  // הדפס את ה-URL שמישלח
+
+
+  //   try {
+  //     await axios.delete(`${SERVER_URL}/delete-product/${selectedProductId}`);
+
+  //     alert("Product deleted successfully!");
+  //     navigate('/admin-home');
+  //   } catch (error) {
+  //     console.error("Error deleting product:", error);
+  //     alert("Failed to delete product.");
+  //   }
+  // };
 
   return (
     <div className="add-product-container">
@@ -94,6 +123,35 @@ export default function DeleteProduct() {
           </button>
         </div>
       </form>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>Are you sure you want to delete this product?</p>
+            <div className="modal-buttons">
+              <button className="confirm-button" onClick={confirmDeletion}>Yes</button>
+              <button className="modal-cancel-button" onClick={() => setShowModal(false)}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showSuccess && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>Product deleted successfully!</p>
+            <button className="modal-cancel-button" onClick={() => setShowSuccess(false)}>Close</button>
+          </div>
+        </div>
+      )}
+
+      {showError && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>{errorMessage}</p>
+            <button className="modal-cancel-button" onClick={() => setShowError(false)}>Close</button>
+          </div>
+        </div>
+      )}
       <BackToHomeButton />
     </div>
   );

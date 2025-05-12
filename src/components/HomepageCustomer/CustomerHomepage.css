@@ -76,7 +76,7 @@ body {
 
 .customer-search-bar {
   text-align: center;
-  margin: 0 0 12px 0;
+  margin: 30px 0;
   position: relative;
   display: flex;
   justify-content: center;
@@ -85,8 +85,8 @@ body {
 
 .search-container {
   position: relative;
-  width: 62%;
-  max-width: 340px;
+  width: 80%;
+  max-width: 600px;
 }
 
 .search-container input[type="text"] {
@@ -230,6 +230,11 @@ body {
   background-color: #225536;
   color: white;
 }
-
+.top-seller-glow {
+  box-shadow: 0 0 15px 4px rgba(34, 85, 54, 0.5); /* ירוק בהיר */
+  border-radius: 12px;
+  padding: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
 
 

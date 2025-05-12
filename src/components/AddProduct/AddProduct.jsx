@@ -22,7 +22,10 @@ export default function AddProduct() {
   });
 
   const [imageFile, setImageFile] = useState(null);
-
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  
   const handleReturnHome = () => {
     navigate('/admin-home');
   };
@@ -44,17 +47,26 @@ export default function AddProduct() {
       data.append(key, value);
     });
     data.append('image', imageFile);
-
     try {
       await axios.post(`${SERVER_URL}/add-product`, data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      alert('Product added successfully!');
-      navigate('/admin-home');
+      setShowSuccess(true); // הצגת מודאל הצלחה
     } catch (error) {
       console.error('Error adding product:', error);
-      alert('Failed to add product.');
+      setErrorMessage('Failed to add product.');
+      setShowError(true); // הצגת מודאל שגיאה
     }
+    // try {
+    //   await axios.post(`${SERVER_URL}/add-product`, data, {
+    //     headers: { 'Content-Type': 'multipart/form-data' }
+    //   });
+    //   alert('Product added successfully!');
+    //   navigate('/admin-home');
+    // } catch (error) {
+    //   console.error('Error adding product:', error);
+    //   alert('Failed to add product.');
+    // }
   };
 
   return (
@@ -94,6 +106,29 @@ export default function AddProduct() {
           <button type="reset" className="add-product-button cancel-button">Cancel</button>
         </div>
       </form>
+      {showSuccess && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>Product added successfully!</p>
+            <button className="modal-cancel-button" onClick={() => {
+              setShowSuccess(false);
+              navigate('/admin-home');
+            }}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showError && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>{errorMessage}</p>
+            <button className="modal-cancel-button" onClick={() => setShowError(false)}>Close</button>
+          </div>
+        </div>
+      )}
+
       <BackToHomeButton />
     </div>
   );

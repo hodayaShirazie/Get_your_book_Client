@@ -88,19 +88,20 @@ const CustomerHomepage = () => {
       <div className="customer-main-card">
         <h2 className="customer-title">Best-Selling Books</h2>
         <div className="customer-top-books">
-          <div>
+          <div className="top-seller-glow">
             <img src="https://covers.openlibrary.org/b/id/11268242-L.jpg" alt="Book A" />
             <br />Book A
           </div>
-          <div>
+          <div className="top-seller-glow">
             <img src="https://covers.openlibrary.org/b/id/8234971-L.jpg" alt="Book B" />
             <br />Book B
           </div>
-          <div>
+          <div className="top-seller-glow">
             <img src="https://covers.openlibrary.org/b/id/8235475-L.jpg" alt="Book C" />
             <br />Book C
           </div>
         </div>
+
 
         <div className="customer-search-bar">
           <div className="search-container">
