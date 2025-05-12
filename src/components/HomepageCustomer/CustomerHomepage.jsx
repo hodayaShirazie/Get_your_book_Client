@@ -136,9 +136,10 @@ const CustomerHomepage = () => {
           <button onClick={() => navigate('/update-profile')} >Edit Personal Information</button>
           <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
             <option value="">All Categories</option>
-            <option value="1">Fiction</option>
-            <option value="2">Non-Fiction</option>
-            <option value="3">Children</option>
+            <option value="1">Quick Reads</option>
+            <option value="2">Epic Journeys</option>
+            <option value="3">Top Picks</option>
+            <option value="4">Shared Stories</option>
           </select>
         </div>
 
@@ -163,7 +164,7 @@ const CustomerHomepage = () => {
                   <button 
                     title="Add to Cart" 
                     onClick={(e) => {
-                      e.stopPropagation(); //// Prevents navigation to the book page
+                      e.stopPropagation(); 
                       handleAddToCart(book, setCart)}}>➕</button>
                   <button title="Add to Wishlist">♡</button>
                 </div>
