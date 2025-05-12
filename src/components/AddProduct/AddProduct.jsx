@@ -10,8 +10,7 @@ import { SERVER_URL } from '../../config';
 
 export default function AddProduct() {
   const navigate = useNavigate();
-// const SERVER_URL = 'https://get-your-book-server.onrender.com';
-// const SERVER_URL = 'http://localhost:3000'; // Local development URL
+
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -71,10 +70,11 @@ export default function AddProduct() {
 
         <label htmlFor="category">Category</label>
         <select id="category" value={formData.category} onChange={handleChange} required>
-          <option value="">Select a Category</option>
-          <option value="1">Fiction</option>
-          <option value="2">Non-Fiction</option>
-          <option value="3">Children</option>
+          <option value="">select category</option>
+            <option value="1">Quick Reads</option>
+            <option value="2">Epic Journeys</option>
+            <option value="3">Top Picks</option>
+            <option value="3">Shared Stories</option>
         </select>
 
         <label htmlFor="price">Price</label>

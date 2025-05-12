@@ -135,7 +135,6 @@ const MyOrders = () => {
         )}
       </div>
 
-      {/* Modal for cancel confirmation */}
       {showModal && selectedOrder && (
         <div className="modal-overlay">
           <div className="modal-box">
@@ -148,7 +147,6 @@ const MyOrders = () => {
         </div>
       )}
 
-      {/* Success message */}
       {showSuccess && (
         <div className="modal-overlay">
           <div className="modal-box">
@@ -158,8 +156,7 @@ const MyOrders = () => {
         </div>
       )}
 
-      {/* Error message */}
-      {showError && (
+=      {showError && (
         <div className="modal-overlay">
           <div className="modal-box">
             <p>{errorMessage}</p>

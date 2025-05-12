@@ -5,9 +5,6 @@ import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 import { SERVER_URL } from '../../config'; 
 
-
-// const SERVER_URL = 'https://get-your-book-server.onrender.com';
-// const SERVER_URL = 'http://localhost:3000'; // Local development URL
 console.log('SERVER_URL:', SERVER_URL);
 
 
