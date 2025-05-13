@@ -62,6 +62,10 @@ function UpdateProfile() {
       setErrorMsg('Manager password must contain at least one number');
       return;
     }
+    if (role === 'admin' && form.username.length < 8) {
+      setErrorMsg('Username must be at least 8 characters long');
+      return;
+    }
   
     try {
       const currentUsername = localStorage.getItem('username');
