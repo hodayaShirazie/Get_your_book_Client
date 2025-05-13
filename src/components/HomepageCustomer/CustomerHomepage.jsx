@@ -83,15 +83,16 @@ const CustomerHomepage = () => {
 
  
 
-      let filteredBooks = selectedCategory
-      ? books.filter(book => String(book.category_id) === selectedCategory)
-      : [...books]; 
+  const filteredBooks = selectedCategory
+  ? books.filter(book => String(book.category_id) === selectedCategory)
+  : [...books];
 
-    if (sortOrder === 'low-high') {
-      filteredBooks.sort((a, b) => a.price - b.price);
-    } else if (sortOrder === 'high-low') {
-      filteredBooks.sort((a, b) => b.price - a.price);
-    }
+if (sortOrder === 'low-high') {
+  filteredBooks.sort((a, b) => a.price - b.price);
+} else if (sortOrder === 'high-low') {
+  filteredBooks.sort((a, b) => b.price - a.price);
+}
+
 
 
   return (
