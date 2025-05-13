@@ -8,7 +8,7 @@ import Register from "./components/Register/Register.jsx"
 import Home from "./components/home/home.jsx";
 import CustomerHomepage from "./components/HomepageCustomer/CustomerHomepage.jsx";  
 import ManagerHomePage from "./components/HomepageManager/ManagerHomePage.jsx";
-import UpdateProfile from "./components/UpdateProfile/updateProfile.jsx";
+import UpdateProfile from "./components/updateProfile/updateProfile.jsx";
 import Catalog from "./components/Catalog/Catalog.jsx";
 import AddProduct from "./components/AddProduct/AddProduct.jsx";
 import UpdateProduct from "./components/UpdateProduct/UpdateProduct.jsx";
