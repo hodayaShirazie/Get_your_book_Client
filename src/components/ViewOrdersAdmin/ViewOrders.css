@@ -106,3 +106,87 @@
   }
   
   
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-box {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .confirm-button,
+  .modal-cancel-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .confirm-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .modal-cancel-button {
+    background-color: #f44336;
+    color: white;
+  }
+  .orders-bg {
+    position: relative;
+    background-image: url('/background-book.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 0;
+    overflow-x: hidden;
+  }
+  
+  .orders-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6); 
+    z-index: 1;
+  }
+  
+  .view-orders-container {
+    position: relative; 
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 20px 25px;
+    max-width: 900px;
+    width: 95%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  }
+  
