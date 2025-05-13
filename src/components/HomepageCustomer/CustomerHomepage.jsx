@@ -86,6 +86,7 @@ const CustomerHomepage = () => {
   return (
     <div className="customer-bg">
       <div className="customer-main-card">
+        
         <h2 className="customer-title">Best-Selling Books</h2>
         <div className="customer-top-books">
           <div className="top-seller-glow">
@@ -102,7 +103,24 @@ const CustomerHomepage = () => {
           </div>
         </div>
 
-
+        <div className="customer-nav-bar">
+          <button onClick={() => navigate('/shopping-cart')}>Shopping Cart</button>
+          <button onClick={() => navigate('/customer-orders')}>My Orders</button>
+          <button>My Wishlist</button>
+          <select defaultValue="">
+            <option disabled value="">Sort by Price</option>
+            <option value="low-high">Low to High</option>
+            <option value="high-low">High to Low</option>
+          </select>
+          <button onClick={() => navigate('/update-profile')}>Edit Personal Information</button>
+          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+            <option value="">All Categories</option>
+            <option value="1">Quick Reads</option>
+            <option value="2">Epic Journeys</option>
+            <option value="3">Top Picks</option>
+            <option value="4">Shared Stories</option>
+          </select>
+        </div>
         <div className="customer-search-bar">
           <div className="search-container">
             <input
@@ -114,34 +132,29 @@ const CustomerHomepage = () => {
                 if (e.key === 'Enter') handleSearch(e); 
               }}
             />
-            <span
+            <svg
               className="search-icon"
               onClick={() => handleSearch()}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
               style={{ cursor: 'pointer' }}
             >
-              🔍
-            </span>
+              <path
+                fill="none"
+                stroke="#666"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z"
+              />
+            </svg>
+
           </div>
         </div>
 
-        <div className="customer-nav-bar">
-          <button onClick={() => navigate('/shopping-cart')}>Shopping Cart  </button>
-          <button onClick={() => navigate('/customer-orders')}>My Orders</button>
-          <button>My Wishlist</button>
-          <select defaultValue="">
-            <option disabled value="">Sort by Price</option>
-            <option value="low-high">Low to High</option>
-            <option value="high-low">High to Low</option>
-          </select>
-          <button onClick={() => navigate('/update-profile')} >Edit Personal Information</button>
-          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-            <option value="">All Categories</option>
-            <option value="1">Quick Reads</option>
-            <option value="2">Epic Journeys</option>
-            <option value="3">Top Picks</option>
-            <option value="4">Shared Stories</option>
-          </select>
-        </div>
+      
 
         <div className="customer-books-grid">
           {filteredBooks.map((book, index) => (

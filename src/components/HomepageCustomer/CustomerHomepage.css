@@ -1,6 +1,9 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Rubik', sans-serif;
+  overflow-y: auto;
+
 }
 
 .customer-bg {
@@ -9,6 +12,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -40,8 +44,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
   z-index: 2; 
+  position: relative;
 
 }
 
@@ -54,10 +58,11 @@ body {
   margin-top: 0;
 }
 
+
 .customer-top-books {
   display: flex;
   justify-content: center;
-  gap: 22px;
+  gap: 40px;
   margin: 10px 0 12px 0;
   width: 100%;
 }
@@ -67,8 +72,8 @@ body {
 }
 
 .customer-top-books img {
-  width: 70px;
-  height: 92px;
+  width: 90px;
+  height: 120px;
   object-fit: cover;
   border-radius: 9px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
@@ -76,11 +81,15 @@ body {
 
 .customer-search-bar {
   text-align: center;
-  margin: 30px 0;
+  margin: 15px 0;
   position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
+  margin: 15px 0;
+  margin: 15px 0 30px 0;
+
+
 }
 
 .search-container {
@@ -100,23 +109,28 @@ body {
 
 .search-icon {
   position: absolute;
-  right: 8px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
-  color: #337d56;
-  pointer-events: none; 
- 
+  pointer-events: auto;
 }
+
 
 .customer-nav-bar {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   justify-content: center;
   gap: 9px;
-  margin-bottom: 14px;
-  width: 100%;
+  margin-bottom: 16px;
+  padding: 0; 
+  background-color: transparent; 
+  border: none; 
+  box-shadow: none; 
+  margin: 30px 0 20px 0;
+
 }
+
+
 
 .customer-nav-bar button,
 .customer-nav-bar select {
@@ -148,21 +162,36 @@ body {
 }
 
 .customer-book-card {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+  animation-delay: calc(var(--index) * 0.1s);
   background: white;
   padding: 8px 7px;
   border-radius: 10px;
   box-shadow: 0 2px 7px rgba(0,0,0,0.07);
-  width: 115px;
-  min-height: 110px;
+  width: 135px;
+  min-height: 100px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 14px 10px;
+
+}
+@keyframes fadeInUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .customer-book-card img {
   width: 100%;
-  height: 65px;
+  height: 140px;
   object-fit: cover;
   border-radius: 6px;
   background: #eee;
@@ -236,5 +265,6 @@ body {
   padding: 5px;
   transition: box-shadow 0.3s ease-in-out;
 }
+
 
 

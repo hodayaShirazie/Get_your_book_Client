@@ -142,7 +142,7 @@ export default function UpdateProduct() {
             <option value="1">Quick Reads</option>
             <option value="2">Epic Journeys</option>
             <option value="3">Top Picks</option>
-            <option value="3">Shared Stories</option>
+            <option value="4">Shared Stories</option>
         </select>
 
         <label htmlFor="price">Price</label>
