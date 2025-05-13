@@ -8,8 +8,6 @@ import { SERVER_URL } from '../../config';
 
 
 export default function DeleteProduct() {
-  // const SERVER_URL = 'https://get-your-book-server.onrender.com';
-  // const SERVER_URL = 'http://localhost:3000'; // Local development URL
   
   const navigate = useNavigate();
 
@@ -64,31 +62,8 @@ export default function DeleteProduct() {
       setShowModal(false);
     }
   };
-  
-
-  // const handleDelete = async () => {
-  //   if (!selectedProductId) {
-  //     alert('Please select a product to delete.');
-  //     return;
-  //   }
-
-  //   const confirmed = window.confirm("Are you sure you want to delete this product?");
-  //   if (!confirmed) return;
-
-  //   const deleteUrl = `${SERVER_URL}/delete-product/${selectedProductId}`;
-  //   console.log("Deleting product with URL:", deleteUrl);  // הדפס את ה-URL שמישלח
 
 
-  //   try {
-  //     await axios.delete(`${SERVER_URL}/delete-product/${selectedProductId}`);
-
-  //     alert("Product deleted successfully!");
-  //     navigate('/admin-home');
-  //   } catch (error) {
-  //     console.error("Error deleting product:", error);
-  //     alert("Failed to delete product.");
-  //   }
-  // };
 
   return (
     <div className="add-product-container">

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './AddProduct.css';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +16,7 @@ export default function AddProduct() {
     category: '',
     price: '',
     stock_quantity: '',
-    min_stock_threshold: ''
+    min_stock_threshold: '10'
   });
 
   const [imageFile, setImageFile] = useState(null);
@@ -50,22 +49,13 @@ export default function AddProduct() {
       await axios.post(`${SERVER_URL}/add-product`, data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      setShowSuccess(true); // הצגת מודאל הצלחה
+      setShowSuccess(true); 
     } catch (error) {
       console.error('Error adding product:', error);
       setErrorMessage('Failed to add product.');
-      setShowError(true); // הצגת מודאל שגיאה
+      setShowError(true); 
     }
-    // try {
-    //   await axios.post(`${SERVER_URL}/add-product`, data, {
-    //     headers: { 'Content-Type': 'multipart/form-data' }
-    //   });
-    //   alert('Product added successfully!');
-    //   navigate('/admin-home');
-    // } catch (error) {
-    //   console.error('Error adding product:', error);
-    //   alert('Failed to add product.');
-    // }
+   
   };
 
   return (

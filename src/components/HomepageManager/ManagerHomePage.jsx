@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';  
 import './ManagerHomePage.css';
 
 import { SERVER_URL } from '../../config'; 

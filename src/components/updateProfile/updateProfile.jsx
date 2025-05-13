@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import './updateProfile.css';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
 import { SERVER_URL } from '../../config'; 
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
@@ -88,11 +87,6 @@ function UpdateProfile() {
       }
     }
   };
-  
-  
-
-
-
 
 
   return (
@@ -108,7 +102,6 @@ function UpdateProfile() {
           type="text"
           name="username"
           value={form.username}
-          // value={form.username || currentUser.username}
           onChange={handleChange}
           placeholder={currentUser.username || 'Enter new username'}
           required

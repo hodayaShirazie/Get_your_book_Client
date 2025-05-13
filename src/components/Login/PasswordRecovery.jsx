@@ -3,9 +3,6 @@ import './PasswordRecovery.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
-
-
 import { SERVER_URL } from '../../config';
 
 
@@ -41,7 +38,7 @@ function PasswordRecovery() {
     try {
       const response = await axios.post(`${SERVER_URL}/recover-password`, { username, securityAnswer });
       if (response.data.success) {
-        setStep(3); // move to password reset step
+        setStep(3); 
       } else {
         setMessage('Incorrect answer. Please try again.');
       }

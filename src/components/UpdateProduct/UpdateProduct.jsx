@@ -3,7 +3,6 @@ import "../AddProduct/AddProduct.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
-
 import { SERVER_URL } from '../../config'; 
 
 
@@ -107,7 +106,6 @@ export default function UpdateProduct() {
     }
   
     } catch (error) {
-      console.error('Error updating product:', error);
       setErrorMessage('Failed to update product.');
       setShowError(true);    }
   };
@@ -203,8 +201,6 @@ export default function UpdateProduct() {
           </div>
         </div>
       )}
-
-
       <BackToHomeButton />
     </div>
   );
