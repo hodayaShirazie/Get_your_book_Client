@@ -5,7 +5,7 @@ import Login from "./components/Login/Login.jsx"
 import PasswordRecovery from "./components/Login/PasswordRecovery.jsx"
 import About from "./components/about/about.jsx"
 import Register from "./components/Register/Register.jsx"
-import Home from "./components/Home/home.jsx";
+import Home from "./components/home/home.jsx";
 import CustomerHomepage from "./components/HomepageCustomer/CustomerHomepage.jsx";  
 import ManagerHomePage from "./components/HomepageManager/ManagerHomePage.jsx";
 import UpdateProfile from "./components/UpdateProfile/updateProfile.jsx";
