@@ -29,6 +29,8 @@ const CustomerHomepage = () => {
   const [cart, setCart] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');  
+  const [sortOrder, setSortOrder] = useState('');
+
 
   const handleSearch = async (e) => {
     console.log("called handleSearch");
@@ -79,9 +81,18 @@ const CustomerHomepage = () => {
       });
   }, []);
 
-  const filteredBooks = selectedCategory
-    ? books.filter(book => String(book.category_id) === selectedCategory)
-    : books;
+ 
+
+      let filteredBooks = selectedCategory
+      ? books.filter(book => String(book.category_id) === selectedCategory)
+      : [...books]; 
+
+    if (sortOrder === 'low-high') {
+      filteredBooks.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === 'high-low') {
+      filteredBooks.sort((a, b) => b.price - a.price);
+    }
+
 
   return (
     <div className="customer-bg">
@@ -107,11 +118,12 @@ const CustomerHomepage = () => {
           <button onClick={() => navigate('/shopping-cart')}>Shopping Cart</button>
           <button onClick={() => navigate('/customer-orders')}>My Orders</button>
           <button>My Wishlist</button>
-          <select defaultValue="">
+          <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
             <option disabled value="">Sort by Price</option>
             <option value="low-high">Low to High</option>
             <option value="high-low">High to Low</option>
           </select>
+
           <button onClick={() => navigate('/update-profile')}>Edit Personal Information</button>
           <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
             <option value="">All Categories</option>
