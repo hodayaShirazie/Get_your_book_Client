@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from "./components/Login/Login.jsx"
 import PasswordRecovery from "./components/Login/PasswordRecovery.jsx"
-import About from "./components/About/About.jsx"
+import About from "./components/About/about.jsx"
 import Register from "./components/Register/Register.jsx"
 import Home from "./components/Home/home.jsx";
 import CustomerHomepage from "./components/HomepageCustomer/CustomerHomepage.jsx";  

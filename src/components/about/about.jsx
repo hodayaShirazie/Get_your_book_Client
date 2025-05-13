@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './About.css';
+import './about.css';
 import { useNavigate } from 'react-router-dom';
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
