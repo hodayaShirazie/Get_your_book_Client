@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import './updateProfile.css';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
 import { SERVER_URL } from '../../config'; 
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
@@ -42,28 +41,37 @@ function UpdateProfile() {
     setSuccessMsg('');
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (form.password.length < 8) {
+  
+    const role = localStorage.getItem('role');
+    const password = form.password;
+  
+    if (password.length < 8) {
       setErrorMsg('Password must be at least 8 characters long');
       return;
     }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(form.password)) {
+  
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
       setErrorMsg('Password must contain at least one special character');
       return;
     }
-
+  
+    if (role === 'admin' && !/\d/.test(password)) {
+      setErrorMsg('Manager password must contain at least one number');
+      return;
+    }
+  
     try {
       const currentUsername = localStorage.getItem('username');
-      const role = localStorage.getItem('role');
       const response = await axios.post(`${SERVER_URL}/update-profile`, {
         currentUsername,
         newUsername: form.username,
-        newPassword: form.password,
+        newPassword: password,
         role
       });
-
+  
       if (response.data.success) {
         setSuccessMsg('Details updated successfully.');
         setForm({ username: '', password: '' });
@@ -72,13 +80,14 @@ function UpdateProfile() {
         setErrorMsg(response.data.message || 'Failed to update details.');
       }
     } catch (err) {
-        if (err.response && err.response.data && err.response.data.message) {
-          setErrorMsg(err.response.data.message);
-        } else {
-          setErrorMsg('Server error or invalid input.');
-        }
+      if (err.response?.data?.message) {
+        setErrorMsg(err.response.data.message);
+      } else {
+        setErrorMsg('Server error or invalid input.');
       }
+    }
   };
+
 
   return (
     <div className="update-container">
@@ -93,7 +102,6 @@ function UpdateProfile() {
           type="text"
           name="username"
           value={form.username}
-          // value={form.username || currentUser.username}
           onChange={handleChange}
           placeholder={currentUser.username || 'Enter new username'}
           required

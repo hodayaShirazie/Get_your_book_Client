@@ -5,8 +5,6 @@ import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 
 import { SERVER_URL } from '../../config'; 
 
-console.log('SERVER_URL:', SERVER_URL);
-
 
 const AboutPage = () => {
   const [projectText, setProjectText] = useState('');

@@ -32,7 +32,7 @@ const SetDeliveryDays = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/delivery-days")
+    fetch(`${SERVER_URL}/api/delivery-days`)
       .then(response => response.json())
       .then(data => {
         const updatedDays = daysOfWeek.reduce((acc, day) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./StoreStatistics.css";
 import { SERVER_URL } from '../../config';
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';  
 
 
 const StoreStatistics = () => {

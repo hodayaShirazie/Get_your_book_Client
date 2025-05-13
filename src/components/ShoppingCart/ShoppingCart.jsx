@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ShoppingCart.css';
 import { useNavigate } from 'react-router-dom';
-
 import { SERVER_URL } from '../../config'; 
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 

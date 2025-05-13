@@ -59,20 +59,6 @@ export default function PurchaseSummary() {
     return dateObj >= minDate && !unavailableWeekdays.includes(weekdayName);
   }
   
-  
-
-// function handleDateChange(e) {
-//   const selectedDate = new Date(e.target.value);
-//   const weekdayName = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
-
-//   if (!validWeekdays.includes(weekdayName)) {
-//     alert('Cannot select this date – deliveries unavailable');
-//     return;
-//   }
-
-//   setDate(e.target.value);
-// }
-
 
   useEffect(() => {
     fetch(`${SERVER_URL}/shopping-cart/${username}`)
@@ -151,7 +137,6 @@ export default function PurchaseSummary() {
       if (!orderResponse.ok) throw new Error('Failed to create order');
   
       const { orderId } = await orderResponse.json();
-      console.log('Order ID:', orderId); // Debugging line
 
 
       // 2. Add each product separately to order_product
@@ -183,11 +168,7 @@ export default function PurchaseSummary() {
         throw new Error('Failed to clear shopping cart');
       }
 
-
-
   
-      // Navigate to confirmation 
-      console.log('Order ID:', orderId); // Debugging line
       navigate('/order-confirm', { state: { orderId } });
     } catch (err) {
       console.error(err);
@@ -364,7 +345,6 @@ export default function PurchaseSummary() {
                 fetch(`${SERVER_URL}/available-slots/${weekdayName}`)
                   .then(res => res.json())
                   .then(data => {
-                    console.log("✅ Received slots:", data.availableSlots);
                     setAvailableSlots(data.availableSlots);
                   })
                   .catch(err => console.error('Error loading slots:', err));

@@ -14,8 +14,6 @@ const handleAddToCart = async (book) => {
       productId: book.id      
     });
 
-    console.log('Added to cart:', book.name);
-    console.log('Server response:', response.data);
 
   } catch (error) {
     console.error('Error adding to cart:', error);

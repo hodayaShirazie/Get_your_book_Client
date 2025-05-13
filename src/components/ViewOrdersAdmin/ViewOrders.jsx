@@ -17,7 +17,6 @@ const handleCancel = async (orderId) => {
     if (!res.ok) throw new Error('Failed to cancel order');
 
     const updatedOrder = await res.json();
-    console.log('Order cancelled:', updatedOrder);
   } catch (err) {
     console.error('Error cancelling order:', err);
   }
