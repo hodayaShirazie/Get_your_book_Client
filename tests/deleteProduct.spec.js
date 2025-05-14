@@ -7,7 +7,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 
-jest.mock('axios'); // Mock axios for API requests
+jest.mock('axios'); 
 jest.mock('../src/config', () => ({
   SERVER_URL: 'http://localhost:3000',
 }));
