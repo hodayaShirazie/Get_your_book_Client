@@ -9,7 +9,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 jest.mock('axios');
 jest.mock('../src/config', () => ({
-  SERVER_URL: 'http://localhost:3000',
+  SERVER_URL: 'https://get-your-book-server.onrender.com'
 }));
 
 const mockedNavigate = jest.fn();
