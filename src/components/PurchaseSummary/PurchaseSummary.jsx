@@ -203,19 +203,15 @@ export default function PurchaseSummary() {
       });
 
       if (!productRes.ok) {
-        throw new Error(`Failed to add product ${item.name} to order`);
+        const errText = await productRes.text();
+        console.error("🚨 Error adding product to order:", errText);
+
+        setError("Failed to add products to order. Try again.");
+        return; // חשוב לעצור את התהליך אם יש כשל
+        // throw new Error(`Failed to add product ${item.name} to order`);
       }
     }
-
-      // 3. Clear shopping cart
-      const clearCartResponse = await fetch(`${SERVER_URL}/shopping-cart/${username}`, {
-        method: 'DELETE',
-      });
-
-      if (!clearCartResponse.ok) {
-        throw new Error('Failed to clear shopping cart');
-      }
-
+    
   
       navigate('/order-confirm', { state: { orderId } });
     } catch (err) {
@@ -385,7 +381,8 @@ export default function PurchaseSummary() {
             <DatePicker
               selected={date ? new Date(date) : null}
               onChange={(dateObj) => {
-                const isoDate = dateObj.toISOString().split("T")[0];
+                // const isoDate = dateObj.toISOString().split("T")[0];
+                const isoDate = dateObj.toLocaleDateString('sv-SE'); // yyyy-mm-dd בלי שגיאת timezone
                 const weekdayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
               
                 if (!isDateAvailable(dateObj)) {
