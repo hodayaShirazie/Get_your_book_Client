@@ -5,6 +5,8 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
+    width: 100vw;
+
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -206,7 +208,7 @@
   }
   
   .input-field.with-icon {
-    padding-right: 35px; /* מקום לאייקון בצד ימין */
+    padding-right: 35px; 
   }
   
   .calendar-icon {
@@ -249,4 +251,15 @@
     justify-content: flex-start;
     width: 100%;
   }
-  
+
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin: -8px 0 10px 0;
+  }
+
+  .input-error {
+    border: 2px solid red !important;
+    background-color: #fff5f5;
+  }
