@@ -33,6 +33,13 @@ export default function PurchaseSummary() {
   const [date, setDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
   const [error, setError] = useState('');
+  const [errors, setErrors] = useState({
+    city: '',
+    street: '',
+    houseNumber: '',
+    phoneNumber: ''
+  });
+  
   const [isDeliveryBoxOpen, setIsDeliveryBoxOpen] = useState(false); 
   const username = localStorage.getItem('username');
   const [validWeekdays, setValidWeekdays] = useState([]); 
@@ -78,10 +85,51 @@ export default function PurchaseSummary() {
   const handleConfirmDelivery = () => {
     if (deliveryMethod === 'home') {
       const { city, street, houseNumber, phoneNumber } = homeDeliveryInfo;
-      if (!city || !street || !houseNumber || !phoneNumber) {
-        setError('Please fill all required home delivery fields.');
-        return;
+      const newErrors = {
+        city: '',
+        street: '',
+        houseNumber: '',
+        phoneNumber: ''
+      };
+      let hasError = false;
+
+      if (!city.trim()) {
+        newErrors.city = 'City is required.';
+        hasError = true;
+      } else if (!/^[a-zA-Z\u0590-\u05FF\s'-]+$/.test(city.trim())) {
+        newErrors.city = 'City must contain letters only.';
+        hasError = true;
       }
+    
+      if (!street.trim()) {
+        newErrors.street = 'Street is required.';
+        hasError = true;
+      } else if (!/^[a-zA-Z\u0590-\u05FF\s'-]+$/.test(street.trim())) {
+        newErrors.street = 'Street must contain letters only.';
+        hasError = true;
+      }
+    
+      if (!houseNumber.trim()) {
+        newErrors.houseNumber = 'House number is required.';
+        hasError = true;
+      } else if (!/^\d+$/.test(houseNumber.trim())) {
+        newErrors.houseNumber = 'House number must be digits only.';
+        hasError = true;
+      }
+    
+      if (!phoneNumber.trim()) {
+        newErrors.phoneNumber = 'Phone number is required.';
+        hasError = true;
+      } else if (!/^\d{9,10}$/.test(phoneNumber.trim())) {
+        newErrors.phoneNumber = 'Phone number must be 9 or 10 digits.';
+        hasError = true;
+      }
+    
+      setErrors(newErrors);
+    
+      if (hasError) return;
+
+    
     }
     setDeliveryConfirmed(true);
     setError('');
@@ -155,19 +203,15 @@ export default function PurchaseSummary() {
       });
 
       if (!productRes.ok) {
-        throw new Error(`Failed to add product ${item.name} to order`);
+        const errText = await productRes.text();
+        console.error("🚨 Error adding product to order:", errText);
+
+        setError("Failed to add products to order. Try again.");
+        return; // חשוב לעצור את התהליך אם יש כשל
+        // throw new Error(`Failed to add product ${item.name} to order`);
       }
     }
-
-      // 3. Clear shopping cart
-      const clearCartResponse = await fetch(`${SERVER_URL}/shopping-cart/${username}`, {
-        method: 'DELETE',
-      });
-
-      if (!clearCartResponse.ok) {
-        throw new Error('Failed to clear shopping cart');
-      }
-
+    
   
       navigate('/order-confirm', { state: { orderId } });
     } catch (err) {
@@ -263,31 +307,34 @@ export default function PurchaseSummary() {
                 City<span className="required-star">*</span>
               </label>
               <input
-                className="input-field"
+                className={`input-field ${errors.city ? 'input-error' : ''}`}
                 type="text"
                 value={homeDeliveryInfo.city}
                 onChange={(e) =>
                   setHomeDeliveryInfo({ ...homeDeliveryInfo, city: e.target.value })
                 }
               />
+              {errors.city && <p className="error-message">{errors.city}</p>}
+
 
               <label className="input-label">
                 Street<span className="required-star">*</span>
               </label>
               <input
-                className="input-field"
+                className={`input-field ${errors.street ? 'input-error' : ''}`}
                 type="text"
                 value={homeDeliveryInfo.street}
                 onChange={(e) =>
                   setHomeDeliveryInfo({ ...homeDeliveryInfo, street: e.target.value })
                 }
               />
+              {errors.street && <p className="error-message">{errors.street}</p>}
 
               <label className="input-label">
                 House Number<span className="required-star">*</span>
               </label>
               <input
-                className="input-field"
+                className={`input-field ${errors.houseNumber ? 'input-error' : ''}`}
                 type="text"
                 value={homeDeliveryInfo.houseNumber}
                 onChange={(e) =>
@@ -297,12 +344,14 @@ export default function PurchaseSummary() {
                   })
                 }
               />
+              {errors.houseNumber && <p className="error-message">{errors.houseNumber}</p>}
+
 
               <label className="input-label">
                 Phone Number<span className="required-star">*</span>
               </label>
               <input
-                className="input-field"
+                className={`input-field ${errors.phoneNumber ? 'input-error' : ''}`}
                 type="text"
                 value={homeDeliveryInfo.phoneNumber}
                 onChange={(e) =>
@@ -312,6 +361,7 @@ export default function PurchaseSummary() {
                   })
                 }
               />
+              {errors.phoneNumber && <p className="error-message">{errors.phoneNumber}</p>}
 
               <button className="confirm-btn" onClick={handleConfirmDelivery}>
                 Confirm Delivery Info
@@ -331,7 +381,8 @@ export default function PurchaseSummary() {
             <DatePicker
               selected={date ? new Date(date) : null}
               onChange={(dateObj) => {
-                const isoDate = dateObj.toISOString().split("T")[0];
+                // const isoDate = dateObj.toISOString().split("T")[0];
+                const isoDate = dateObj.toLocaleDateString('sv-SE'); // yyyy-mm-dd בלי שגיאת timezone
                 const weekdayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
               
                 if (!isDateAvailable(dateObj)) {
