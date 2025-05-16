@@ -14,6 +14,7 @@ const CustomerHomepage = () => {
   const [sortOrder, setSortOrder] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [outOfStockBookId, setOutOfStockBookId] = useState(null);
+  
 
   const handleAddToCart = async (book) => {
     const username = localStorage.getItem('username'); 
@@ -115,15 +116,15 @@ if (sortOrder === 'low-high') {
         <div className="customer-top-books">
           <div className="top-seller-glow">
             <img src="https://covers.openlibrary.org/b/id/11268242-L.jpg" alt="Book A" />
-            <br />Book A
+            <br />Later
           </div>
           <div className="top-seller-glow">
             <img src="https://covers.openlibrary.org/b/id/8234971-L.jpg" alt="Book B" />
-            <br />Book B
+            <br />Trafalgar
           </div>
           <div className="top-seller-glow">
             <img src="https://covers.openlibrary.org/b/id/8235475-L.jpg" alt="Book C" />
-            <br />Book C
+            <br />Queen
           </div>
         </div>
 
