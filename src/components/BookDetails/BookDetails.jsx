@@ -5,27 +5,37 @@ import './BookDetails.css';
 import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 import { SERVER_URL } from '../../config'; 
 
-const handleAddToCart = async (book) => {
-  const username = localStorage.getItem('username'); 
 
-  try {
-    const response = await axios.post(`${SERVER_URL}/add-to-shopping-cart`, {
-      username: username,       
-      productId: book.id      
-    });
-
-
-  } catch (error) {
-    console.error('Error adding to cart:', error);
-  }
-};
 
 export default function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [error, setError] = useState(false);
   const [userRating, setUserRating] = useState(0);
+  const [outOfStock, setOutOfStock] = useState(false);
+
+  const handleAddToCart = async (book) => {
+    const username = localStorage.getItem('username'); 
   
+    try {
+      const response = await axios.post(`${SERVER_URL}/add-to-shopping-cart`, {
+        username: username,       
+        productId: book.id      
+      });
+      if (response.data.message === 'Out of Stock') {
+        setOutOfStock(true);
+        setTimeout(() => setOutOfStock(false), 3000); 
+        return;
+      }
+  
+      setOutOfStock(false);
+  
+  
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
+
   useEffect(() => {
     axios.get(`${SERVER_URL}/products-all/${id}`)
       .then((response) => setBook(response.data))
@@ -54,6 +64,20 @@ export default function BookDetails() {
         />
 
         <div className="book-details-text">
+        {outOfStock && (
+            <div className="out-of-stock-banner">
+              <svg
+                className="out-of-stock-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+              >
+                <path d="M7 18c-1.104 0-1.99.896-1.99 2s.886 2 1.99 2c1.104 0 2-.896 2-2s-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2c1.104 0 1.99-.896 1.99-2s-.886-2-1.99-2zm1.107-2.76l1.6-8h-15.707l-.561-3h-3.439v2h2.061l2.529 13h13.777v-2h-12.248l-.312-1.6h11.3zm-1.107-8.24l-1.236 6h-9.94l-1.236-6h12.412z" />
+              </svg>
+              <span>OUT OF STOCK</span>
+            </div>
+          )}
           <p><strong>ID:</strong> {book.id}</p>
           <p><strong>Description:</strong> {book.description || 'No description available.'}</p>
           <p><strong>Price:</strong> ${book.price}</p>
@@ -76,6 +100,7 @@ export default function BookDetails() {
               </span>
             ))}
           </div>
+          
         </div>
       </div>
 

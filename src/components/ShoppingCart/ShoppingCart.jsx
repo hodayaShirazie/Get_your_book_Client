@@ -97,7 +97,12 @@ export default function ShoppingCart() {
 
     const handleIncrement = async (itemId, quantity) => {
         const username = localStorage.getItem('username');
-    
+        const currentItem = cartItems.find(item => item.id === itemId);
+
+        if (currentItem && quantity >= currentItem.stock_quantity) {
+            console.warn('Cannot add more – reached stock limit');
+            return; 
+        }
         try {
             const response = await fetch(`${SERVER_URL}/add-to-shopping-cart`, {
                 method: 'POST',
@@ -173,6 +178,7 @@ export default function ShoppingCart() {
                                             <button 
                                                 className="quantity-btn" 
                                                 onClick={() => handleIncrement(item.id, item.quantity)}
+                                                disabled={item.quantity >= item.stock_quantity} 
                                             >
                                                 +
                                             </button>

@@ -4,24 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { SERVER_URL } from '../../config'; 
 
-const handleAddToCart = async (book, setCart) => {
-  const username = localStorage.getItem('username'); 
-
-  try {
-    const response = await axios.post(`${SERVER_URL}/add-to-shopping-cart`, {
-      username: username,       
-      productId: book.id      
-    });
-
-    console.log('Added to cart:', book.name);
-    console.log('Server response:', response.data);
-
-    setCart(prevCart => [...prevCart, book]);
-
-  } catch (error) {
-    console.error('Error adding to cart:', error);
-  }
-};
 
 const CustomerHomepage = () => {
   const navigate = useNavigate();
@@ -30,7 +12,37 @@ const CustomerHomepage = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');  
   const [sortOrder, setSortOrder] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [outOfStockBookId, setOutOfStockBookId] = useState(null);
 
+  const handleAddToCart = async (book) => {
+    const username = localStorage.getItem('username'); 
+    console.log("Sending to server:", book);
+  
+    try {
+      const response = await axios.post(`${SERVER_URL}/add-to-shopping-cart`, {
+        username: username,       
+        productId: book.id      
+      });
+      if (response.data.message === 'Out of Stock') {
+        setOutOfStockBookId(book.id);
+        setTimeout(() => setOutOfStockBookId(null), 3000); // disappear after 3 min
+        return;
+      }
+  
+      console.log('Added to cart:', book.name);
+      console.log('Server response:', response.data);
+  
+      setCart(prevCart => [...prevCart, book]);
+  
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      setErrorMessage('Error adding to cart. Please try again.');
+      setOutOfStockBookId(book.id);
+      setTimeout(() => setOutOfStockBookId(null), 3000);
+    }
+  };
+  
 
   const handleSearch = async (e) => {
     console.log("called handleSearch");
@@ -168,7 +180,11 @@ if (sortOrder === 'low-high') {
         </div>
 
       
-
+        {errorMessage && (
+          <div className="error-banner">
+            {errorMessage}
+          </div>
+        )}
         <div className="customer-books-grid">
           {filteredBooks.map((book, index) => (
             <div
@@ -177,11 +193,28 @@ if (sortOrder === 'low-high') {
               onClick={() => navigate(`/book/${book.id}`)}
               style={{ cursor: 'pointer' }}
             >
-              <img
-                src={`data:image/jpeg;base64,${book.imageBase64}`}
-                alt={book.name}
-                className="book-image"
-              />
+              <div className="book-image-wrapper">
+
+                <img
+                  src={`data:image/jpeg;base64,${book.imageBase64}`}
+                  alt={book.name}
+                  className="book-image"
+                />
+                {outOfStockBookId === book.id && (
+                    <div className="out-of-stock-overlay">
+                      <svg
+                        className="out-of-stock-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M7 18c-1.104 0-1.99.896-1.99 2s.886 2 1.99 2c1.104 0 2-.896 2-2s-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2c1.104 0 1.99-.896 1.99-2s-.886-2-1.99-2zm1.107-2.76l1.6-8h-15.707l-.561-3h-3.439v2h2.061l2.529 13h13.777v-2h-12.248l-.312-1.6h11.3zm-1.107-8.24l-1.236 6h-9.94l-1.236-6h12.412z" />
+                      </svg>
+                      <span>OUT OF STOCK</span>
+                    </div>
+                  )}
+              </div>
               <div className="customer-book-title">{book.name}</div>
               <div className="customer-book-price">${book.price}</div>
               <div className="customer-book-info">
@@ -191,7 +224,7 @@ if (sortOrder === 'low-high') {
                     title="Add to Cart" 
                     onClick={(e) => {
                       e.stopPropagation(); 
-                      handleAddToCart(book, setCart)}}>➕</button>
+                      handleAddToCart(book);}}>➕</button>
                   <button title="Add to Wishlist">♡</button>
                 </div>
               </div>
