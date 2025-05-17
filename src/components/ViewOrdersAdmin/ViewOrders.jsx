@@ -14,7 +14,7 @@ export default function ViewOrders() {
   const [priceFilter, setPriceFilter] = useState('');
   const [usernameFilter, setUsernameFilter] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [selectedAction, setSelectedAction] = useState(null); // 'approve' or 'cancel'
+  const [selectedAction, setSelectedAction] = useState(null); 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [infoModal, setInfoModal] = useState({ show: false, message: '' });
 

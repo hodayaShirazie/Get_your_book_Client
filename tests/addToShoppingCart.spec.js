@@ -70,12 +70,10 @@ describe('Shopping Cart Integration Tests', () => {
   });
 
 test('adds product to cart and displays it in shopping cart', async () => {
-  // Mock קריאת GET למוצרים
   axios.get.mockResolvedValueOnce({
     data: [mockProduct]
   });
 
-  // Mock קריאת POST להוספת לעגלה
   axios.post.mockResolvedValueOnce({
     data: { success: true }
   });
@@ -84,7 +82,6 @@ test('adds product to cart and displays it in shopping cart', async () => {
     render(<CustomerHomepage />, { wrapper: MemoryRouter });
   });
 
-  // המתן לטעינת המוצרים
   await waitFor(() => {
     expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
   });
@@ -93,7 +90,6 @@ test('adds product to cart and displays it in shopping cart', async () => {
     fireEvent.click(screen.getAllByText('➕')[0]);
   });
 
-  // וידוא שנשלחה בקשה נכונה
   expect(axios.post).toHaveBeenCalledWith(
     'http://localhost:3000/add-to-shopping-cart',
     {
@@ -102,7 +98,6 @@ test('adds product to cart and displays it in shopping cart', async () => {
     }
   );
 
-  // רנדור רכיב ShoppingCart
   await act(async () => {
     render(
       <BrowserRouter>
@@ -111,13 +106,7 @@ test('adds product to cart and displays it in shopping cart', async () => {
     );
   });
 
-  // making fail - 
-
-  // בדיקה שהמוצר שהוסף מופיע בעגלת הקניות
-  // await waitFor(() => {
-    // expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
-    // expect(screen.getByText(`$${mockProduct.price.toFixed(2)}`)).toBeInTheDocument();
-  // });
+ 
 });
 
 });
