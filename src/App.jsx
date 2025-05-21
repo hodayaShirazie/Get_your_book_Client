@@ -21,6 +21,7 @@ import SetDeliveryDays from "./components/SetDeliveryDays/SetDeliveryDays.jsx";
 import ViewOrders from "./components/ViewOrdersAdmin/ViewOrders.jsx";
 import StoreStatistics from "./components/StoreStatistics/StoreStatistics.jsx";
 import CustomerOrders from "./components/CustomerOrders/CustomerOrders.jsx";
+import LowStockAlerts from "./components/LowStockAlerts/LowStockAlerts.jsx";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route path="/customer-home" element={<CustomerHomepage />} />
           <Route path="/admin-home" element={<ManagerHomePage />} />
+          <Route path="/low-stock-alerts" element={<LowStockAlerts />} />
           <Route path="/update-profile" element={<UpdateProfile />} />
           <Route path="/admin-catalog" element={<Catalog />} />
           <Route path="/add-product" element={<AddProduct />} />
