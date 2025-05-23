@@ -1,6 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { useNavigate } from 'react-router-dom';  
 import './ManagerHomePage.css';
+import React, { useEffect, useState } from 'react';
 
 import { SERVER_URL } from '../../config'; 
 
@@ -27,6 +28,24 @@ const ManagerHomePage = () => {
   const navigateToSetDeliveryDays = () => {
     navigate('/set-delivery-days');
   };
+  const navigateToLowStockAlerts = () => {
+    navigate('/low-stock-alerts');
+  };
+
+  const [lowStockCount, setLowStockCount] = useState(0);
+
+  useEffect(() => {
+    fetch(`${SERVER_URL}/low-stock-alerts`)
+      .then(res => res.json())
+      .then(data => {
+        setLowStockCount(data.length);
+      })
+      .catch(err => {
+        console.error("Failed to fetch low stock alerts:", err);
+      });
+  }, []);
+
+  
 
   return (
     <div className="manager-homepage">
@@ -43,8 +62,8 @@ const ManagerHomePage = () => {
         <button
           className="notification notification-inside"
           title="Notifications"
-          onClick={() => alert("Notification clicked!")}
-        >
+          onClick={navigateToLowStockAlerts}
+          >
           <svg
             className="bell-svg"
             xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +79,9 @@ const ManagerHomePage = () => {
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
           </svg>
+          {lowStockCount > 0 && (
+            <span className="notification-badge">{lowStockCount}</span>
+          )}
         </button>
 
         <h2>Manager Homepage</h2>
