@@ -22,6 +22,8 @@ import ViewOrders from "./components/ViewOrdersAdmin/ViewOrders.jsx";
 import StoreStatistics from "./components/StoreStatistics/StoreStatistics.jsx";
 import CustomerOrders from "./components/CustomerOrders/CustomerOrders.jsx";
 
+import ResetPasswordPagePlusLink from "./components/Login/resetPasswordPagePlusLink.jsx";
+
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
           <Route path="/set-delivery-days" element={<SetDeliveryDays />} />
           <Route path="/view-orders" element={< ViewOrders/>} />
           <Route path="/customer-orders" element={<CustomerOrders />} />
+
+          <Route path="/resetMe" element={<ResetPasswordPagePlusLink />} />
         </Routes>
       </Router>
     </Fragment>
