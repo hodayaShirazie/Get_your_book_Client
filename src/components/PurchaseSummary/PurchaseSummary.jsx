@@ -207,8 +207,7 @@ export default function PurchaseSummary() {
         console.error("🚨 Error adding product to order:", errText);
 
         setError("Failed to add products to order. Try again.");
-        return; // חשוב לעצור את התהליך אם יש כשל
-        // throw new Error(`Failed to add product ${item.name} to order`);
+        return; 
       }
     }
     
@@ -381,7 +380,6 @@ export default function PurchaseSummary() {
             <DatePicker
               selected={date ? new Date(date) : null}
               onChange={(dateObj) => {
-                // const isoDate = dateObj.toISOString().split("T")[0];
                 const isoDate = dateObj.toLocaleDateString('sv-SE'); // yyyy-mm-dd בלי שגיאת timezone
                 const weekdayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
               

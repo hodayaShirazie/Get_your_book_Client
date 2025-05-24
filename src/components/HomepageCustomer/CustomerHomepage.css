@@ -256,11 +256,11 @@ body {
 }
 
 .about-button:hover {
-  background-color: #225536;
+  background-color: #0c4322;
   color: white;
 }
 .top-seller-glow {
-  box-shadow: 0 0 15px 4px rgba(34, 85, 54, 0.5); /* ירוק בהיר */
+  box-shadow: 0 0 15px 4px rgba(34, 85, 54, 0.5); 
   border-radius: 12px;
   padding: 5px;
   transition: box-shadow 0.3s ease-in-out;

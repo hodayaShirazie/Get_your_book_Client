@@ -22,34 +22,6 @@ function PasswordRecovery() {
     }
   };
 
-  // const handleAnswerSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setMessage('');
-  //   try {
-  //     const response = await axios.post(`${SERVER_URL}/recover-password`, { username, securityAnswer });
-  //     if (response.data.success) {
-  //       setMessage('Please check your email for password reset link.');
-
-  //       try {
-  //         const response = await axios.post(`${SERVER_URL}/forgot-password`, { username });
-  //         if (response.data.success) {
-  //           setMessage('Please check your email for password reset link.');
-  //           setStep(3);
-  //         } else {
-  //           setMessage('Incorrect answer. Please try again.');
-  //         }
-  //       } catch (err) {
-  //         setMessage('Error verifying answer.');
-  //       }
-
-
-  //     } else {
-  //       setMessage('Incorrect answer. Please try again.');
-  //     }
-  //   } catch (err) {
-  //     setMessage('Error verifying answer.');
-  //   }
-  // };
 
   const handleAnswerSubmit = async (e) => {
     e.preventDefault();

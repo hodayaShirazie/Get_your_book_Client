@@ -6,14 +6,15 @@ import BackToHomeButton from '../BackToHomeButton/BackToHomeButton';
 import { SERVER_URL } from '../../config'; 
 
 
-
 export default function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [error, setError] = useState(false);
   const [userRating, setUserRating] = useState(0);
   const [outOfStock, setOutOfStock] = useState(false);
-
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  
   const handleAddToCart = async (book) => {
     const username = localStorage.getItem('username'); 
   
@@ -35,6 +36,33 @@ export default function BookDetails() {
       console.error('Error adding to cart:', error);
     }
   };
+
+
+  const handleAddToWishlist = async (book) => {
+    const username = localStorage.getItem('username');
+    try {
+      const response = await axios.post(`${SERVER_URL}/add-to-wishlist`, {
+        username: username,
+        productId: book.id
+      });
+  
+      if (response.data.message === 'Already in Wishlist') {
+        setErrorMessage('This book is already in your wishlist.');
+        setTimeout(() => setErrorMessage(''), 3000);
+        return;
+      }
+  
+      if (response.data.message === 'Added to Wishlist') {
+        setSuccessMessage('Added to wishlist!');
+        setTimeout(() => setSuccessMessage(''), 2000);
+      }
+    } catch (error) {
+      console.error('Error adding to wishlist:', error);
+      setErrorMessage('Error adding to wishlist. Please try again.');
+      setTimeout(() => setErrorMessage(''), 3000);
+    }
+  };
+  
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/products-all/${id}`)
@@ -85,7 +113,12 @@ export default function BookDetails() {
           
           <div className="book-actions">
           <button title="Add to Cart" onClick={() => handleAddToCart(book)}>➕</button>
-            <button title="Add to Wishlist">♡</button>
+          <button 
+                    title="Add to Wishlist" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToWishlist(book);
+                    }}>♡</button>
           </div>
 
           <p className="rating-label"><strong>Your Rating:</strong></p>
@@ -102,9 +135,55 @@ export default function BookDetails() {
           </div>
           
         </div>
+
+        <div>
+        {successMessage && (
+          <div
+            style={{
+              position: 'fixed',
+              bottom: '20px',
+              right: '20px',
+              backgroundColor: '#4caf50',
+              color: 'white',
+              padding: '8px 12px',
+              borderRadius: '5px',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+              fontSize: '14px',
+              opacity: 0.9,
+              zIndex: 1000,
+              transition: 'opacity 0.3s ease',
+            }}
+          >
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div
+            style={{
+              position: 'fixed',
+              bottom: '20px',
+              right: '20px',
+              backgroundColor: '#f44336',
+              color: 'white',
+              padding: '8px 12px',
+              borderRadius: '5px',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+              fontSize: '14px',
+              opacity: 0.9,
+              zIndex: 1000,
+              transition: 'opacity 0.3s ease',
+            }}
+          >
+            {errorMessage}
+          </div>
+        )}
+      </div>
+
       </div>
 
       <BackToHomeButton />
     </div>
   );
 }
+
