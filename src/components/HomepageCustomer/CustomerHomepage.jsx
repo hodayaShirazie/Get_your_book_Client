@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './CustomerHomepage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// import { FaRegHeart } from "react-icons/fa";
 import { SERVER_URL } from '../../config'; 
 
 
@@ -16,30 +17,13 @@ const CustomerHomepage = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [outOfStockBookId, setOutOfStockBookId] = useState(null);
   const [topBooks, setTopBooks] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
   
-   const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
 
-  const [wishlist, setWishlist] = useState(() => {
-    const saved = localStorage.getItem('wishlist');
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-  }, [wishlist]);
-
-
-  const toggleWishlist = (book) => {
-    setWishlist((prevWishlist) => {
-      if (prevWishlist.includes(book.id)) {
-        return prevWishlist.filter(id => id !== book.id);
-      } else {
-        return [...prevWishlist, book.id];
-      }
-    });
-  };
+  
 
 
 
@@ -54,7 +38,7 @@ const CustomerHomepage = () => {
       });
       if (response.data.message === 'Out of Stock') {
         setOutOfStockBookId(book.id);
-        setTimeout(() => setOutOfStockBookId(null), 3000); // disappear after 3 min
+        setTimeout(() => setOutOfStockBookId(null), 3000); 
         return;
       }
   
@@ -74,32 +58,6 @@ const CustomerHomepage = () => {
 
 
 
-  // const handleAddToWishlist = async (book) => {
-  //   const username = localStorage.getItem('username');
-  //   try {
-  //     const response = await axios.post(`${SERVER_URL}/add-to-wishlist`, {
-  //       username: username,
-  //       productId: book.id
-  //     });
-  
-  //     if (response.data.message === 'Already in Wishlist') {
-  //       setErrorMessage('This book is already in your wishlist.');
-  //       setTimeout(() => setErrorMessage(''), 3000);
-  //       return;
-  //     }
-  
-  //     if (response.data.message === 'Added to Wishlist') {
-  //       setSuccessMessage('Added to wishlist!');
-  //       setTimeout(() => setSuccessMessage(''), 2000);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error adding to wishlist:', error);
-  //     setErrorMessage('Error adding to wishlist. Please try again.');
-  //     setTimeout(() => setErrorMessage(''), 3000);
-  //   }
-  // };
-
-
   const handleAddToWishlist = async (book) => {
     const username = localStorage.getItem('username');
     try {
@@ -115,7 +73,6 @@ const CustomerHomepage = () => {
       }
   
       if (response.data.message === 'Added to Wishlist') {
-        setWishlist(prev => [...prev, book.id]);  
         setSuccessMessage('Added to wishlist!');
         setTimeout(() => setSuccessMessage(''), 2000);
       }
@@ -125,6 +82,9 @@ const CustomerHomepage = () => {
       setTimeout(() => setErrorMessage(''), 3000);
     }
   };
+
+
+  
   
 
   const handleRemoveFromWishlist = async (book) => {
@@ -132,7 +92,7 @@ const CustomerHomepage = () => {
     try {
       const response = await axios.delete(`${SERVER_URL}/wishlist/${username}/${book.id}`);
       if (response.data.message === 'Product removed from wishlist') {
-        setWishlist(prev => prev.filter(id => id !== book.id)); // הסר את הספר מהרשימה
+        setWishlist(prev => prev.filter(id => id !== book.id)); 
       }
     } catch (error) {
       console.error('Error removing from wishlist:', error);
@@ -167,6 +127,37 @@ const CustomerHomepage = () => {
 
 
   useEffect(() => {
+    const fetchWishlist = async () => {
+      const username = localStorage.getItem('username');
+      try {
+        const response = await axios.get(`${SERVER_URL}/wishlist/${username}`);
+        const wishlistIds = response.data.map(book => book.id); 
+        setWishlist(wishlistIds);
+      } catch (error) {
+        console.error('Error fetching wishlist:', error);
+      }
+    };
+  
+    fetchWishlist();
+  }, []);
+
+
+  const toggleWishlist = async (book) => {
+    const username = localStorage.getItem('username');
+  
+    if (wishlist.includes(book.id)) {
+      await handleRemoveFromWishlist(book);
+      setWishlist(prev => prev.filter(id => id !== book.id));
+    } else {
+      await handleAddToWishlist(book);
+      setWishlist(prev => [...prev, book.id]);
+    }
+  };
+  
+  
+
+
+  useEffect(() => {
     if (searchTerm.trim() === '') {
       axios.get(`${SERVER_URL}/products`)
         .then(response => {
@@ -182,7 +173,7 @@ const CustomerHomepage = () => {
   
 
 useEffect(() => {
-  axios.get('http://localhost:3000/top-books')
+  axios.get(`${SERVER_URL}/top-books`)
     .then(res => setTopBooks(res.data))
     .catch(err => console.error('Error fetching top books:', err));
 }, []);
@@ -294,7 +285,7 @@ if (sortOrder === 'low-high') {
                 {outOfStockBookId === book.id && (
 
 
-   <div className="out-of-stock-overlay">
+                <div className="out-of-stock-overlay">
                     <svg
                       className="out-of-stock-icon"
                       xmlns="http://www.w3.org/2000/svg"
@@ -329,19 +320,30 @@ if (sortOrder === 'low-high') {
                   </button>
 
 
-                  <button
-                    title={wishlist.includes(book.id) ? "Remove from Wishlist" : "Add to Wishlist"}
+
+
+                  <svg 
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (wishlist.includes(book.id)) {
-                        handleRemoveFromWishlist(book);
-                      } else {
-                        handleAddToWishlist(book);
-                      }
+                      toggleWishlist(book);
                     }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill={wishlist.includes(book.id) ? "red" : "none"}
+                    stroke="red"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ cursor: 'pointer' }}
                   >
-                    {wishlist.includes(book.id) ? '♥' : '♡'}
-                  </button>
+                    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
+                  </svg>
+
+
+
+                  
 
 
                   {/* <button
