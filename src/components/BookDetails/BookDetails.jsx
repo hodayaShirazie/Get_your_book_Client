@@ -14,7 +14,7 @@ export default function BookDetails() {
   const [outOfStock, setOutOfStock] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  
+
   const handleAddToCart = async (book) => {
     const username = localStorage.getItem('username'); 
   
@@ -38,30 +38,104 @@ export default function BookDetails() {
   };
 
 
-  const handleAddToWishlist = async (book) => {
-    const username = localStorage.getItem('username');
-    try {
-      const response = await axios.post(`${SERVER_URL}/add-to-wishlist`, {
-        username: username,
-        productId: book.id
-      });
+  // const handleAddToWishlist = async (book) => {
+  //   const username = localStorage.getItem('username');
+  //   try {
+  //     const response = await axios.post(`${SERVER_URL}/add-to-wishlist`, {
+  //       username: username,
+  //       productId: book.id
+  //     });
   
-      if (response.data.message === 'Already in Wishlist') {
-        setErrorMessage('This book is already in your wishlist.');
-        setTimeout(() => setErrorMessage(''), 3000);
-        return;
-      }
+  //     if (response.data.message === 'Already in Wishlist') {
+  //       setErrorMessage('This book is already in your wishlist.');
+  //       setTimeout(() => setErrorMessage(''), 3000);
+  //       return;
+  //     }
   
-      if (response.data.message === 'Added to Wishlist') {
-        setSuccessMessage('Added to wishlist!');
-        setTimeout(() => setSuccessMessage(''), 2000);
-      }
-    } catch (error) {
-      console.error('Error adding to wishlist:', error);
-      setErrorMessage('Error adding to wishlist. Please try again.');
+  //     if (response.data.message === 'Added to Wishlist') {
+  //       setSuccessMessage('Added to wishlist!');
+  //       setTimeout(() => setSuccessMessage(''), 2000);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error adding to wishlist:', error);
+  //     setErrorMessage('Error adding to wishlist. Please try again.');
+  //     setTimeout(() => setErrorMessage(''), 3000);
+  //   }
+  // };
+
+
+  const [isInWishlist, setIsInWishlist] = useState(false);
+
+const handleAddToWishlist = async (book) => {
+  const username = localStorage.getItem('username');
+  try {
+    const response = await axios.post(`${SERVER_URL}/add-to-wishlist`, {
+      username,
+      productId: book.id
+    });
+
+    if (response.data.message === 'Already in Wishlist') {
+      setErrorMessage('This book is already in your wishlist.');
       setTimeout(() => setErrorMessage(''), 3000);
+      return;
     }
-  };
+
+    if (response.data.message === 'Added to Wishlist') {
+      setSuccessMessage('Added to wishlist!');
+      setIsInWishlist(true);
+      setTimeout(() => setSuccessMessage(''), 2000);
+    }
+  } catch (error) {
+    console.error('Error adding to wishlist:', error);
+    setErrorMessage('Error adding to wishlist. Please try again.');
+    setTimeout(() => setErrorMessage(''), 3000);
+  }
+};
+
+const handleRemoveFromWishlist = async (book) => {
+  const username = localStorage.getItem('username');
+  try {
+    const response = await axios.delete(`${SERVER_URL}/wishlist/${username}/${book.id}`);
+    if (response.data.message === 'Product removed from wishlist') {
+      setIsInWishlist(false);
+      setSuccessMessage('Removed from wishlist!');
+      setTimeout(() => setSuccessMessage(''), 2000);
+    }
+  } catch (error) {
+    console.error('Error removing from wishlist:', error);
+    setErrorMessage('Error removing from wishlist. Please try again.');
+    setTimeout(() => setErrorMessage(''), 3000);
+  }
+};
+
+
+
+  
+  
+
+
+  useEffect(() => {
+    const fetchBookAndWishlist = async () => {
+      try {
+        const bookResponse = await axios.get(`${SERVER_URL}/products-all/${id}`);
+        setBook(bookResponse.data);
+  
+        const username = localStorage.getItem('username');
+        const wishlistResponse = await axios.get(`${SERVER_URL}/wishlist/${username}`);
+        const wishlistBooks = wishlistResponse.data;
+  
+        const inWishlist = wishlistBooks.some(item => item.id === bookResponse.data.id);
+        setIsInWishlist(inWishlist);
+  
+      } catch (error) {
+        console.error('Error loading data:', error);
+        setError(true);
+      }
+    };
+  
+    fetchBookAndWishlist();
+  }, [id]);
+  
   
 
   useEffect(() => {
@@ -113,12 +187,31 @@ export default function BookDetails() {
           
           <div className="book-actions">
           <button title="Add to Cart" onClick={() => handleAddToCart(book)}>➕</button>
-          <button 
-                    title="Add to Wishlist" 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleAddToWishlist(book);
-                    }}>♡</button>
+
+
+          <button
+            title={isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isInWishlist) {
+                handleRemoveFromWishlist(book);
+              } else {
+                handleAddToWishlist(book);
+              }
+            }}
+          >
+            {isInWishlist ? '♥' : '♡'}
+          </button>
+
+
+
+          {/* <button 
+            title="Add to Wishlist" 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddToWishlist(book);
+            }}>♡</button> */}
+
           </div>
 
           <p className="rating-label"><strong>Your Rating:</strong></p>
