@@ -1,9 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import './CustomerHomepage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import { FaRegHeart } from "react-icons/fa";
 import { SERVER_URL } from '../../config'; 
 
 
@@ -322,7 +320,7 @@ if (sortOrder === 'low-high') {
 
 
 
-                  <svg 
+                  {/* <svg 
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleWishlist(book);
@@ -339,23 +337,14 @@ if (sortOrder === 'low-high') {
                     style={{ cursor: 'pointer' }}
                   >
                     <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
-                  </svg>
+                  </svg> */}
 
-
-
-                  
-
-
-                  {/* <button
-                    title="Toggle Wishlist"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleWishlist(book);
-                      handleAddToWishlist(book); 
-                    }}
-                  >
+                  <div className="wishlist-icon" onClick={(e) => {
+                    e.stopPropagation(); 
+                    toggleWishlist(book);
+                  }}>
                     {wishlist.includes(book.id) ? '♥' : '♡'}
-                  </button> */}
+                  </div>
                 
                 </div>
               </div>

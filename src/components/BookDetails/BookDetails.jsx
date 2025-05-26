@@ -14,6 +14,7 @@ export default function BookDetails() {
   const [outOfStock, setOutOfStock] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [isInWishlist, setIsInWishlist] = useState(false);
 
   const handleAddToCart = async (book) => {
     const username = localStorage.getItem('username'); 
@@ -37,34 +38,7 @@ export default function BookDetails() {
     }
   };
 
-
-  // const handleAddToWishlist = async (book) => {
-  //   const username = localStorage.getItem('username');
-  //   try {
-  //     const response = await axios.post(`${SERVER_URL}/add-to-wishlist`, {
-  //       username: username,
-  //       productId: book.id
-  //     });
   
-  //     if (response.data.message === 'Already in Wishlist') {
-  //       setErrorMessage('This book is already in your wishlist.');
-  //       setTimeout(() => setErrorMessage(''), 3000);
-  //       return;
-  //     }
-  
-  //     if (response.data.message === 'Added to Wishlist') {
-  //       setSuccessMessage('Added to wishlist!');
-  //       setTimeout(() => setSuccessMessage(''), 2000);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error adding to wishlist:', error);
-  //     setErrorMessage('Error adding to wishlist. Please try again.');
-  //     setTimeout(() => setErrorMessage(''), 3000);
-  //   }
-  // };
-
-
-  const [isInWishlist, setIsInWishlist] = useState(false);
 
 const handleAddToWishlist = async (book) => {
   const username = localStorage.getItem('username');
@@ -108,10 +82,6 @@ const handleRemoveFromWishlist = async (book) => {
   }
 };
 
-
-
-  
-  
 
 
   useEffect(() => {
@@ -202,15 +172,6 @@ const handleRemoveFromWishlist = async (book) => {
           >
             {isInWishlist ? '♥' : '♡'}
           </button>
-
-
-
-          {/* <button 
-            title="Add to Wishlist" 
-            onClick={(e) => {
-              e.stopPropagation();
-              handleAddToWishlist(book);
-            }}>♡</button> */}
 
           </div>
 
