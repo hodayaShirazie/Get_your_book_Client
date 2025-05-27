@@ -132,3 +132,23 @@
     height: 22px; 
    }
   
+
+
+.star {
+  font-size: 20px;      
+  color: lightgray;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0 4px;
+}
+
+.star.filled {
+  color: rgb(110, 109, 109); 
+}
+
+.average-rating {
+  color: #FFD700; 
+  font-size: 24px; 
+  margin-top: 10px;
+  letter-spacing: 3px; 
+}

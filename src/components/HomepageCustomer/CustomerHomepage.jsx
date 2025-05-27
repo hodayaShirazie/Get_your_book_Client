@@ -16,7 +16,7 @@ const CustomerHomepage = () => {
   const [outOfStockBookId, setOutOfStockBookId] = useState(null);
   const [topBooks, setTopBooks] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-
+  const [averageRatings, setAverageRatings] = useState({});
   
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -176,6 +176,23 @@ useEffect(() => {
     .catch(err => console.error('Error fetching top books:', err));
 }, []);
 
+useEffect(() => {
+  const fetchAverageRatings = async () => {
+    const ratings = {};
+    for (const book of books) {
+      try {
+        const res = await axios.get(`${SERVER_URL}/product-rating/average/${book.id}`);
+        ratings[book.id] = res.data.average;
+      } catch (error) {
+        console.error(`Error fetching rating for book ${book.id}`, error);
+      }
+    }
+    setAverageRatings(ratings);
+  };
+
+  if (books.length > 0) fetchAverageRatings();
+}, [books]);
+
 
  
 
@@ -301,7 +318,12 @@ if (sortOrder === 'low-high') {
               <div className="customer-book-title">{book.name}</div>
               <div className="customer-book-price">${book.price}</div>
               <div className="customer-book-info">
-                <div className="customer-book-stars">★★★★☆</div>
+<div className="customer-book-stars">
+  {averageRatings[book.id]
+    ? '★'.repeat(Math.round(averageRatings[book.id])) +
+      '☆'.repeat(5 - Math.round(averageRatings[book.id]))
+    : '☆☆☆☆☆'}
+</div>
                 <div className="customer-book-icons">
                   
                     

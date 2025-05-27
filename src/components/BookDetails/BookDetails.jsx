@@ -10,11 +10,12 @@ export default function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [error, setError] = useState(false);
-  const [userRating, setUserRating] = useState(0);
   const [outOfStock, setOutOfStock] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isInWishlist, setIsInWishlist] = useState(false);
+  const [averageRating, setAverageRating] = useState(0);
+  const [userRating, setUserRating] = useState(0);
 
   const handleAddToCart = async (book) => {
     const username = localStorage.getItem('username'); 
@@ -82,6 +83,27 @@ const handleRemoveFromWishlist = async (book) => {
   }
 };
 
+const handleUserRating = async (rating) => {
+  const username = localStorage.getItem('username');
+  try {
+    await axios.post(`${SERVER_URL}/product-rating`, {
+      username,
+      bookId: id,
+      stars: rating
+    });
+    setUserRating(rating);
+    setSuccessMessage('Rating submitted!');
+    setTimeout(() => setSuccessMessage(''), 2000);
+
+    // עדכון ממוצע לאחר דירוג
+    const res = await axios.get(`${SERVER_URL}/product-rating/average/${id}`);
+    setAverageRating(res.data.average || 0);
+  } catch (error) {
+    console.error('Failed to submit rating', error);
+    setErrorMessage('Failed to submit rating.');
+    setTimeout(() => setErrorMessage(''), 2000);
+  }
+};
 
 
   useEffect(() => {
@@ -106,7 +128,35 @@ const handleRemoveFromWishlist = async (book) => {
     fetchBookAndWishlist();
   }, [id]);
   
-  
+  useEffect(() => {
+  const fetchAverageRating = async () => {
+    try {
+      const res = await axios.get(`${SERVER_URL}/product-rating/average/${id}`);
+      setAverageRating(res.data.average || 0);
+    } catch (error) {
+      console.error('Failed to fetch average rating', error);
+    }
+  };
+
+  fetchAverageRating();
+}, [id]);
+
+
+
+useEffect(() => {
+  const fetchUserRating = async () => {
+    const username = localStorage.getItem('username');
+    try {
+      const res = await axios.get(`${SERVER_URL}/product-rating/user/${id}/${username}`);
+      setUserRating(res.data.userRating || 0);
+    } catch (error) {
+      console.error('Failed to fetch user rating:', error);
+    }
+  };
+
+  fetchUserRating();
+}, [id]);
+
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/products-all/${id}`)
@@ -153,7 +203,9 @@ const handleRemoveFromWishlist = async (book) => {
           <p><strong>ID:</strong> {book.id}</p>
           <p><strong>Description:</strong> {book.description || 'No description available.'}</p>
           <p><strong>Price:</strong> ${book.price}</p>
-          <p><strong>Rating:</strong> ★★★★☆</p>
+          <p className="average-rating">
+   {'★'.repeat(Math.round(averageRating)) + '☆'.repeat(5 - Math.round(averageRating))}
+</p>
           
           <div className="book-actions">
           <button title="Add to Cart" onClick={() => handleAddToCart(book)}>➕</button>
@@ -174,19 +226,29 @@ const handleRemoveFromWishlist = async (book) => {
           </button>
 
           </div>
+<div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '16px' }}>
+  <span style={{ color: '#333', fontSize: '16px' }}>
+    <strong>Rate this product:</strong>
+  </span>
+  <div className="star-rating">
+    {[1, 2, 3, 4, 5].map((star) => (
+      <span
+        key={star}
+        className={star <= userRating ? 'star filled' : 'star'}
+        onClick={() => handleUserRating(star)}
+      >
+        ★
+      </span>
+    ))}
+  </div>
+</div>
 
-          <p className="rating-label"><strong>Your Rating:</strong></p>
-          <div className="star-rating">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span
-                key={star}
-                className={star <= userRating ? 'star filled' : 'star'}
-                onClick={() => setUserRating(star)}
-              >
-                ★
-              </span>
-            ))}
-          </div>
+
+          
+
+
+
+        
           
         </div>
 

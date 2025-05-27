@@ -216,8 +216,9 @@ body {
 }
 
 .customer-book-stars {
-  font-size: 11px;
-  color: #999;
+  font-size: 15px;
+  color: #FFD700; 
+ 
 }
 
 .customer-book-icons {
