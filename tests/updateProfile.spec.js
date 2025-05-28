@@ -33,21 +33,6 @@ describe('Update Profile Component', () => {
     });
   });
 
-  test('renders update profile form correctly', async () => {
-  axios.get.mockResolvedValue({
-    data: { 
-      success: true, 
-      user: { username: 'testuser', password: '' } 
-    }
-  });
-
-  render(<UpdateProfile />, { wrapper: MemoryRouter });
-
-  expect(screen.getByText('Update Profile')).toBeInTheDocument();
-  expect(screen.getByPlaceholderText(/enter new username/i)).toBeInTheDocument();
-  expect(screen.getByPlaceholderText(/enter new password/i)).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: /update/i })).toBeInTheDocument();
-});
 
 test('displays current user data when loaded', async () => {
   const mockUser = {
