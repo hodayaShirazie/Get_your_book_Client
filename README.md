@@ -1,8 +1,6 @@
 
 # Get Your Book Client-side
 
-The client side of the "Get Your Book" project is designed for user interaction, allowing customers to register accounts, search for books, manage their shopping cart, and make purchases. Users can also browse products, save items to a wishlist, and edit their account details. The website offers an intuitive shopping experience with features like viewing sales statistics and bestselling books
-
 This is the frontend of the **Get Your Book** online bookstore. It allows users to create accounts, log in, browse books, add items to their shopping cart, and complete purchases. The app is built with React.js and communicates with the backend to load and update data.
 
 
@@ -116,6 +114,7 @@ GET_YOUR_BOOK_CLIENT/
 [View Mockup (PDF)](./docs/Mockup.pdf)
 
 
+
 ## Running Tests
 
 To run tests, run the following command
@@ -136,6 +135,7 @@ Set it according to your environment:
 
 - For **production**, use: https://get-your-book-server.onrender.com
 
+
 ## Contributing
 
 Contributions are always welcome!
@@ -149,6 +149,7 @@ If you’d like to contribute, please follow these steps:
 5. Open a pull request
 
 Please make sure your code follows the project's style guidelines and includes relevant tests or documentation updates if needed.
+
 
 ## Authors
 
