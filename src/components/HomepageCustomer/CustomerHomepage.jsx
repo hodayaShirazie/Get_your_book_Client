@@ -216,7 +216,14 @@ if (sortOrder === 'low-high') {
         {topBooks  && topBooks.length > 0 && (
   <div className="customer-top-books">
     {topBooks.slice(0, 3).map((book) => (
-      <div key={book.id} className="top-seller-glow">
+      <div
+        key={book.id}
+        className="top-seller-glow"
+        onClick={() => navigate(`/book/${book.id}`)}
+        style={{ cursor: 'pointer' }}  
+      >
+        <div className="bestseller-badge">🔥 Bestseller</div>
+
         {book.image && book.image.startsWith("data:image/") ? (
           <img src={book.image} alt={book.name} />
         ) : (
