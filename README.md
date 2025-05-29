@@ -11,6 +11,8 @@ GET_YOUR_BOOK_CLIENT/
 ├── .circleci/
 │   └── config.yml
 ├── dist/
+├── docs/
+│   └── Mockup.pdf/
 ├── node_modules/
 ├── public/
 ├── src/
@@ -22,13 +24,35 @@ GET_YOUR_BOOK_CLIENT/
 │   │   ├── HomepageManager/
 │   │   ├── Login/
 │   │   └── Register/
+│   |   ├───BackToHomeButton
+│   |   ├───updateProfile
+│   |   ├───Catalog
+│   |   ├───AddProduct
+│   |   ├───DeleteProduct
+│   |   ├───UpdateProduct
+│   |   ├───BookDetails
+│   |   ├───ShoppingCart
+│   |   ├───PurchaseSummary
+│   |   ├───CustomerOrders
+│   |   ├───LowStockAlerts
+│   |   ├───SetDeliveryDays
+│   |   ├───StoreStatistics
+│   |   ├───ViewOrdersAdmin
+│   |   └───Wishlist
 │   ├── App.jsx
+│   ├── App.css
+│   ├── config.js
 │   ├── index.jsx
 │   └── main.jsx
 ├── tests/
-│   └── appTest.spec.js
+│   ├── addToShoppingCart.spec.js
+│   ├───deleteProduct.spec.js
+│   ├───login.spec.js
+│   ├───SetDeliveryDays
+│   └───updateProfile.spec.js
 ├── .babelrc
-├── .eslintrc.js
+├── .env
+├── .eslint.config.js
 ├── index.html
 ├── jest.setup.js
 ├── package.json
