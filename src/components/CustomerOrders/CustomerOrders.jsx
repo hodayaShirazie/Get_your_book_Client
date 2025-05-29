@@ -116,6 +116,7 @@ const MyOrders = () => {
                 <p><strong>Date:</strong> {new Date(order.order_date).toLocaleDateString()}</p>
                 <p><strong>Total:</strong> ${order.sum_of_purchase}</p>
                 <p><strong>Products in Order:</strong> {order.number_of_products}</p>
+                <p><strong>Status:</strong> {order.status}</p>
                 {order.products?.length > 0 && (
                   <ul className="product-list">
                     {order.products.map((product, index) => (
