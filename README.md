@@ -3,6 +3,9 @@
 
 The client side of the "Get Your Book" project is designed for user interaction, allowing customers to register accounts, search for books, manage their shopping cart, and make purchases. Users can also browse products, save items to a wishlist, and edit their account details. The website offers an intuitive shopping experience with features like viewing sales statistics and bestselling books
 
+This is the frontend of the **Get Your Book** online bookstore. It allows users to create accounts, log in, browse books, add items to their shopping cart, and complete purchases. The app is built with React.js and communicates with the backend to load and update data.
+
+
 
 ## Installation
 
