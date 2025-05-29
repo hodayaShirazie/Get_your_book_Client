@@ -58,6 +58,32 @@ body {
   margin-top: 0;
 }
 
+.top-seller-glow {
+  width: 140px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+}
+.top-seller-glow div,
+.top-seller-glow br,
+.top-seller-glow img {
+  flex-shrink: 0;
+}
+.top-seller-glow span {
+  display: block;
+  font-size: 14px;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
 
 .customer-top-books {
   display: flex;
