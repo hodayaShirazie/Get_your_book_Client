@@ -1,12 +1,7 @@
 
-# Get Your Book Client
+# Get Your Book Client-side
 
 The client side of the "Get Your Book" project is designed for user interaction, allowing customers to register accounts, search for books, manage their shopping cart, and make purchases. Users can also browse products, save items to a wishlist, and edit their account details. The website offers an intuitive shopping experience with features like viewing sales statistics and bestselling books
-
-
-## Demo
-
-Insert gif or link to demo
 
 
 ## Installation
@@ -113,10 +108,9 @@ GET_YOUR_BOOK_CLIENT/
  ```
 
 
-
 ## Mockup
 
-![Mockup](./docs/Mockup.pdf)
+[View Mockup (PDF)](./docs/Mockup.pdf)
 
 
 ## Running Tests
