@@ -10,11 +10,9 @@
   <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" /></a>
   <a href="https://render.com/"><img src="https://img.shields.io/badge/Hosting-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black" alt="Render" /></a>
 </p>
-אם את רוצה גם להוסיף סמל ל־MongoDB, JWT, או Vite, תגידי ואכניס.
 
 
 This is the frontend of the **Get Your Book** online bookstore. It allows users to create accounts, log in, browse books, add items to their shopping cart, and complete purchases. The app is built with React.js and communicates with the backend to load and update data.
-
 
 
 ## Installation
