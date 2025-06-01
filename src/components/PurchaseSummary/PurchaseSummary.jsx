@@ -50,7 +50,7 @@ export default function PurchaseSummary() {
     fetch(`${SERVER_URL}/missing-delivery-days`)
       .then(res => res.json())
       .then(data => {
-        setUnavailableWeekdays(data.missingDeliveryDays); // <- תוסיפי useState לזה
+        setUnavailableWeekdays(data.missingDeliveryDays);
       })
       .catch(console.error);
   }, []);
@@ -380,7 +380,7 @@ export default function PurchaseSummary() {
             <DatePicker
               selected={date ? new Date(date) : null}
               onChange={(dateObj) => {
-                const isoDate = dateObj.toLocaleDateString('sv-SE'); // yyyy-mm-dd בלי שגיאת timezone
+                const isoDate = dateObj.toLocaleDateString('sv-SE'); 
                 const weekdayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
               
                 if (!isDateAvailable(dateObj)) {

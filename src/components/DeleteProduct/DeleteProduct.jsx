@@ -47,17 +47,17 @@ export default function DeleteProduct() {
       return;
     }
   
-    setShowModal(true); // open confirm modal
+    setShowModal(true);
   };
   const confirmDeletion = async () => {
     try {
       await axios.delete(`${SERVER_URL}/delete-product/${selectedProductId}`);
-      setShowSuccess(true); // מודאל הצלחה
+      setShowSuccess(true); 
       setProductList(prev => prev.filter(p => p.id !== selectedProductId));
     } catch (error) {
       console.error("Error deleting product:", error);
       setErrorMessage("Failed to delete product.");
-      setShowError(true); // מודאל שגיאה
+      setShowError(true); 
     } finally {
       setShowModal(false);
     }

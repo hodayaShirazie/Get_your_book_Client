@@ -21,10 +21,6 @@ const CustomerHomepage = () => {
   const [successMessage, setSuccessMessage] = useState('');
 
 
-  
-
-
-
   const handleAddToCart = async (book) => {
     const username = localStorage.getItem('username'); 
     console.log("Sending to server:", book);
@@ -345,28 +341,6 @@ if (sortOrder === 'low-high') {
                   >
                     ➕
                   </button>
-
-
-
-
-                  {/* <svg 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleWishlist(book);
-                    }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill={wishlist.includes(book.id) ? "red" : "none"}
-                    stroke="red"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
-                  </svg> */}
 
                   <div className="wishlist-icon" onClick={(e) => {
                     e.stopPropagation(); 

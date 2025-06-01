@@ -24,8 +24,6 @@ import CustomerOrders from "./components/CustomerOrders/CustomerOrders.jsx";
 import LowStockAlerts from "./components/LowStockAlerts/LowStockAlerts.jsx";
 import Wishlist from "./components/Wishlist/Wishlist.jsx";
 
-import ResetPasswordPagePlusLink from "./components/Login/resetPasswordPagePlusLink.jsx";
-
 
 function App() {
   return (
@@ -55,8 +53,6 @@ function App() {
           <Route path="/view-orders" element={< ViewOrders/>} />
           <Route path="/customer-orders" element={<CustomerOrders />} />
           <Route path="/wishlist" element={<Wishlist />} />
-
-          <Route path="/resetMe" element={<ResetPasswordPagePlusLink />} />
         </Routes>
       </Router>
     </Fragment>
